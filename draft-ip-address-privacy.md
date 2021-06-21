@@ -1,6 +1,6 @@
 ---
 title: "Use Cases and Requirements for IP Address Privacy"
-abbrev: "Use Cases and Requirements for IP Address Privacy"
+abbrev: "IP Address Privacy Use Cases"
 docname: draft-ip-address-privacy-latest
 category: info
 
@@ -23,7 +23,6 @@ author:
 
 
 normative:
-  RFC2119:
 
 informative:
 
