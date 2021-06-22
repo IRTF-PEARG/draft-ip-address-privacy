@@ -1,7 +1,7 @@
 ---
 title: "IP Address Privacy Considerations"
-abbrev: "IP Address Privacy Use Cases"
-docname: draft-ip-address-privacy-latest
+abbrev: "IP Address Privacy Considerations"
+docname: draft-ip-address-considerations
 category: info
 
 ipr: trust200902
