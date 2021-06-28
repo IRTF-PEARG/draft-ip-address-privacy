@@ -1,7 +1,7 @@
 ---
 title: "IP Address Privacy Considerations"
 abbrev: "IP Address Privacy Considerations"
-docname: draft-ip-address-privacy-considerations-latest
+docname: draft-ip-address-privacy-considerations
 category: info
 
 ipr: trust200902
@@ -15,10 +15,10 @@ pi: [toc, sortrefs, symrefs]
 
 author:
  -
-    ins: S. Sahib
-    name: Shivan Sahib
-    organization: Brave Software
-    email: shivankaulsahib@gmail.com
+    ins: T. BD
+    name: Authors TBD
+    organization: TBD
+    email: tbd@tbd.com
     
 
 
