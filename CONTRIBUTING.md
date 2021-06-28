@@ -19,13 +19,9 @@ subject to a Simplified BSD License) in Contributions.
 
 ## Other Resources
 
-Discussion of this work occurs on the
-[address working group mailing list](https://mailarchive.ietf.org/arch/browse/address/)
-([subscribe](https://www.ietf.org/mailman/listinfo/address)).  In addition to
+This draft is not yet adopted - however, previous discussion of this work has occurred on the
+[PEARG research group mailing list](https://www.irtf.org/mailman/listinfo/pearg).  In addition to
 contributions in GitHub, you are encouraged to participate in discussions there.
 
-**Note**: Some working groups adopt a policy whereby substantive discussion of
-technical issues needs to occur on the mailing list.
-
 You might also like to familiarize yourself with other
-[working group documents](https://datatracker.ietf.org/wg/address/documents/).
+[research group documents](https://datatracker.ietf.org/rg/pearg/documents/).
