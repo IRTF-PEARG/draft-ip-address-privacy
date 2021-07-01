@@ -77,7 +77,21 @@ Account abuse, financial fraud, ad fraud, child abuse...
 
 ## Privacy implications of IP addresses
 
+IP addresses provide a [relatively stable identifier](https://hal.inria.fr/hal-02435622), and are an important attribute in tracking people as they load web pages across sites. While the stable identifier is important in the above anti-abuse cases, this fact threatens a user's privacy because it allows for profiling of behavior. This profiling may occur anywhere on the path between the client and the server, inclusive. In addition, IP addresses passively leak meta information about the user, such as their rough geographical location. This may be beneficial, but not always as the default.
+
+Some mitigations are discussed below, however any holistic solution must ensure privacy is available with no additional cost.
+
 ## Mitigations for IP address tracking
+
+The ability to track individual people by IP address has been well understood for decades. Commercial VPNs and Tor are the most common methods of mitigating IP address-based tracking.
+
+Commerical VPNs offer a layer of indirection between the user and the destination, however if the VPN endpoint's IP address is static then this simply substitutes one address for another. In addition, commerial VPNs replace tracking across sites with a single company that may track their users' activities.
+
+Tor is another mitigation option due to its dynamic path selection and distributed network of relays, however its current design suffers from degraded performance. In addition, correct application integration is difficult and not common.
+
+Recent interest has resulted in new protocols such as Oblivious DNS ([ODoH](https://www.ietf.org/staging/draft-pauly-oblivious-doh-02.html)) and Oblivious HTTP ([OHTTP](https://www.ietf.org/archive/id/draft-thomson-http-oblivious-00.html)). While they both prevent tracking by individual parties, they are not intended for the general-purpose web browsing use case.
+
+Finally, [Gnatcatcher](https://github.com/bslassey/ip-blindness/blob/master/README.md) is a single-hop proxy providing more protection than a traditional commercial VPN; and iCloud Private Relay is described as using two proxies and would provide a level of protection somewhere between a commercial VPN and Tor.
 
 # Replacement signals for IP addresses
  
