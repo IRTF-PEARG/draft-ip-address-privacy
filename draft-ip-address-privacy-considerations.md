@@ -41,12 +41,12 @@ This document provides an overview of privacy considerations related to user IP 
 The initial intention of this draft is to capture an overview of the problem space and research on proposed solutions. The draft is likely to evolve significantly over time and may well split into multiple drafts as content is added.
 
 Tracking of user IP addresses is common place on the Internet today, and is particularly widely used in the context of
-anti-abuse, e.g. anti-fraud, DDoS management child protection activities. IP addresses are currently used as a source of
+anti-abuse, e.g. anti-fraud, DDoS management, child protection activities. IP addresses are currently used as a source of
 “reputation” in conjunction with other signals to protect against malicious traffic, since they are a relatively stable
 identifier of the origin of a request. Servers use these reputations in determining whether or not a given packet, connection,
 or flow corresponds to malicious traffic.
 
-However, identifying the activity of users based on IP addresses has clear privacy implications e.g. user fingerprinting and cross site identity linking. Many technologies exist today to allow users to hide their IP address to avoid such tracking, e.g. VPNs, Tor. Several new technologies are also emerging in the landscape e.g. Gnatcatcher, Apple Private Relay and Oblivious techologies (OHTTPS, ODoH). 
+However, identifying the activity of users based on IP addresses has clear privacy implications e.g. user fingerprinting and cross site identity linking. Many technologies exist today to allow users to hide their IP address to avoid such tracking, e.g. VPNs, Tor. Several new technologies are also emerging in the landscape e.g. Gnatcatcher, Apple iCloud Private Relay and Oblivious techologies (OHTTPS, ODoH).
 
 This draft attempts to capture the following aspects of the tension between valid use cases for user identification and the related privacy concerns including:
 
@@ -82,7 +82,8 @@ Account abuse, financial fraud, ad fraud, child abuse...
 # Replacement signals for IP addresses
  
 Fundamentally, the current ecosystem operates by making the paths of a connection accountable for bad traffic, rather than the
-sources of the traffic itself. This is problematic because paths are shared by multiple clients and are impermanent. Ideally,
+sources of the traffic itself. This is problematic because in some cases IP addresses are shared by multiple clients
+(e.g., VPNs, Tor, carrier-grade NATs (CGNATs)) and any misbehavior may be impermanent. Ideally,
 clients could present proof of reputation that is separate from the IP address, and uniquely bound to a given connection.
 
 ## Requirements
@@ -90,7 +91,7 @@ clients could present proof of reputation that is separate from the IP address, 
 ### Client requirements
 
 - Clients MUST be able to request and present new reputation proofs on demand.
-- A reputation signal MUST NOT be linkable to any identifying information for which the signal corresponds.
+- A reputation signal MUST NOT be linkable to an Identity for which the signal corresponds.
 - Clients MUST be able to demonstrate good faith and improve reputation if needed.
 - Clients MUST be able to dispute their reputation.
 - Clients MUST be able to determine and verify the context in which a given reputation applies.
