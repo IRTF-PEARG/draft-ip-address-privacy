@@ -15,6 +15,12 @@ pi: [toc, sortrefs, symrefs]
 
 author:
  -
+    ins: M. Finkel
+    name: Matthew Finkel
+    organization: The Tor Project
+    email: sysrqb@torproject.org
+    
+ -
     ins: T. BD
     name: Authors TBD
     organization: TBD
