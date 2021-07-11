@@ -65,11 +65,11 @@ This draft attempts to capture the following aspects of the tension between vali
 
 (Work in progress)
 
-- Reputation: A random variable with some distribution. A reputation can either be "bad" or "good" with some probability according to the distribution.
-- Reputation signal: A representative of a reputation.
-- Reputation proof: A non-interactive zero knowledge proof of a reputation signal.
-- Reputation context: The context in which a given reputation applies.
 - Identity: Any identifying information about an end-user or service, be it a client or server, including IP addresses.
+- Reputation: A random variable with some distribution. A reputation can either be "bad" or "good" with some probability according to the distribution.
+- Reputation context: The context in which a given reputation applies.
+- Reputation proof: A non-interactive zero knowledge proof of a reputation signal.
+- Reputation signal: A representative of a reputation.
 
 # IP address tracking
 
@@ -97,32 +97,55 @@ Tor is another mitigation option due to its dynamic path selection and distribut
 
 Recent interest has resulted in new protocols such as Oblivious DNS ([ODoH](https://www.ietf.org/staging/draft-pauly-oblivious-doh-02.html)) and Oblivious HTTP ([OHTTP](https://www.ietf.org/archive/id/draft-thomson-http-oblivious-00.html)). While they both prevent tracking by individual parties, they are not intended for the general-purpose web browsing use case.
 
-Finally, [Gnatcatcher](https://github.com/bslassey/ip-blindness/blob/master/README.md) is a single-hop proxy providing more protection than a traditional commercial VPN; and iCloud Private Relay is described as using two proxies and would provide a level of protection somewhere between a commercial VPN and Tor.
+Furthermore, [Gnatcatcher](https://github.com/bslassey/ip-blindness/blob/master/README.md) is a single-hop proxy system providing more protection against third-party tracking than a traditional commercial VPN. However, its design maintains the industry-standard reliance on IP addresses for anti-abuse purposes and it provides near backwards compatibility for select services that submit to periodic audits.
+
+Finally, iCloud Private Relay is described as using two proxies between the client and server, and it would provide a level of protection somewhere between a commercial VPN and Tor.
 
 # Replacement signals for IP addresses
  
-Fundamentally, the current ecosystem operates by making the paths of a connection accountable for bad traffic, rather than the
-sources of the traffic itself. This is problematic because in some cases IP addresses are shared by multiple clients
-(e.g., VPNs, Tor, carrier-grade NATs (CGNATs)) and any misbehavior may be impermanent. Ideally,
-clients could present proof of reputation that is separate from the IP address, and uniquely bound to a given connection.
+Fundamentally, the current ecosystem operates by making the apparent path of a connection accountable for bad traffic, rather than the source of the traffic itself. This is problematic because in some cases IP addresses are shared by multiple clients (e.g., VPNs, Tor, carrier-grade NATs (CGNATs)) and any misbehavior associated with an address may be impermanent. Ideally, clients could gain a reputation and present proof of reputation that is separate from their apparent IP address, and uniquely bound
+to a given connection.
+
+Reputation services ([RFC7070](https://datatracker.ietf.org/doc/html/rfc7070)) are critical components present at multiple layers across the Internet and they are responsible for predicting whether a client will be abusive.  However, these services are constrainted by available identifiers when making a decision. As a result of this constraint, IP addresses tend to be an influential signal in the reputation assigned to an identity. Identifying alternatives for this dependency on IP addresses is
+a goal of this document.
 
 ## Requirements
 
-### Client requirements
+Some [considerations](https://datatracker.ietf.org/doc/html/draft-kucherawy-repute-consid-00) about reputation services are documented already from the perspective of organizations being operationally reliant on a third-party service. However, these considerations are relevant for and extend to a service's impact on clients, as well.
 
-- Clients MUST be able to request and present new reputation proofs on demand.
+With the goal of replacing IP addresses as a fundemental signal in calculating a reputation, we describe two classes of requirements: properties of a replacement reputation signal, and properties of a reputation system. Each class is further divided into requirements of the client and requirements of the service.
+
+### Required properties of replacement reputation signal
+
+#### Client requirements
+
 - A reputation signal MUST NOT be linkable to an Identity for which the signal corresponds.
-- Clients MUST be able to demonstrate good faith and improve reputation if needed.
-- Clients MUST be able to dispute their reputation.
-- Clients MUST be able to determine and verify the context in which a given reputation applies.
-- Reputation signals MUST NOT remain valid indefinitely. (Clients must obtain new reputation signals periodically.)
 
-### Server requirements
+#### Server requirements
 
-- Reputation signals MUST be bound to a context, and MUST NOT be transferrable across contexts.
-- Clients MUST NOT be able to transfer reputations.
+- A reputation signal MUST NOT remain valid indefinitely meaning a client must obtain a new reputation signals periodically.
+- A reputation signal MUST be bound to a reputation context, and MUST NOT be transferable across contexts.
+
+### Requirements of a reputation system
+
+#### Client requirements
+
+- A client MUST be able to demonstrate good faith and improve reputation if needed.
+- A client MUST be able to dispute their reputation.
+- A client MUST be able to determine and verify the reputation context in which a given reputation applies.
+- A client MUST be able to request and present new reputation proofs on demand.
+
+#### Server requirements
+
+- A reputation MUST be bound to an Identity, and MUST NOT be transferable.
 
 ## Evaluation of existing technologies
+
+Technologies exist that solve problems in similar problem spaces, however none fulfill the above criteria.
+
+[PrivacyPass](https://datatracker.ietf.org/doc/html/draft-ietf-privacypass-protocol-01) is not directly applicable for this use case, but it has been shown to be a useful building block for solving numerous problems. Its design simply allows substituting a CAPTCHA challenge with a token. The token can't carry additional information about the client's reputation, the token is not guaranteed to expire, and the tokens are not bound to an identity. Furthermore, PrivacyPass does not itself specify a reputation system, therefore it cannot be used to derive an unlinkable reputation signal.
+
+[Trust Tokens](https://github.com/WICG/trust-token-api) are an extension of PrivacyPass where the tokens are allowed to carry private metadata. This additional metadata would allow for encoding information about a client's reputation, but Trust Tokens are not bound to an identity and they do not necessarily expire.
 
 ## Potential new technologies
 
