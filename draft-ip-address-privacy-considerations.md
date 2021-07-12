@@ -41,12 +41,12 @@ This document provides an overview of privacy considerations related to user IP 
 The initial intention of this draft is to capture an overview of the problem space and research on proposed solutions. The draft is likely to evolve significantly over time and may well split into multiple drafts as content is added.
 
 Tracking of user IP addresses is common place on the Internet today, and is particularly widely used in the context of
-anti-abuse, e.g. anti-fraud, DDoS management child protection activities. IP addresses are currently used as a source of
+anti-abuse, e.g. anti-fraud, DDoS management, child protection activities. IP addresses are currently used as a source of
 “reputation” in conjunction with other signals to protect against malicious traffic, since they are a relatively stable
 identifier of the origin of a request. Servers use these reputations in determining whether or not a given packet, connection,
 or flow corresponds to malicious traffic.
 
-However, identifying the activity of users based on IP addresses has clear privacy implications e.g. user fingerprinting and cross site identity linking. Many technologies exist today to allow users to hide their IP address to avoid such tracking, e.g. VPNs, Tor. Several new technologies are also emerging in the landscape e.g. Gnatcatcher, Apple Private Relay and Oblivious techologies (OHTTPS, ODoH). 
+However, identifying the activity of users based on IP addresses has clear privacy implications e.g. user fingerprinting and cross site identity linking. Many technologies exist today to allow users to hide their IP address to avoid such tracking, e.g. VPNs, Tor. Several new technologies are also emerging in the landscape e.g. Gnatcatcher, Apple iCloud Private Relay and Oblivious techologies (OHTTPS, ODoH).
 
 This draft attempts to capture the following aspects of the tension between valid use cases for user identification and the related privacy concerns including:
 
@@ -77,12 +77,27 @@ Account abuse, financial fraud, ad fraud, child abuse...
 
 ## Privacy implications of IP addresses
 
+IP addresses provide a [relatively stable identifier](https://hal.inria.fr/hal-02435622), and are an important attribute in tracking people as they load web pages across sites. While the stable identifier is important in the above anti-abuse cases, this fact threatens a user's privacy because it allows for profiling of behavior. This profiling may occur anywhere on the path between the client and the server, inclusive. In addition, IP addresses passively leak meta information about the user, such as their rough geographical location. This may be beneficial, but not always as the default.
+
+Some mitigations are discussed below, however any holistic solution must ensure privacy is available with no additional cost.
+
 ## Mitigations for IP address tracking
+
+The ability to track individual people by IP address has been well understood for decades. Commercial VPNs and Tor are the most common methods of mitigating IP address-based tracking.
+
+Commerical VPNs offer a layer of indirection between the user and the destination, however if the VPN endpoint's IP address is static then this simply substitutes one address for another. In addition, commerial VPNs replace tracking across sites with a single company that may track their users' activities.
+
+Tor is another mitigation option due to its dynamic path selection and distributed network of relays, however its current design suffers from degraded performance. In addition, correct application integration is difficult and not common.
+
+Recent interest has resulted in new protocols such as Oblivious DNS ([ODoH](https://www.ietf.org/staging/draft-pauly-oblivious-doh-02.html)) and Oblivious HTTP ([OHTTP](https://www.ietf.org/archive/id/draft-thomson-http-oblivious-00.html)). While they both prevent tracking by individual parties, they are not intended for the general-purpose web browsing use case.
+
+Finally, [Gnatcatcher](https://github.com/bslassey/ip-blindness/blob/master/README.md) is a single-hop proxy providing more protection than a traditional commercial VPN; and iCloud Private Relay is described as using two proxies and would provide a level of protection somewhere between a commercial VPN and Tor.
 
 # Replacement signals for IP addresses
  
 Fundamentally, the current ecosystem operates by making the paths of a connection accountable for bad traffic, rather than the
-sources of the traffic itself. This is problematic because paths are shared by multiple clients and are impermanent. Ideally,
+sources of the traffic itself. This is problematic because in some cases IP addresses are shared by multiple clients
+(e.g., VPNs, Tor, carrier-grade NATs (CGNATs)) and any misbehavior may be impermanent. Ideally,
 clients could present proof of reputation that is separate from the IP address, and uniquely bound to a given connection.
 
 ## Requirements
@@ -90,7 +105,7 @@ clients could present proof of reputation that is separate from the IP address, 
 ### Client requirements
 
 - Clients MUST be able to request and present new reputation proofs on demand.
-- A reputation signal MUST NOT be linkable to any identifying information for which the signal corresponds.
+- A reputation signal MUST NOT be linkable to an Identity for which the signal corresponds.
 - Clients MUST be able to demonstrate good faith and improve reputation if needed.
 - Clients MUST be able to dispute their reputation.
 - Clients MUST be able to determine and verify the context in which a given reputation applies.
