@@ -1,7 +1,7 @@
 ---
 title: "IP Address Privacy Considerations"
 abbrev: "IP Address Privacy Considerations"
-docname: draft-ip-address-privacy-considerations
+docname: draft-ip-address-privacy-considerations-latest
 category: info
 
 ipr: trust200902
@@ -15,19 +15,44 @@ pi: [toc, sortrefs, symrefs]
 
 author:
  -
-    ins: T. BD
-    name: Authors TBD
-    organization: TBD
-    email: tbd@tbd.com
-    
+    ins: M. Finkel
+    name: Matthew Finkel
+    organization: The Tor Project
+    email: sysrqb@torproject.org
+ -
+  ins: L. Iannone
+  name: Luigi Iannone
+  org: Huawei Technologies France S.A.S.U
+  abbrev: Huawei
+  email: luigi.iannone@huawei.com
 
 
 normative:
 
 informative:
 
+  I-D.pauly-dprive-oblivious-doh:
+  I-D.thomson-http-oblivious:
 
-
+  WEBTRACKING1: DOI.10.1109/JPROC.2016.2637878
+  WEBTRACKING2: DOI.10.1145/3366423.3380161
+  VPNCMP1: DOI.10.15496/publikation-41810
+  VPNCMP2: DOI.10.1109/MCOM.2004.1341273
+  GEOIP: DOI.10.1145/3442442.3451888
+  TOR:
+    title: The Tor Project
+    target: https://www.torproject.org/
+  VPNTOR:
+    title: "Anonymity communication VPN and Tor: A comparative study"
+    author:
+      ins: E. Ramadhani
+    target: Journal of Physics Conference Series
+  GNATCATCHER:
+    title: "Global Network Address Translation Combined with Audited and Trusted CDN or HTTP-Proxy Eliminating Reidentification"
+    target: https://github.com/bslassey/ip-blindness
+  APPLEPRIV:
+    title: "Apple iCloud Private Relay"
+    target: https://appleinsider.com/articles/21/06/10/how-apple-icloud-private-relay-works
 
 --- abstract
 
@@ -38,17 +63,17 @@ This document provides an overview of privacy considerations related to user IP 
 
 # Introduction
 
-The initial intention of this draft is to capture an overview of the problem space and research on proposed solutions. The draft is likely to evolve significantly over time and may well split into multiple drafts as content is added.
+The initial intention of this draft is to capture an overview of the problem space and research on proposed solutions concerning privacy considerations related to user IP addresses. The draft is likely to evolve significantly over time and may well split into multiple drafts as content is added.
 
 Tracking of user IP addresses is common place on the Internet today, and is particularly widely used in the context of
-anti-abuse, e.g. anti-fraud, DDoS management, child protection activities. IP addresses are currently used as a source of
+anti-abuse, e.g. anti-fraud, DDoS management child protection activities. IP addresses are currently used as a source of
 “reputation” in conjunction with other signals to protect against malicious traffic, since they are a relatively stable
 identifier of the origin of a request. Servers use these reputations in determining whether or not a given packet, connection,
 or flow corresponds to malicious traffic.
 
-However, identifying the activity of users based on IP addresses has clear privacy implications e.g. user fingerprinting and cross site identity linking. Many technologies exist today to allow users to hide their IP address to avoid such tracking, e.g. VPNs, Tor. Several new technologies are also emerging in the landscape e.g. Gnatcatcher, Apple iCloud Private Relay and Oblivious techologies (OHTTPS, ODoH).
+However, identifying the activity of users based on IP addresses has clear privacy implications ({{WEBTRACKING1}}, {{WEBTRACKING2}}), e.g. user fingerprinting and cross site identity linking. Many technologies exist today to allow users to hide their IP address to avoid such tracking, e.g. VPNs ({{VPNCMP1}}, {{VPNCMP2}}) or Tor ({{TOR}}, {{VPNTOR}}). Several new technologies are also emerging in the landscape e.g. Gnatcatcher {{GNATCATCHER}}, Apple Private Relay {{APPLEPRIV}} and Oblivious technologies (OHTTP {{I-D.thomson-http-oblivious}}, ODoH {{I-D.pauly-dprive-oblivious-doh}}).
 
-This draft attempts to capture the following aspects of the tension between valid use cases for user identification and the related privacy concerns including:
+General consideration about privacy for Internet protocols can be found in {{!RFC6973}}. This document is more specific and attempts to capture the following aspects of the tension between valid use cases for user identification and the related privacy concerns including:
 
 * An analysis of the current use cases, attempting to categorize/group such use cases where commonalities exist
 * Find ways to enhance the privacy of existing uses of IP addresses.
@@ -71,50 +96,82 @@ This draft attempts to capture the following aspects of the tension between vali
 
 ### Anti-abuse
 
+Cyber-attackers abuse IP addresses posing a serious risk since legitimate service providers, developers, and end users may be mistakenly blacklisted which lowers the image and hurts the reputation of the service.
+
 Account abuse, financial fraud, ad fraud, child abuse...
+
+
 
 ### DDoS and Botnets
 
+Cyber-attackers can leverage on the good reputation of an IP address to carry out specific attacks that wouldn't work otherwise. Main examples are Distributed Denial of Service (DDoS) attacks carried out spoofing a trusted (i.e., having good reputation) IP address (which may or may not be the victim of the attack) so that the servers used to generate the DDoS traffic actually respond to the attackers trigger (i.e., spoofed packets). Similarly Botnets may use spoofed addresses in order to gain access and attack services that would not be otherwise reachable.     
+
 ## Privacy implications of IP addresses
 
-IP addresses provide a [relatively stable identifier](https://hal.inria.fr/hal-02435622), and are an important attribute in tracking people as they load web pages across sites. While the stable identifier is important in the above anti-abuse cases, this fact threatens a user's privacy because it allows for profiling of behavior. This profiling may occur anywhere on the path between the client and the server, inclusive. In addition, IP addresses passively leak meta information about the user, such as their rough geographical location. This may be beneficial, but not always as the default.
+IP addresses are sent in clear throughout the packet journey over the Internet.
+As such, any observer along the path can pick it up and use it for various tracking purposes. Beside basic information about the network or the device, it is possible to associate an IP address to an end user, hence, the relevance of of IP addresses for user privacy. A very short list of information about user, device, and network that can be obtained via the IP address.
 
-Some mitigations are discussed below, however any holistic solution must ensure privacy is available with no additional cost.
+- Determine who owns and operates the network. Searching the WHOIS database using an IP address can provide a range of information about the organization to which the address is assigned, including a name, phone number, and civic address;
+- Through a reverse DNS lookup and/or traceroute the computer name can be obtained, which often contains clues to logical and physical location;
+- Geo-localisation of the device (hence the user) through various techniques {{GEOIP}}. Depending on the lookup tool used, this could include country, region/state, city, latitude/longitude, telephone area code and a location-specific map;
+- Search the Internet using the IP address or computer names. The results of these searches might reveal peer-to-peer (P2P) activities (e.g., file sharing), records in web server log files, or glimpses of the individual's web activities (e.g., Wikipedia edits). These bits of individuals’ online history may reveal their political inclinations, state of health, sexuality, religious sentiments and a range of other personal characteristics, preoccupations and individual interests;
+- Seek information on any e-mail addresses used from a particular IP address which, in turn, could be the subject of further requests for subscriber information.
+
+## IP Privacy Protection and Law
+
+This section aim at providing some basic information about main example of laws adopted worldwide and related to IP address privacy (usually these laws area by product of the broader user privacy protection).
+
+Possible content (to focus only on technical IP address related aspects):
+
+- GDPR (General Data Protection Regulation) - EUROPE: Europe considers IP addresses as personal identification information that should be treated like any other personal information e.g. social security number.
+- The United States has opted for a different approach to data protection. Instead of formulating one all-encompassing regulation such as the EU’s GDPR, the US chose to implement sector-specific privacy and data protection regulations that work together with state laws to safeguard American citizens’ data.
+- In 2020, China released the first draft of Personal Information Protection Law (PIPL). The PIPL is the equivalent of European GDPR and will have significant influence.
+- Japan Protection of Personal Information (APPI) Act (recent changes put the act close to the GDPR model).
 
 ## Mitigations for IP address tracking
 
-The ability to track individual people by IP address has been well understood for decades. Commercial VPNs and Tor are the most common methods of mitigating IP address-based tracking.
+List of possible techniques to be briefly described:
 
-Commerical VPNs offer a layer of indirection between the user and the destination, however if the VPN endpoint's IP address is static then this simply substitutes one address for another. In addition, commerial VPNs replace tracking across sites with a single company that may track their users' activities.
+- Mix Networks/TOR
+- Address anonymization (e.g. {{GNATCATCHER}} and similar)
+- VPNs
+- Temporary addresses
 
-Tor is another mitigation option due to its dynamic path selection and distributed network of relays, however its current design suffers from degraded performance. In addition, correct application integration is difficult and not common.
-
-Recent interest has resulted in new protocols such as Oblivious DNS ([ODoH](https://www.ietf.org/staging/draft-pauly-oblivious-doh-02.html)) and Oblivious HTTP ([OHTTP](https://www.ietf.org/archive/id/draft-thomson-http-oblivious-00.html)). While they both prevent tracking by individual parties, they are not intended for the general-purpose web browsing use case.
-
-Finally, [Gnatcatcher](https://github.com/bslassey/ip-blindness/blob/master/README.md) is a single-hop proxy providing more protection than a traditional commercial VPN; and iCloud Private Relay is described as using two proxies and would provide a level of protection somewhere between a commercial VPN and Tor.
 
 # Replacement signals for IP addresses
- 
+
 Fundamentally, the current ecosystem operates by making the paths of a connection accountable for bad traffic, rather than the
-sources of the traffic itself. This is problematic because in some cases IP addresses are shared by multiple clients
-(e.g., VPNs, Tor, carrier-grade NATs (CGNATs)) and any misbehavior may be impermanent. Ideally,
+sources of the traffic itself. This is problematic because paths are shared by multiple clients and are impermanent. Ideally,
 clients could present proof of reputation that is separate from the IP address, and uniquely bound to a given connection.
 
 ## Requirements
 
+In the following the requirements of reputation signals are listed. Note that by "client(s)" it is intended an end user device (e.g., a PC or a mobile phone), while by "server(s)" it is intended a device offering an Internet service, which belong to an organisation/company but is not a personal device.    
+
+### General Requirements
+
+The following requirements apply to reputation signals in general, independently from whether is the reputation of a client or a server.
+
+- Reputation signals MUST NOT remain valid indefinitely. New reputation signals periodically must be obtained periodically.
+- Reputation MUST NOT be transferable.
+- Reputation signals MUST be bound to a context, and MUST NOT be transferrable across contexts.
+
 ### Client requirements
 
+The following requirement are specific to clients.
+
 - Clients MUST be able to request and present new reputation proofs on demand.
-- A reputation signal MUST NOT be linkable to an Identity for which the signal corresponds.
+- A reputation signal MUST NOT be linkable to any identifying information for which the signal corresponds.
 - Clients MUST be able to demonstrate good faith and improve reputation if needed.
 - Clients MUST be able to dispute their reputation.
 - Clients MUST be able to determine and verify the context in which a given reputation applies.
-- Reputation signals MUST NOT remain valid indefinitely. (Clients must obtain new reputation signals periodically.)
 
 ### Server requirements
 
-- Reputation signals MUST be bound to a context, and MUST NOT be transferrable across contexts.
-- Clients MUST NOT be able to transfer reputations.
+The following requirement are specific to servers.
+
+- Servers MUST be able to request and present new reputation proofs on demand.
+- Servers MUST be able to demonstrate good faith and improve reputation if needed.
 
 ## Evaluation of existing technologies
 
