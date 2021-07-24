@@ -26,13 +26,14 @@ author:
   abbrev: Huawei
   email: luigi.iannone@huawei.com
 
-
 normative:
 
 informative:
 
   I-D.pauly-dprive-oblivious-doh:
   I-D.thomson-http-oblivious:
+  I-D.kucherawy-repute-consid:
+  I-D.ietf-privacypass-protocol:
 
   WEBTRACKING1: DOI.10.1109/JPROC.2016.2637878
   WEBTRACKING2: DOI.10.1145/3366423.3380161
@@ -53,6 +54,9 @@ informative:
   APPLEPRIV:
     title: "Apple iCloud Private Relay"
     target: https://appleinsider.com/articles/21/06/10/how-apple-icloud-private-relay-works
+  TRUSTTOKEN:
+    title: "Trust Token API Explainer"
+    target: https://github.com/WICG/trust-token-api
 
 --- abstract
 
@@ -84,11 +88,11 @@ General consideration about privacy for Internet protocols can be found in {{!RF
 
 (Work in progress)
 
-- Reputation: A random variable with some distribution. A reputation can either be "bad" or "good" with some probability according to the distribution.
-- Reputation signal: A representative of a reputation.
-- Reputation proof: A non-interactive zero knowledge proof of a reputation signal.
-- Reputation context: The context in which a given reputation applies.
 - Identity: Any identifying information about an end-user or service, be it a client or server, including IP addresses.
+- Reputation: A random variable with some distribution. A reputation can either be "bad" or "good" with some probability according to the distribution.
+- Reputation context: The context in which a given reputation applies.
+- Reputation proof: A non-interactive zero knowledge proof of a reputation signal.
+- Reputation signal: A representative of a reputation.
 
 # IP address tracking
 
@@ -133,10 +137,11 @@ Possible content (to focus only on technical IP address related aspects):
 List of possible techniques to be briefly described:
 
 - Mix Networks/TOR
-- Address anonymization (e.g. {{GNATCATCHER}} and similar)
+- Address anonymization (e.g. {{GNATCATCHER}} and similar): {
+  - {GNATCATCHER}} is a single-hop proxy system providing more protection against third-party tracking than a traditional commercial VPN. However, its design maintains the industry-standard reliance on IP addresses for anti-abuse purposes and it provides near backwards compatibility for select services that submit to periodic audits.
+  - {{APPLEPRIV}} iCloud Private Relay is described as using two proxies between the client and server, and it would provide a level of protection somewhere between a commercial VPN and Tor.
 - VPNs
 - Temporary addresses
-
 
 # Replacement signals for IP addresses
 
@@ -144,11 +149,21 @@ Fundamentally, the current ecosystem operates by making the paths of a connectio
 sources of the traffic itself. This is problematic because paths are shared by multiple clients and are impermanent. Ideally,
 clients could present proof of reputation that is separate from the IP address, and uniquely bound to a given connection.
 
+Reputation services ({{?RFC7070}}) are critical components present at multiple layers across the Internet and they are responsible for predicting whether a client will be abusive.  However, these services are constrainted by available identifiers when making a decision. As a result of this constraint, IP addresses tend to be an influential signal in the reputation assigned to an identity. Identifying alternatives for this dependency on IP addresses is
+a goal of this document.
+
 ## Requirements
 
 In the following the requirements of reputation signals are listed. Note that by "client(s)" it is intended an end user device (e.g., a PC or a mobile phone), while by "server(s)" it is intended a device offering an Internet service, which belong to an organisation/company but is not a personal device.    
 
-### General Requirements
+Some considerations about reputation services are documented already in {{I-D.kucherawy-repute-consid}} from the perspective of organizations being operationally reliant on a third-party service. However, these considerations are relevant for and extend to a service's impact on clients, as well.
+
+With the goal of replacing IP addresses as a fundemental signal in calculating a reputation, we describe two classes of requirements: properties of a replacement reputation signal, and properties of a reputation system. Each class is further divided into requirements of the client and requirements of the service.
+
+
+### Required properties of replacement reputation signal
+
+#### General Requirements
 
 The following requirements apply to reputation signals in general, independently from whether is the reputation of a client or a server.
 
@@ -156,7 +171,7 @@ The following requirements apply to reputation signals in general, independently
 - Reputation MUST NOT be transferable.
 - Reputation signals MUST be bound to a context, and MUST NOT be transferrable across contexts.
 
-### Client requirements
+#### Client requirements
 
 The following requirement are specific to clients.
 
@@ -166,14 +181,29 @@ The following requirement are specific to clients.
 - Clients MUST be able to dispute their reputation.
 - Clients MUST be able to determine and verify the context in which a given reputation applies.
 
-### Server requirements
 
-The following requirement are specific to servers.
+#### Server requirements
 
-- Servers MUST be able to request and present new reputation proofs on demand.
-- Servers MUST be able to demonstrate good faith and improve reputation if needed.
+- A reputation signal MUST NOT remain valid indefinitely meaning a client must obtain a new reputation signals periodically.
+- A reputation signal MUST be bound to a reputation context, and MUST NOT be transferable across contexts.
+
+### Requirements of a reputation system
+
+#### Client requirements
+
+TODO
+
+#### Server requirements
+
+TODO
 
 ## Evaluation of existing technologies
+
+Technologies exist that solve problems in similar problem spaces, however none fulfill the above criteria.
+
+PrivacyPass {{I-D.ietf-privacypass-protocol}} is not directly applicable for this use case, but it has been shown to be a useful building block for solving numerous problems. Its design simply allows substituting a CAPTCHA challenge with a token. The token can't carry additional information about the client's reputation, the token is not guaranteed to expire, and the tokens are not bound to an identity. Furthermore, PrivacyPass does not itself specify a reputation system, therefore it cannot be used to derive an unlinkable reputation signal.
+
+Trust Tokens {{TRUSTTOKEN}} are an extension of PrivacyPass where the tokens are allowed to carry private metadata. This additional metadata would allow for encoding information about a client's reputation, but Trust Tokens are not bound to an identity and they do not necessarily expire.
 
 ## Potential new technologies
 
