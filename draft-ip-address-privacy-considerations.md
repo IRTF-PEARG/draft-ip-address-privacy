@@ -71,7 +71,7 @@ The initial intention of this draft is to capture an overview of the problem spa
 
 Tracking of user IP addresses is common place on the Internet today, and is particularly widely used in the context of
 anti-abuse, e.g. anti-fraud, DDoS management child protection activities. IP addresses are currently used as a source of
-“reputation” in conjunction with other signals to protect against malicious traffic, since they are a relatively stable
+"reputation" in conjunction with other signals to protect against malicious traffic, since they are a relatively stable
 identifier of the origin of a request. Servers use these reputations in determining whether or not a given packet, connection,
 or flow corresponds to malicious traffic.
 
@@ -118,7 +118,7 @@ As such, any observer along the path can pick it up and use it for various track
 - Determine who owns and operates the network. Searching the WHOIS database using an IP address can provide a range of information about the organization to which the address is assigned, including a name, phone number, and civic address;
 - Through a reverse DNS lookup and/or traceroute the computer name can be obtained, which often contains clues to logical and physical location;
 - Geo-localisation of the device (hence the user) through various techniques {{GEOIP}}. Depending on the lookup tool used, this could include country, region/state, city, latitude/longitude, telephone area code and a location-specific map;
-- Search the Internet using the IP address or computer names. The results of these searches might reveal peer-to-peer (P2P) activities (e.g., file sharing), records in web server log files, or glimpses of the individual's web activities (e.g., Wikipedia edits). These bits of individuals’ online history may reveal their political inclinations, state of health, sexuality, religious sentiments and a range of other personal characteristics, preoccupations and individual interests;
+- Search the Internet using the IP address or computer names. The results of these searches might reveal peer-to-peer (P2P) activities (e.g., file sharing), records in web server log files, or glimpses of the individual's web activities (e.g., Wikipedia edits). These bits of individuals' online history may reveal their political inclinations, state of health, sexuality, religious sentiments and a range of other personal characteristics, preoccupations and individual interests;
 - Seek information on any e-mail addresses used from a particular IP address which, in turn, could be the subject of further requests for subscriber information.
 
 ## IP Privacy Protection and Law
@@ -128,7 +128,7 @@ This section aim at providing some basic information about main example of laws 
 Possible content (to focus only on technical IP address related aspects):
 
 - GDPR (General Data Protection Regulation) - EUROPE: Europe considers IP addresses as personal identification information that should be treated like any other personal information e.g. social security number.
-- The United States has opted for a different approach to data protection. Instead of formulating one all-encompassing regulation such as the EU’s GDPR, the US chose to implement sector-specific privacy and data protection regulations that work together with state laws to safeguard American citizens’ data.
+- The United States has opted for a different approach to data protection. Instead of formulating one all-encompassing regulation such as the EU's GDPR, the US chose to implement sector-specific privacy and data protection regulations that work together with state laws to safeguard American citizens' data.
 - In 2020, China released the first draft of Personal Information Protection Law (PIPL). The PIPL is the equivalent of European GDPR and will have significant influence.
 - Japan Protection of Personal Information (APPI) Act (recent changes put the act close to the GDPR model).
 
