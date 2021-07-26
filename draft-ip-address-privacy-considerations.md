@@ -134,13 +134,15 @@ Possible content (to focus only on technical IP address related aspects):
 
 ## Mitigations for IP address tracking
 
-List of possible techniques to be briefly described:
+The ability to track individual people by IP address has been well understood for decades. Commercial VPNs and Tor are the most common methods of mitigating IP address-based tracking.
 
-- Mix Networks/TOR
+- Commerical VPNs offer a layer of indirection between the user and the destination, however if the VPN endpoint's IP address is static then this simply substitutes one address for another. In addition, commerial VPNs replace tracking across sites with a single company that may track their users' activities.
+- Tor is another mitigation option due to its dynamic path selection and distributed network of relays, however its current design suffers from degraded performance. In addition, correct application integration is difficult and not common.
 - Address anonymization (e.g. {{GNATCATCHER}} and similar): {
   - {GNATCATCHER}} is a single-hop proxy system providing more protection against third-party tracking than a traditional commercial VPN. However, its design maintains the industry-standard reliance on IP addresses for anti-abuse purposes and it provides near backwards compatibility for select services that submit to periodic audits.
   - {{APPLEPRIV}} iCloud Private Relay is described as using two proxies between the client and server, and it would provide a level of protection somewhere between a commercial VPN and Tor.
-- VPNs
+- Recent interest has resulted in new protocols such as Oblivious DNS ([ODoH](https://www.ietf.org/staging/draft-pauly-oblivious-doh-02.html)) and Oblivious HTTP ([OHTTP](https://www.ietf.org/archive/id/draft-thomson-http-oblivious-00.html)). While they both prevent tracking by individual parties, they are not intended for the general-purpose web browsing use case.
+- Finally, iCloud Private Relay is described as using two proxies between the client and server, and it would provide a level of protection somewhere between a commercial VPN and Tor.
 - Temporary addresses
 
 # Replacement signals for IP addresses
