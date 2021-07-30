@@ -70,12 +70,12 @@ This document provides an overview of privacy considerations related to user IP 
 The initial intention of this draft is to capture an overview of the problem space and research on proposed solutions concerning privacy considerations related to user IP addresses. The draft is likely to evolve significantly over time and may well split into multiple drafts as content is added.
 
 Tracking of user IP addresses is common place on the Internet today, and is particularly widely used in the context of
-anti-abuse, e.g. anti-fraud, DDoS management child protection activities. IP addresses are currently used as a source of
+anti-abuse, e.g. anti-fraud, DDoS management, child protection activities. IP addresses are currently used as a source of
 "reputation" in conjunction with other signals to protect against malicious traffic, since they are a relatively stable
 identifier of the origin of a request. Servers use these reputations in determining whether or not a given packet, connection,
 or flow corresponds to malicious traffic.
 
-However, identifying the activity of users based on IP addresses has clear privacy implications ({{WEBTRACKING1}}, {{WEBTRACKING2}}), e.g. user fingerprinting and cross site identity linking. Many technologies exist today to allow users to hide their IP address to avoid such tracking, e.g. VPNs ({{VPNCMP1}}, {{VPNCMP2}}) or Tor ({{TOR}}, {{VPNTOR}}). Several new technologies are also emerging in the landscape e.g. Gnatcatcher {{GNATCATCHER}}, Apple Private Relay {{APPLEPRIV}} and Oblivious technologies (OHTTP {{I-D.thomson-http-oblivious}}, ODoH {{I-D.pauly-dprive-oblivious-doh}}).
+However, identifying the activity of users based on IP addresses has clear privacy implications ({{WEBTRACKING1}}, {{WEBTRACKING2}}), e.g. user fingerprinting and cross site identity linking. Many technologies exist today to allow users to hide their IP address to avoid such tracking, e.g. VPNs ({{VPNCMP1}}, {{VPNCMP2}}) or Tor ({{TOR}}, {{VPNTOR}}). Several new technologies are also emerging in the landscape e.g. Gnatcatcher {{GNATCATCHER}}, Apple iCloud Private Relay {{APPLEPRIV}} and Oblivious technologies (OHTTP {{I-D.thomson-http-oblivious}}, ODoH {{I-D.pauly-dprive-oblivious-doh}}).
 
 General consideration about privacy for Internet protocols can be found in {{!RFC6973}}. This document is more specific and attempts to capture the following aspects of the tension between valid use cases for user identification and the related privacy concerns including:
 
@@ -108,11 +108,11 @@ Account abuse, financial fraud, ad fraud, child abuse...
 
 ### DDoS and Botnets
 
-Cyber-attackers can leverage on the good reputation of an IP address to carry out specific attacks that wouldn't work otherwise. Main examples are Distributed Denial of Service (DDoS) attacks carried out spoofing a trusted (i.e., having good reputation) IP address (which may or may not be the victim of the attack) so that the servers used to generate the DDoS traffic actually respond to the attackers trigger (i.e., spoofed packets). Similarly Botnets may use spoofed addresses in order to gain access and attack services that would not be otherwise reachable.     
+Cyber-attackers can leverage the good reputation of an IP address to carry out specific attacks that wouldn't work otherwise. Main examples are Distributed Denial of Service (DDoS) attacks carried out by spoofing a trusted (i.e., having good reputation) IP address (which may or may not be the victim of the attack) so that the servers used to generate the DDoS traffic actually respond to the attackers trigger (i.e., spoofed packets). Similarly botnets may use spoofed addresses in order to gain access and attack services that otherwise would not be reachable.
 
 ## Privacy implications of IP addresses
 
-IP addresses are sent in clear throughout the packet journey over the Internet.
+IP addresses are sent in the clear throughout the packet journey over the Internet.
 As such, any observer along the path can pick it up and use it for various tracking purposes. Beside basic information about the network or the device, it is possible to associate an IP address to an end user, hence, the relevance of of IP addresses for user privacy. A very short list of information about user, device, and network that can be obtained via the IP address.
 
 - Determine who owns and operates the network. Searching the WHOIS database using an IP address can provide a range of information about the organization to which the address is assigned, including a name, phone number, and civic address;
@@ -138,11 +138,10 @@ The ability to track individual people by IP address has been well understood fo
 
 - Commerical VPNs offer a layer of indirection between the user and the destination, however if the VPN endpoint's IP address is static then this simply substitutes one address for another. In addition, commerial VPNs replace tracking across sites with a single company that may track their users' activities.
 - Tor is another mitigation option due to its dynamic path selection and distributed network of relays, however its current design suffers from degraded performance. In addition, correct application integration is difficult and not common.
-- Address anonymization (e.g. {{GNATCATCHER}} and similar): {
-  - {GNATCATCHER}} is a single-hop proxy system providing more protection against third-party tracking than a traditional commercial VPN. However, its design maintains the industry-standard reliance on IP addresses for anti-abuse purposes and it provides near backwards compatibility for select services that submit to periodic audits.
+- Address anonymization (e.g. {{GNATCATCHER}} and similar):
+  - {{GNATCATCHER}} is a single-hop proxy system providing more protection against third-party tracking than a traditional commercial VPN. However, its design maintains the industry-standard reliance on IP addresses for anti-abuse purposes and it provides near backwards compatibility for select services that submit to periodic audits.
   - {{APPLEPRIV}} iCloud Private Relay is described as using two proxies between the client and server, and it would provide a level of protection somewhere between a commercial VPN and Tor.
-- Recent interest has resulted in new protocols such as Oblivious DNS ([ODoH](https://www.ietf.org/staging/draft-pauly-oblivious-doh-02.html)) and Oblivious HTTP ([OHTTP](https://www.ietf.org/archive/id/draft-thomson-http-oblivious-00.html)). While they both prevent tracking by individual parties, they are not intended for the general-purpose web browsing use case.
-- Finally, iCloud Private Relay is described as using two proxies between the client and server, and it would provide a level of protection somewhere between a commercial VPN and Tor.
+- Recent interest has resulted in new protocols such as Oblivious DNS ([ODoH]({{I-D.pauly-oblivious-doh-02.html}})) and Oblivious HTTP ([OHTTP]({{I-D.thomson-http-oblivious}})). While they both prevent tracking by individual parties, they are not intended for the general-purpose web browsing use case.
 - Temporary addresses
 
 # Replacement signals for IP addresses
