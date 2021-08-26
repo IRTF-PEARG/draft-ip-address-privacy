@@ -105,6 +105,7 @@ Cyber-attackers abuse IP addresses posing a serious risk since legitimate servic
 Account abuse, financial fraud, ad fraud, child abuse...
 
 
+
 ### DDoS and Botnets
 
 Cyber-attackers can leverage the good reputation of an IP address to carry out specific attacks that wouldn't work otherwise. Main examples are Distributed Denial of Service (DDoS) attacks carried out by spoofing a trusted (i.e., having good reputation) IP address (which may or may not be the victim of the attack) so that the servers used to generate the DDoS traffic actually respond to the attackers trigger (i.e., spoofed packets). Similarly botnets may use spoofed addresses in order to gain access and attack services that otherwise would not be reachable.
