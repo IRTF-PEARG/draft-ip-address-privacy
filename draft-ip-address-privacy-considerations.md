@@ -77,7 +77,7 @@ or flow corresponds to malicious traffic.
 
 However, identifying the activity of users based on IP addresses has clear privacy implications ({{WEBTRACKING1}}, {{WEBTRACKING2}}), e.g. user fingerprinting and cross site identity linking. Many technologies exist today to allow users to hide their IP address to avoid such tracking, e.g. VPNs ({{VPNCMP1}}, {{VPNCMP2}}) or Tor ({{TOR}}, {{VPNTOR}}). Several new technologies are also emerging in the landscape e.g. Gnatcatcher {{GNATCATCHER}}, Apple iCloud Private Relay {{APPLEPRIV}} and Oblivious technologies (OHTTP {{I-D.thomson-http-oblivious}}, ODoH {{I-D.pauly-dprive-oblivious-doh}}).
 
-General consideration about privacy for Internet protocols can be found in {{!RFC6973}}. This document is more specific and attempts to capture the following aspects of the tension between valid use cases for user identification and the related privacy concerns including:
+General consideration about privacy for Internet protocols can be found in {{!RFC6973}}. This document builds upon {{!RFC6973}} and more specifically attempts to capture the following aspects of the tension between valid use cases for user identification and the related privacy concerns including:
 
 * An analysis of the current use cases, attempting to categorize/group such use cases where commonalities exist
 * Find ways to enhance the privacy of existing uses of IP addresses.
@@ -88,11 +88,13 @@ General consideration about privacy for Internet protocols can be found in {{!RF
 
 (Work in progress)
 
-- Identity: Any identifying information about an end-user or service, be it a client or server, including IP addresses.
-- Reputation: A random variable with some distribution. A reputation can either be "bad" or "good" with some probability according to the distribution.
-- Reputation context: The context in which a given reputation applies.
-- Reputation proof: A non-interactive zero knowledge proof of a reputation signal.
-- Reputation signal: A representative of a reputation.
+This section defines basic terms used in this document, with references to pre-existing definitions as appropriate. As in {{!RFC4949}} and {{!RFC6973}}, each entry is preceded by a dollar sign ($) and a space for automated searching.
+
+- $ Identity: Any subset of an individual's attributes, including names and IP addresses, that identifies the individual within a given context.  Individuals usually have multiple identities for use in different contexts. See {{!RFC6973}}.
+- $ Reputation: A random variable with some distribution. A reputation can either be "bad" or "good" with some probability according to the distribution.
+- $ Reputation context: The context in which a given reputation applies.
+- $ Reputation proof: A non-interactive zero knowledge proof of a reputation signal.
+- $ Reputation signal: A representative of a reputation.
 
 # IP address tracking
 
