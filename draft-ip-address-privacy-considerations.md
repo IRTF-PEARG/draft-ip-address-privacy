@@ -71,9 +71,9 @@ The initial intention of this draft is to capture an overview of the problem spa
 
 Tracking of user IP addresses is common place on the Internet today, and is particularly widely used in the context of
 anti-abuse, e.g. anti-fraud, DDoS management, child protection activities. IP addresses are currently used as a source of
-"reputation" in conjunction with other signals to protect against malicious traffic, since they are a relatively stable
+"reputation" {{!RFC5782}} in conjunction with other signals to protect against malicious traffic, since they are a relatively stable
 identifier of the origin of a request. Servers use these reputations in determining whether or not a given packet, connection,
-or flow corresponds to malicious traffic.
+or flow corresponds to malicious traffic. In addition, IP addresses are used in investigating past events and attributing responsibility.
 
 However, identifying the activity of users based on IP addresses has clear privacy implications ({{WEBTRACKING1}}, {{WEBTRACKING2}}), e.g. user fingerprinting and cross site identity linking. Many technologies exist today to allow users to hide their IP address to avoid such tracking, e.g. VPNs ({{VPNCMP1}}, {{VPNCMP2}}) or Tor ({{TOR}}, {{VPNTOR}}). Several new technologies are also emerging in the landscape e.g. Gnatcatcher {{GNATCATCHER}}, Apple iCloud Private Relay {{APPLEPRIV}} and Oblivious technologies (OHTTP {{I-D.thomson-http-oblivious}}, ODoH {{I-D.pauly-dprive-oblivious-doh}}).
 
@@ -102,11 +102,22 @@ This section defines basic terms used in this document, with references to pre-e
 
 ### Anti-abuse
 
-Cyber-attackers abuse IP addresses posing a serious risk since legitimate service providers, developers, and end users may be mistakenly blacklisted which lowers the image and hurts the reputation of the service.
+IP addresses are a passive identifier used in defensive operations. They allow correlating requests, attribution, and recognizing numerous attacks including:
 
-Account abuse, financial fraud, ad fraud, child abuse...
+- account takeover
+- advertising fraud (e.g., click-fraud)
+- disinformation operations (e.g., detecting scaled and/or coordinated attacks)
+- financial fraud (e.g., stolen credit cards, email account compromise)
+- malware/ransomware (e.g., detecting C2 connections)
+- phishing
+- real-world harm (e.g., child abuse)
+- scaping (e.g., e-commerce, search)
+- spam (e.g., email, comments)
+- vulnerability exploitation (e.g., "hacking")
 
+Malicious activity recognized by one service provider may be shared with other services {{!RFC5782}} as a way of limiting harm.
 
+When an attacker uses IP addresses with "good" reputations, the collateral damage poses a serious risk to legitimate service providers, developers, and end users. IP addresses may develop a "bad" reputation from temporal abuse, and legitimate users may be affected by blocklists as a result. This unintended impact may hurt the reputation of the service or end user {{!RFC6269}}.
 
 ### DDoS and Botnets
 
@@ -118,7 +129,7 @@ As siloed abuse defenses improve, abusers have moved to multi-platform threat mo
 
 ### Rough Geolocation
 
-A rough geolocation can be inferred from a client's IP address, which is commonly known as either IP-Geo or Geo-IP. This information can have several useful implications.
+A rough geolocation can be inferred from a client's IP address, which is commonly known as either IP-Geo or Geo-IP. This information can have several useful implications. When abuse extends beyond attacks in the digital space, IP addresses may help identify the physical location of real-world harm, such as child exploitation.
 
 #### Legal compliance
 
