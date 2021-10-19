@@ -41,10 +41,7 @@ normative:
 
 informative:
 
-  I-D.pauly-dprive-oblivious-doh:
-  I-D.thomson-http-oblivious:
   I-D.kucherawy-repute-consid:
-  I-D.ietf-privacypass-protocol:
 
   WEBTRACKING1: DOI.10.1109/JPROC.2016.2637878
   WEBTRACKING2: DOI.10.1145/3366423.3380161
@@ -68,6 +65,9 @@ informative:
   TRUSTTOKEN:
     title: "Trust Token API Explainer"
     target: https://github.com/WICG/trust-token-api
+  WEBAUTHN:
+    title: "Web Authentication: An API for accessing Public Key Credentials Level 2"
+    target: https://www.w3.org/TR/webauthn-2/
 
 --- abstract
 
@@ -78,22 +78,22 @@ This document provides an overview of privacy considerations related to user IP 
 
 # Introduction
 
-The initial intention of this draft is to capture an overview of the problem space and research on proposed solutions concerning privacy considerations related to user IP addresses. The draft is likely to evolve significantly over time and may well split into multiple drafts as content is added.
+The initial intention of this draft is to capture an overview of the problem space and research on proposed solutions concerning privacy considerations related to user IP addresses (informally, IP privacy). The draft is likely to evolve significantly over time and may well split into multiple drafts as content is added.
 
-Tracking of user IP addresses is common place on the Internet today, and is particularly widely used in the context of
-anti-abuse, e.g. anti-fraud, DDoS management, child protection activities. IP addresses are currently used as a source of
-"reputation" {{!RFC5782}} in conjunction with other signals to protect against malicious traffic, since they are a relatively stable
-identifier of the origin of a request. Servers use these reputations in determining whether or not a given packet, connection,
-or flow corresponds to malicious traffic. In addition, IP addresses are used in investigating past events and attributing responsibility.
+Tracking of IP addresses is common place on the Internet today, and is particularly widely used in the context of
+anti-abuse, e.g. anti-fraud, DDoS management, and child protection activities. IP addresses are currently used in determining
+"reputation" {{!RFC5782}} in conjunction with other signals to protect against malicious traffic, since these addresses are usually a relatively stable
+identifier of a request's origin. Servers use these reputations in determining whether or not a given packet, connection,
+or flow likely corresponds to malicious traffic. In addition, IP addresses are used in investigating past events and attributing responsibility.
 
-However, identifying the activity of users based on IP addresses has clear privacy implications ({{WEBTRACKING1}}, {{WEBTRACKING2}}), e.g. user fingerprinting and cross site identity linking. Many technologies exist today to allow users to hide their IP address to avoid such tracking, e.g. VPNs ({{VPNCMP1}}, {{VPNCMP2}}) or Tor ({{TOR}}, {{VPNTOR}}). Several new technologies are also emerging in the landscape e.g. Gnatcatcher {{GNATCATCHER}}, Apple iCloud Private Relay {{APPLEPRIV}} and Oblivious technologies (OHTTP {{I-D.thomson-http-oblivious}}, ODoH {{I-D.pauly-dprive-oblivious-doh}}).
+However, identifying the activity of users based on IP addresses has clear privacy implications ({{WEBTRACKING1}}, {{WEBTRACKING2}}), e.g. user fingerprinting and cross-site identity linking. Many technologies exist today that allow users to obfuscate their external IP address to avoid such tracking, e.g. VPNs ({{VPNCMP1}}, {{VPNCMP2}}) and Tor ({{TOR}}, {{VPNTOR}}). Several new technologies are emerging, as well, in the landscape, e.g. Apple iCloud Private Relay {{APPLEPRIV}}, Gnatcatcher {{GNATCATCHER}}, and Oblivious technologies (ODoH {{?I-D.pauly-dprive-oblivious-doh}}, OHTTP {{?I-D.thomson-ohai-ohttp}}).
 
-General consideration about privacy for Internet protocols can be found in {{!RFC6973}}. This document builds upon {{!RFC6973}} and more specifically attempts to capture the following aspects of the tension between valid use cases for user identification and the related privacy concerns including:
+General consideration about privacy for Internet protocols can be found in {{!RFC6973}}. This document builds upon {{!RFC6973}} and more specifically attempts to capture the following aspects of the tension between valid use cases for user identification and the related privacy concerns, including:
 
-* An analysis of the current use cases, attempting to categorize/group such use cases where commonalities exist
+* An analysis of the current use cases, attempting to categorize/group such use cases where commonalities exist.
 * Find ways to enhance the privacy of existing uses of IP addresses.
-* Generating requirements for proposed 'replacement signals' from this analysis (these could be different for each category/group of use cases)
-* Research to evaluate existing technologies or propose new mechanisms for such signals
+* Generating requirements for proposed 'replacement signals' from this analysis (these could be different for each category/group of use cases).
+* Research to evaluate existing technologies or propose new mechanisms for such signals.
 
 # Terminology
 
@@ -101,11 +101,12 @@ General consideration about privacy for Internet protocols can be found in {{!RF
 
 This section defines basic terms used in this document, with references to pre-existing definitions as appropriate. As in {{!RFC4949}} and {{!RFC6973}}, each entry is preceded by a dollar sign ($) and a space for automated searching.
 
-- $ Identity: Any subset of an individual's attributes, including names and IP addresses, that identifies the individual within a given context.  Individuals usually have multiple identities for use in different contexts. See {{!RFC6973}}.
+- $ Identity: Extending {{!RFC6973}}, an individual's attributes may only identify an individual up to an anonymity set within a given context.
 - $ Reputation: A random variable with some distribution. A reputation can either be "bad" or "good" with some probability according to the distribution.
 - $ Reputation context: The context in which a given reputation applies.
 - $ Reputation proof: A non-interactive zero knowledge proof of a reputation signal.
 - $ Reputation signal: A representative of a reputation.
+- $ Service provider: An entity that provides a service on the Internet; examples services include hosted e-mail, e-commerce sites, and cloud computing platforms.
 
 # IP address tracking
 
@@ -113,7 +114,7 @@ This section defines basic terms used in this document, with references to pre-e
 
 ### Anti-abuse
 
-IP addresses are a passive identifier used in defensive operations. They allow correlating requests, attribution, and recognizing numerous attacks including:
+IP addresses are a passive identifier used in defensive operations. They allow correlating requests, attribution, and recognizing numerous attacks, including:
 
 - account takeover
 - advertising fraud (e.g., click-fraud)
@@ -122,13 +123,11 @@ IP addresses are a passive identifier used in defensive operations. They allow c
 - malware/ransomware (e.g., detecting C2 connections)
 - phishing
 - real-world harm (e.g., child abuse)
-- scaping (e.g., e-commerce, search)
+- scraping (e.g., e-commerce, search)
 - spam (e.g., email, comments)
 - vulnerability exploitation (e.g., "hacking")
 
 Malicious activity recognized by one service provider may be shared with other services {{!RFC5782}} as a way of limiting harm.
-
-When an attacker uses IP addresses with "good" reputations, the collateral damage poses a serious risk to legitimate service providers, developers, and end users. IP addresses may develop a "bad" reputation from temporal abuse, and legitimate users may be affected by blocklists as a result. This unintended impact may hurt the reputation of the service or end user {{!RFC6269}}.
 
 ### DDoS and Botnets
 
@@ -136,7 +135,7 @@ Cyber-attackers can leverage the good reputation of an IP address to carry out s
 
 ### Multi-platform threat models
 
-As siloed abuse defenses improve, abusers have moved to multi-platform threat models. For example, a public discussion platform with a culture of anonymity may redirect traffic to YouTube as a video library, bypassing YouTube defenses that otherwise reduce exposure of potentially harmful content. Similarly, a minor could be solicited by an adult impersonating a child on a popular social media platform, then redirected to a smaller, less established and less defended platform where illegal activity could occur. Phishing attacks are also common. There are many such cross-platform abuse models and they cause significant public harm. IP addresses are commonly used to investigate, understand and communicate these cross-platform threats. There are very few alternatives for cross-platform signals.
+As siloed (single-platform) abuse defenses improve, abusers have moved to multi-platform threat models. For example, a public discussion platform with a culture of anonymity may redirect traffic to YouTube as a video library, bypassing YouTube defenses that otherwise reduce exposure of potentially harmful content. Similarly, a minor could be solicited by an adult impersonating a child on a popular social media platform, then redirected to a smaller, less established and less defended platform where illegal activity could occur. Phishing attacks are also common. There are many such cross-platform abuse models and they cause significant public harm. IP addresses are commonly used to investigate, understand and communicate these cross-platform threats. There are very few alternatives for cross-platform signals.
 
 ### Rough Geolocation
 
@@ -154,10 +153,16 @@ Similar to legal compliance, some content and media has licensing terms that are
 
 Rough geolocation can also be useful to tailor content to the client's location simply to improve their experience. A search for "coffee shop" can include results of coffee shops within reasonable travel distance from a user rather than generic information about coffee shops, a merchant's website could show brick and mortar stores near the user and a news site can surface locally relevant news stories that wouldn't be as interesting to visitors from other locations.
 
-## Privacy implications of IP addresses
+## Implications of IP addresses
+
+### Next-User Implications
+
+When an attacker uses IP addresses with "good" reputations, the collateral damage poses a serious risk to legitimate service providers, developers, and end users. IP addresses may become assocaited with a "bad" reputation from temporal abuse, and legitimate users may be affected by blocklists as a result. This unintended impact may hurt the reputation of a service or an end user {{!RFC6269}}.
+
+### Privacy Implications
 
 IP addresses are sent in the clear throughout the packet journey over the Internet.
-As such, any observer along the path can pick it up and use it for various tracking purposes. Beside basic information about the network or the device, it is possible to associate an IP address to an end user, hence, the relevance of of IP addresses for user privacy. A very short list of information about user, device, and network that can be obtained via the IP address.
+As such, any observer along the path can pick it up and use it for various tracking purposes. Beside basic information about the network or the device, it is possible to associate an IP address to an end user, hence, the relevance of IP addresses for user privacy. A very short list of information about user, device, and network that can be obtained via the IP address.
 
 - Determine who owns and operates the network. Searching the WHOIS database using an IP address can provide a range of information about the organization to which the address is assigned, including a name, phone number, and civic address;
 - Through a reverse DNS lookup and/or traceroute the computer name can be obtained, which often contains clues to logical and physical location;
@@ -190,12 +195,9 @@ The ability to track individual people by IP address has been well understood fo
 
 # Replacement signals for IP addresses
 
-Fundamentally, the current ecosystem operates by making the paths of a connection accountable for bad traffic, rather than the
-sources of the traffic itself. This is problematic because paths are shared by multiple clients and are impermanent. Ideally,
-clients could present proof of reputation that is separate from the IP address, and uniquely bound to a given connection.
+Fundamentally, the current ecosystem operates by making the immediate peer of a connection accountable for bad traffic, rather than the source of the traffic itself.  This is problematic because in some network architectures the peer node of the connection is simply routing traffic for other clients, and any client's use of that node may be only temporary.  Ideally, clients could present appropriate identification end-to-end that is separate from the IP address, and uniquely bound to a given connection.
 
-Reputation services ({{?RFC7070}}) are critical components present at multiple layers across the Internet and they are responsible for predicting whether a client will be abusive.  However, these services are constrainted by available identifiers when making a decision. As a result of this constraint, IP addresses tend to be an influential signal in the reputation assigned to an identity. Identifying alternatives for this dependency on IP addresses is
-a goal of this document.
+Reputation services ({{?RFC7070}}) are critical components present at multiple layers across the Internet and they are responsible for predicting whether a client will be abusive.  However, these services are constrainted by available identifiers when making a decision. As a result of this constraint, IP addresses tend to be an influential signal in the reputation assigned to an identity. Identifying alternatives for this dependency on IP addresses is a goal of this document.
 
 ## Requirements
 
@@ -204,7 +206,6 @@ In the following the requirements of reputation signals are listed. Note that by
 Some considerations about reputation services are documented already in {{I-D.kucherawy-repute-consid}} from the perspective of organizations being operationally reliant on a third-party service. However, these considerations are relevant for and extend to a service's impact on clients, as well.
 
 With the goal of replacing IP addresses as a fundemental signal in calculating a reputation, we describe two classes of requirements: properties of a replacement reputation signal, and properties of a reputation system. Each class is further divided into requirements of the client and requirements of the service.
-
 
 ### Required properties of replacement reputation signal
 
@@ -244,11 +245,11 @@ TODO
 
 ## Evaluation of existing technologies
 
-Technologies exist that solve problems in similar problem spaces, however none fulfill the above criteria.
+Technologies exist that are designed to solve some of the problems described in this document.
 
-PrivacyPass {{I-D.ietf-privacypass-protocol}} is not directly applicable for this use case, but it has been shown to be a useful building block for solving numerous problems. Its design simply allows substituting a CAPTCHA challenge with a token. The token can't carry additional information about the client's reputation, the token is not guaranteed to expire, and the tokens are not bound to an identity. Furthermore, PrivacyPass does not itself specify a reputation system, therefore it cannot be used to derive an unlinkable reputation signal.
+Privacy Pass {{?I-D.ietf-privacypass-protocol}} is a useful building block for solving numerous problems. Its design involves an interaction between a client and server where, at the end, the client is issued a set of anonymous tokens. These tokens may be redeemed at a later time, and this redemption should not be linkable with the initial issuance interaction. One existing use case is substituting a CAPTCHA challenge with a token, where successfully solving a CAPTCHA challenge results in a client being issued a set of anonymous tokens, and these tokens may be used in the future to bypass solving another CAPTCHA challenge. Therefore, Privacy Pass may be acceptable as an IS_HUMAN signal by some service providers. The current token design can't carry additional metadata like a user's reputation or an expiration date, and the tokens are not bound to an identity. The unlinkability property of the tokens is dependent on the implementation of key consistency {{?I-D.wood-key-consistency}}.
 
-Trust Tokens {{TRUSTTOKEN}} are an extension of PrivacyPass where the tokens are allowed to carry private metadata. This additional metadata would allow for encoding information about a client's reputation, but Trust Tokens are not bound to an identity and they do not necessarily expire.
+Trust Token {{TRUSTTOKEN}} is an extension of Privacy Pass where the issuance and redemption functionality are provided in the browser setting. The tokens are allowed to carry public and private metadata as extensions.
 
 ## Potential new technologies
 
