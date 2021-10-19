@@ -93,6 +93,8 @@ General consideration about privacy for Internet protocols can be found in {{!RF
 * Generating requirements for proposed 'replacement signals' from this analysis (these could be different for each category/group of use cases).
 * Research to evaluate existing technologies or propose new mechanisms for such signals.
 
+With the goal of replacing IP addresses as a fundemental signal, the following sections enumerate existing use cases and describe applicable substitution signals. This description may not be exhaustive due to the breadth of IP address usage.
+
 # Terminology
 
 (Work in progress)
@@ -106,11 +108,19 @@ This section defines basic terms used in this document, with references to pre-e
 - $ Reputation signal: A representative of a reputation.
 - $ Service provider: An entity that provides a service on the Internet; examples services include hosted e-mail, e-commerce sites, and cloud computing platforms.
 
+## Categories of Interaction
+
+Interactions between parties on the Internet may be classified into one (or more) of three categories:
+
+- $ Private Interaction: An interaction occuring between mutually consenting parties, with a mutual expectation of privacy.
+- $ Public Interaction: An interaction occuring between multiple parties that are not engaged in a Private Interaction.
+- $ Consumption: An interaction where one party primarily receives information from other parties.
+
 # IP address tracking
 
 ## IP address use cases
 
-### Anti-abuse
+### Anti-abuse {#antiabuse}
 
 IP addresses are a passive identifier used in defensive operations. They allow correlating requests, attribution, and recognizing numerous attacks, including:
 
@@ -194,6 +204,85 @@ The ability to track individual people by IP address has been well understood fo
 # Replacement signals for IP addresses
 
 Fundamentally, the current ecosystem operates by making the immediate peer of a connection accountable for bad traffic, rather than the source of the traffic itself.  This is problematic because in some network architectures the peer node of the connection is simply routing traffic for other clients, and any client's use of that node may be only temporary.  Ideally, clients could present appropriate identification end-to-end that is separate from the IP address, and uniquely bound to a given connection.
+
+## Signals
+
+There are 7 classes of signals identified in this document that may be used in place of IP addresses. A signal's provenance is a critical property and will be discussed in {{provenance}}.
+
+- $ ADDRESS_ESCROW: Provides sufficient information for retroactively obtaining a client's IP address.
+- $ IDENTITY_TRANSPARENCY: Reveals a person's identity within a context.
+- $ IS_HUMAN: Informs the recipient that, most likely, a human recently proved their presence on the opposite end of the connection.
+- $ PEER_INTEGRITY: Provides a secure, remote attestation of hardware and/or software state.
+- $ REIDENTIFICATION: Provides a mechanism for identifying the same user across different connections within a time period.
+- $ REPUTATION: Provides the recipient with a proof of reputation from a reputation provider.
+- $ SOURCE_ASN: Reveals the ASN from which the client is connecting.
+
+In some situations one of the above signals may be a sufficient replacement signal in isolation, or more than one signal may be needed in combination.
+
+Separately, there are three signal categories that are out-of-scope for this document but are important improvements for mitigating abuse on platforms.
+
+- $ publisher norms: Standard expections of publishers including identity transparency and conflicts of interest.
+- $ protocol improvements: Increasing security of existing protocols.
+- $ ecosystem improvements: Reducing reliance on less secure systems, for example, migrating user authentication from password-based to WebAuthn [WEBAUTHN] and relying on multiple factors (MFA).
+
+### Adoption
+
+Adoption of replacement signals requires coordination between user agents, service providers, and proxy services. Some user agents and proxy services may support only a subset of these signals, while service providers may require additional signals. A mechanism of negotiation may be needed for communicating these requirements.
+
+In addition, service providers should only require a signal within the scope it will be used. In the same way that service provides only require user authentication when the user requests access to a non-public resource, a signal should not be pre-emptively requested before it is needed. The categories of interaction described above may help define scopes within a service, and they may help communicate to the user the reasoning for requiring a signal.
+
+### Privacy Considerations
+
+A signal should not be required without clear justification, service providers should practice data minimization {{!RFC6973}} wherever possible. Requiring excessive signals may be more harmful to user privacy than requiring IP address transparency. This section provides a more details analysis of some signals.
+
+ADDRESS_ESCROW gives service providers a time period within which they may obtain the client's IP address, but the information-in-escrow is not immediately available. Service providers should not gain access to the information in secret. A service provider may misuse the information-in-escrow for tracking and privacy-invasion purposes.
+
+PEER_INTEGRITY partitions users into two groups with valid and invalid hardware/software state, at a minimum. If the signal reveals more information, then it may allow more granular tracking of small sets of devices.
+
+IDENTITY_TRANSPARENCY may expose significant information about a user to a service provider; the resulting privacy invasion may be significantly worse than IP address transparency causes.
+
+IS_HUMAN depends on the mechanism used for proving humanness.
+
+REIDENTIFICATION explicitly allows a service provider to associate requests across unlinkable connections. This signal allows for profiling user behavior and tracking user activity without requesting more identifying information. First-party reidentification is a use case for this signal.
+
+REPUTATION partitions users into a set based on their reputation. The privacy invasion associated with this signal is intentionally small.
+
+SOURCE_ASN allows for identifying request patterns originating from an ASN without providing IP address transparency. However, ASNs are not guaranteed to serve large populations, therefore revealing the source ASN of a request may reveal more information about the user than intended.
+
+### Provenance {#provenance}
+
+Replacement signals are only useful if they are trustworthy.
+
+XXX TODO
+
+### Applying Appropriate Signals
+
+As previous discussed, IP addresses are used for various reasons; therefore, describing a one-size-fits-all replacement signal is not appropriate. In addition, the quality and quantity of replacement signals needed by a service depends on the category of interaction of its users and potential attacks on the service.
+
+As an example, the attacks listed above in {{antiabuse}} can be organized into six groups based on the signals that may sufficiently replace IP addresses:
+
+1. IS_HUMAN, REPUTATION, REIDENTIFICATION, PEER_INTEGRITY
+   - advertising fraud (e.g., click-fraud)
+   - phishing
+   - scraping (e.g., e-commerce, search)
+   - spam (e.g., email, comments)
+1. IS_HUMAN, REPUTATION, REIDENTIFICATION, ecosystem improvements
+   - account takeover
+1. IS_HUMAN, REPUTATION, SOURCE_ASN
+   - influence (e.g., brigading, astroturfing)
+1. publisher norms, (publisher) IDENTITY_TRANSPARENCY, PEER_INTEGRITY
+   - disinformation operations (e.g., detecting scaled and/or coordinated attacks)
+1. publisher norms, (publisher) IDENTITY_TRANSPARENCY, ADDRESS_ESCROW
+   - real-world harm (e.g., child abuse)
+1. IDENTITY_TRANSPARENCY, protocol improvements
+   - financial fraud (e.g., stolen credit cards, email account compromise)
+
+The remaining two attack categories fall outside of the scope of this document.
+
+   - malware/ransomware (e.g., detecting C2 connections)
+   - vulnerability exploitation (e.g., "hacking")
+
+Note, IP addresses do not provide a perfect signal in their existing usage, and the above replacement signals do not provide a better signal in all cases.
 
 ## Evaluation of existing technologies
 
