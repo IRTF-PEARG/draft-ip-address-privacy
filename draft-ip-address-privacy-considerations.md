@@ -41,8 +41,6 @@ normative:
 
 informative:
 
-  I-D.kucherawy-repute-consid:
-
   WEBTRACKING1: DOI.10.1109/JPROC.2016.2637878
   WEBTRACKING2: DOI.10.1145/3366423.3380161
   VPNCMP1: DOI.10.15496/publikation-41810
@@ -196,52 +194,6 @@ The ability to track individual people by IP address has been well understood fo
 # Replacement signals for IP addresses
 
 Fundamentally, the current ecosystem operates by making the immediate peer of a connection accountable for bad traffic, rather than the source of the traffic itself.  This is problematic because in some network architectures the peer node of the connection is simply routing traffic for other clients, and any client's use of that node may be only temporary.  Ideally, clients could present appropriate identification end-to-end that is separate from the IP address, and uniquely bound to a given connection.
-
-Reputation services ({{?RFC7070}}) are critical components present at multiple layers across the Internet and they are responsible for predicting whether a client will be abusive.  However, these services are constrainted by available identifiers when making a decision. As a result of this constraint, IP addresses tend to be an influential signal in the reputation assigned to an identity. Identifying alternatives for this dependency on IP addresses is a goal of this document.
-
-## Requirements
-
-In the following the requirements of reputation signals are listed. Note that by "client(s)" it is intended an end user device (e.g., a PC or a mobile phone), while by "server(s)" it is intended a device offering an Internet service, which belong to an organisation/company but is not a personal device.    
-
-Some considerations about reputation services are documented already in {{I-D.kucherawy-repute-consid}} from the perspective of organizations being operationally reliant on a third-party service. However, these considerations are relevant for and extend to a service's impact on clients, as well.
-
-With the goal of replacing IP addresses as a fundemental signal in calculating a reputation, we describe two classes of requirements: properties of a replacement reputation signal, and properties of a reputation system. Each class is further divided into requirements of the client and requirements of the service.
-
-### Required properties of replacement reputation signal
-
-#### General Requirements
-
-The following requirements apply to reputation signals in general, independently from whether is the reputation of a client or a server.
-
-- Reputation signals MUST NOT remain valid indefinitely. New reputation signals periodically must be obtained periodically.
-- Reputation MUST NOT be transferable.
-- Reputation signals MUST be bound to a context, and MUST NOT be transferrable across contexts.
-
-#### Client requirements
-
-The following requirement are specific to clients.
-
-- Clients MUST be able to request and present new reputation proofs on demand.
-- A reputation signal MUST NOT be linkable to any identifying information for which the signal corresponds.
-- Clients MUST be able to demonstrate good faith and improve reputation if needed.
-- Clients MUST be able to dispute their reputation.
-- Clients MUST be able to determine and verify the context in which a given reputation applies.
-
-
-#### Server requirements
-
-- A reputation signal MUST NOT remain valid indefinitely meaning a client must obtain a new reputation signals periodically.
-- A reputation signal MUST be bound to a reputation context, and MUST NOT be transferable across contexts.
-
-### Requirements of a reputation system
-
-#### Client requirements
-
-TODO
-
-#### Server requirements
-
-TODO
 
 ## Evaluation of existing technologies
 
