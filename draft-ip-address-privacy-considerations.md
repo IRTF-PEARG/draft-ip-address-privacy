@@ -292,6 +292,8 @@ Privacy Pass {{?I-D.ietf-privacypass-protocol}} is a useful building block for s
 
 Trust Token {{TRUSTTOKEN}} is an extension of Privacy Pass where the issuance and redemption functionality are provided in the browser setting. The tokens are allowed to carry public and private metadata as extensions.
 
+Private Access Tokens {{?I-D.private-access-tokens}} provide a technique for partitioning clients based on a per-origin policy within a time period. Its use cases include rate-limiting access to content and geo-location. PATs could be used as a REIDENTIFICATION signal or a replacement signal for GeoIP, depending on requirements.
+
 ## Potential new technologies
 
 
