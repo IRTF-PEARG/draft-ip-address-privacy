@@ -209,21 +209,21 @@ Fundamentally, the current ecosystem operates by making the immediate peer of a 
 
 There are 7 classes of signals identified in this document that may be used in place of IP addresses. A signal's provenance is a critical property and will be discussed in {{provenance}}.
 
-- $ ADDRESS_ESCROW: Provides sufficient information for retroactively obtaining a client's IP address.
-- $ IDENTITY_TRANSPARENCY: Reveals a person's identity within a context.
-- $ IS_HUMAN: Informs the recipient that, most likely, a human recently proved their presence on the opposite end of the connection.
-- $ PEER_INTEGRITY: Provides a secure, remote attestation of hardware and/or software state.
-- $ REIDENTIFICATION: Provides a mechanism for identifying the same user across different connections within a time period.
-- $ REPUTATION: Provides the recipient with a proof of reputation from a reputation provider.
-- $ SOURCE_ASN: Reveals the ASN from which the client is connecting.
+- ADDRESS_ESCROW: Provides sufficient information for retroactively obtaining a client's IP address.
+- IDENTITY_TRANSPARENCY: Reveals a person's identity within a context.
+- IS_HUMAN: Informs the recipient that, most likely, a human recently proved their presence on the opposite end of the connection.
+- PEER_INTEGRITY: Provides a secure, remote attestation of hardware and/or software state.
+- REIDENTIFICATION: Provides a mechanism for identifying the same user across different connections within a time period.
+- REPUTATION: Provides the recipient with a proof of reputation from a reputation provider.
+- SOURCE_ASN: Reveals the ASN from which the client is connecting.
 
 In some situations one of the above signals may be a sufficient replacement signal in isolation, or more than one signal may be needed in combination.
 
 Separately, there are three signal categories that are out-of-scope for this document but are important improvements for mitigating abuse on platforms.
 
-- $ publisher norms: Standard expections of publishers including identity transparency and conflicts of interest.
-- $ protocol improvements: Increasing security of existing protocols.
-- $ ecosystem improvements: Reducing reliance on less secure systems, for example, migrating user authentication from password-based to WebAuthn [WEBAUTHN] and relying on multiple factors (MFA).
+- publisher norms: Standard expections of publishers including identity transparency and conflicts of interest.
+- protocol improvements: Increasing security of existing protocols.
+- ecosystem improvements: Reducing reliance on less secure systems, for example, migrating user authentication from password-based to WebAuthn [WEBAUTHN] and relying on multiple factors (MFA).
 
 ### Adoption
 
@@ -253,7 +253,7 @@ SOURCE_ASN allows for identifying request patterns originating from an ASN witho
 
 Replacement signals are only useful if they are trustworthy.
 
-XXX TODO
+[[OPEN ISSUE: https://github.com/ShivanKaul/draft-ip-address-privacy/issues/24]]
 
 ### Applying Appropriate Signals
 
@@ -294,22 +294,17 @@ Trust Token {{TRUSTTOKEN}} is an extension of Privacy Pass where the issuance an
 
 Private Access Tokens {{?I-D.private-access-tokens}} provide a technique for partitioning clients based on a per-origin policy within a time period. Its use cases include rate-limiting access to content and geo-location. PATs could be used as a REIDENTIFICATION signal or a replacement signal for GeoIP, depending on requirements.
 
-## Potential new technologies
-
-
 # Security Considerations
 
-TODO
+This draft discussses IP address use cases, underlying requirements, and possible replacement signals. Adoption challenges and privacy considerations for those signals are also discussed. Further work is needed to build and evaluate these signals as suitable replacements for IP addresses.
 
 # IANA Considerations
 
 This document has no IANA actions.
-
-
 
 --- back
 
 # Acknowledgments
 {:numbered="false"}
 
-TODO
+[[OPEN ISSUE: TODO]]
