@@ -66,6 +66,9 @@ informative:
   WEBAUTHN:
     title: "Web Authentication: An API for accessing Public Key Credentials Level 2"
     target: https://www.w3.org/TR/webauthn-2/
+  GDPR:
+    title: General Data Protection Regulation
+    target: https://en.wikipedia.org/wiki/General_Data_Protection_Regulation   
 
 --- abstract
 
@@ -182,11 +185,47 @@ As such, any observer along the path can pick it up and use it for various track
 
 This section aim at providing some basic information about main example of laws adopted worldwide and related to IP address privacy (usually these laws area by product of the broader user privacy protection).
 
-Possible content (to focus only on technical IP address related aspects):
 
-- GDPR (General Data Protection Regulation) - EUROPE: Europe considers IP addresses as personal identification information that should be treated like any other personal information e.g. social security number.
+
+### General Data Protection Regulation (GDPR) - Europe
+
+General Data Protection Regulation (GDPR) is the European law protecting personal data of natural persons and is considered as a model for several countries beyond Europe {{GDPR}}. It is a "regulation", which means that is formed by "article", aka the law itself, and "recitals", i.e. explanatory notes included in the GDPR itself. GDPR is an important part of the privacy law in Europe, covering everything related to personal data privacy. 
+In particular, Europe considers IP addresses, even temporary ones, as personal identification information that should be treated like any other personal information (e.g. social security number). 
+GDPR is very comprehensive covering as well how to hadle personal information and what is considered as a legal consent from the data subject. The regulation is based on seven principle that are listed hereafter along with an example on what kind of implication the principle may have on IP addresses and their processing.
+
+1. Lawfulness, fairness and transparency: personal data shall be processed lawfully, fairly and in a transparent manner in relation to individuals.
+   - If my ISP uses my IP address for providing Internet Service, this must be done in accordance with the law, with my consent, in a non discriminatory manner.  
+
+2. Purpose limitation: personal data shall be collected for specified, explicit and legitimate purposes; additional data processing is allow for archiving purposes in the public interest, scientific or historical research purposes or statistical purposes.
+   - My ISP can use my IP address to count packets to/from me for billing purposes (related to the service offered) or to create aggregated traffic statistics used to improve the service. 
+
+3. Data minimisation: personal data shall be adequate, relevant and limited to what is necessary in relation to the purposes for which they are processed. 
+   - My ISP can only collect data that is necessary to assure Internet Service, nothing else. For instance, monitoring packet's content is not is not necessary to provide connectivity. 
+
+4. Accuracy: personal data shall be accurate and, where necessary, kept up to date. 
+   - Any information my ISP collects about my IP address must be kept accurate and error free.
+
+5. Storage limitation: no longer than is necessary for the purposes for which the personal data is used. 
+   - Any information my ISP collects about my IP address can be archived/stored only for a (predefined) limited amount of time. 
+
+6. Security (integrity and confidentiality): personal data shall be protected against unauthorised and/or unlawful access and against accidental loss, destruction or damage.
+   - Any information my ISP collects about my IP address must be kept confidential and protected against any form of alteration.
+
+- Accountability: the "controller", i.e. who determines hte purposes and means of personal data processing, shall be responsible for and able to demostrate compliance with the previous principles.
+   - My ISP shall be responsible for any personal data it is collecting and shall be able to demostrate that personale data has been processed in accordance with above listed principles.
+
+The GDPR regulation is relatively complex and it is common practice for enteprises to have an external GDPR consultant and, actually, starting from a certain size, companies have to have a GDPR officer inside the company itself. 
+
+### USA
+
 - The United States has opted for a different approach to data protection. Instead of formulating one all-encompassing regulation such as the EU's GDPR, the US chose to implement sector-specific privacy and data protection regulations that work together with state laws to safeguard American citizens' data.
+
+### China
+
 - In 2020, China released the first draft of Personal Information Protection Law (PIPL). The PIPL is the equivalent of European GDPR and will have significant influence.
+
+
+### Japan
 - Japan Protection of Personal Information (APPI) Act (recent changes put the act close to the GDPR model).
 
 ## Mitigations for IP address tracking
