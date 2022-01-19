@@ -69,6 +69,31 @@ informative:
   GDPR:
     title: General Data Protection Regulation
     target: https://en.wikipedia.org/wiki/General_Data_Protection_Regulation   
+  APPI:
+    title: Japan - Data Protection Overview
+    target: https://www.dataguidance.com/notes/japan-data-protection-overview  
+  LGPD:
+    title: General Personal Data Protection Law (Brazil)
+    target: https://en.wikipedia.org/wiki/General_Personal_Data_Protection_Law  
+  BATEMAN21:
+    title: Brazil's LGPD vs. the GDPR
+    target: https://www.termsfeed.com/blog/lgpd-vs-gdpr/  
+  PIPL:
+    title: Personal Information Protection Law of the People's Republic of China
+    target: https://en.wikipedia.org/wiki/Personal_Information_Protection_Law_of_the_People%27s_Republic_of_China
+  SOLOVE21:
+    title: China’s PIPL vs. the GDPR - A Comparison
+    target: https://teachprivacy.com/chinas-pipl-vs-gdpr-a-comparison/
+  IP2009:
+    title: Washington Court Rules that IP Addresses are not Personally Identifiable Information
+    target: https://www.huntonprivacyblog.com/2009/07/10/washington-court-rules-that-ip-addresses-are-not-personally-identifiable-information/
+  CCPA:
+    title: Is an IP Address considered personal informationn?
+    target: https://www.gtlaw-dataprivacydish.com/2020/12/is-an-ip-address-considered-personal-information/#_ftnref3
+  SOYBEL2021:
+    title: Seventh Circuit Holds a Search Warrant is not needed for Government Surveillance of IP Addresses
+    target: https://www.doescrimepay.com/2021/09/seventh-circuit-holds-a-search-warrant-is-not-needed-for-government-surveillance-of-ip-addresses/ 
+
 
 --- abstract
 
@@ -111,7 +136,7 @@ This section defines basic terms used in this document, with references to pre-e
 - $ Reputation signal: A representative of a reputation.
 - $ Service provider: An entity that provides a service on the Internet; examples services include hosted e-mail, e-commerce sites, and cloud computing platforms.
 
-## Categories of Interaction
+## Categories of Interaction {#SEC:interaction}
 
 Interactions between parties on the Internet may be classified into one (or more) of three categories:
 
@@ -154,7 +179,7 @@ A rough geolocation can be inferred from a client's IP address, which is commonl
 
 #### Legal compliance
 
-Legal and regulatory compliance often needs to take the jurisdiction of the client into account. This is especially important in cases where regulations are mutually contradictory (i.e. there is no way to be in legal compliance universally). Because Geo-IP is often bound to the IP addresses a given ISP uses, and ISPs tend to operate within national borders, Geo-IP tends to be a good fit for server operators to comply with local laws and regulations
+Legal and regulatory compliance often needs to take the jurisdiction of the client into account (cf. {{SEC:law}}). This is especially important in cases where regulations are mutually contradictory (i.e. there is no way to be in legal compliance universally). Because Geo-IP is often bound to the IP addresses a given ISP uses, and ISPs tend to operate within national borders, Geo-IP tends to be a good fit for server operators to comply with local laws and regulations.
 
 #### Contractual obligations
 
@@ -168,24 +193,23 @@ Rough geolocation can also be useful to tailor content to the client's location 
 
 ### Next-User Implications
 
-When an attacker uses IP addresses with "good" reputations, the collateral damage poses a serious risk to legitimate service providers, developers, and end users. IP addresses may become assocaited with a "bad" reputation from temporal abuse, and legitimate users may be affected by blocklists as a result. This unintended impact may hurt the reputation of a service or an end user {{!RFC6269}}.
+When an attacker uses IP addresses with "good" reputations, the collateral damage poses a serious risk to legitimate service providers, developers, and end users. IP addresses may become associated with a "bad" reputation from temporal abuse, and legitimate users may be affected by blocklists as a result. This unintended impact may hurt the reputation of a service or an end user {{!RFC6269}}.
 
 ### Privacy Implications
 
 IP addresses are sent in the clear throughout the packet journey over the Internet.
-As such, any observer along the path can pick it up and use it for various tracking purposes. Beside basic information about the network or the device, it is possible to associate an IP address to an end user, hence, the relevance of IP addresses for user privacy. A very short list of information about user, device, and network that can be obtained via the IP address.
+As such, any observer along the path can pick it up and use it for various tracking purposes. Beside basic information about the network or the device, it is possible to associate an IP address to an end user, hence, the relevance of IP addresses for user privacy. Hereafter, a very short list of information about user, device, and network that can be obtained via the IP address.
 
 - Determine who owns and operates the network. Searching the WHOIS database using an IP address can provide a range of information about the organization to which the address is assigned, including a name, phone number, and civic address;
 - Through a reverse DNS lookup and/or traceroute the computer name can be obtained, which often contains clues to logical and physical location;
-- Geo-localisation of the device (hence the user) through various techniques {{GEOIP}}. Depending on the lookup tool used, this could include country, region/state, city, latitude/longitude, telephone area code and a location-specific map;
+- Geo-localisation of the device (hence the user) through various techniques {{GEOIP}}. Depending on the lookup tool used, this could include country, region/state, city, latitude/longitude, telephone area code and a location-specific map.
 - Search the Internet using the IP address or computer names. The results of these searches might reveal peer-to-peer (P2P) activities (e.g., file sharing), records in web server log files, or glimpses of the individual's web activities (e.g., Wikipedia edits). These bits of individuals' online history may reveal their political inclinations, state of health, sexuality, religious sentiments and a range of other personal characteristics, preoccupations and individual interests;
 - Seek information on any e-mail addresses used from a particular IP address which, in turn, could be the subject of further requests for subscriber information.
 
-## IP Privacy Protection and Law
 
-This section aim at providing some basic information about main example of laws adopted worldwide and related to IP address privacy (usually these laws area by product of the broader user privacy protection).
+## IP Privacy Protection and Law {#SEC:law}
 
-
+This section aim at providing some basic information about main examples of laws adopted worldwide and related to IP address privacy. Very often, these laws are actually part of bigger regulations aiming at protecting users' Personal Identifiable Information (PII) in a broad sense.
 
 ### General Data Protection Regulation (GDPR) - Europe
 
@@ -214,19 +238,30 @@ GDPR is very comprehensive covering as well how to hadle personal information an
 - Accountability: the "controller", i.e. who determines hte purposes and means of personal data processing, shall be responsible for and able to demostrate compliance with the previous principles.
    - My ISP shall be responsible for any personal data it is collecting and shall be able to demostrate that personale data has been processed in accordance with above listed principles.
 
-The GDPR regulation is relatively complex and it is common practice for enteprises to have an external GDPR consultant and, actually, starting from a certain size, companies have to have a GDPR officer inside the company itself. 
+The GDPR regulation is relatively complex and it is common practice for enteprises to have an external GDPR consultant and, actually, starting from a certain size, companies have to have a Data Protection Officer (DPO) inside the company itself. Another important aspect of GDPR is "extraterritorial" scope, which means that GDPR applies any comapny offering services in Europe even if not physically based in Europe.  
 
-### USA
+### Brazil
 
-- The United States has opted for a different approach to data protection. Instead of formulating one all-encompassing regulation such as the EU's GDPR, the US chose to implement sector-specific privacy and data protection regulations that work together with state laws to safeguard American citizens' data.
+The "Lei General de Protecao de Dados Pessoals" ([LGPD]), is the Brazilian law on data and privacy protection. LGPD was clearly inspired by GDPR and as such they are very similar, in particular they have exactly the same definition of "personal data" and LGPD includes the "extraterritorial" principle {{BATEMAN21}}. The way LGPD is written suggests that IP addresses is considered personal data that fall under its protection, however, the actual text does mention IP address explicitely.    
 
 ### China
 
-- In 2020, China released the first draft of Personal Information Protection Law (PIPL). The PIPL is the equivalent of European GDPR and will have significant influence.
+- In 2021, China adopted the Personal Information Protection Law ({{PIPL})}. The PIPL is the equivalent of European GDPR and is actually partially inspired by it. PIPL includes IP addresses as personal data to be protected and use as well consent  as legal basis. Differences look minimal {{SOLOVE21}}, especially with respect to the focus of this document: IP addresses.     
 
 
 ### Japan
-- Japan Protection of Personal Information (APPI) Act (recent changes put the act close to the GDPR model).
+
+In Japan personal data is protected by the Japan Act of Protection of Personal Information ({{APPI}}), which has been adopted back in 2003 and updated a first time in 2015, and a second time in 2022. In its evolution it has become more similar to GDPR, with who it shares the "extrateritorial" principle (i.e., it applies to all companies offering services in Japan). Furthermore, again similarly to GDPR, APPI consider IP addresses personal information, hence falling under its protection.
+There is, however, a difference in the scope of the protected data. GDPR does not apply to anonymised data, while APPI covers as well how anonymised data should be processed. Both GDPR and APPI are based on the legal principle of consent, however, while GDPR provides specific information about consent, including how to obtain it, APPI does not include such elements.
+
+
+### USA
+
+- The United States has opted for a different approach to data protection. Instead of formulating one all-encompassing regulation such as the EU's GDPR, the US chose to implement sector-specific privacy and data protection regulations that work together with state laws to safeguard American citizens' data. As for the IP addresses itself, in 2009, the U.S. Disctirict Court for the Western District of Washighton ruled that IP addresses are not personally identifiable information {{IP2009}}, because an IP address identifies a computer not a person. More recently, the California Consumer Privacy Act included IP addresses as an example personal identification information, but only in the case that IP addresses can reasonably be linked to a particular person {{CCPA}}. In 2021, the sentence of the U.S. Court of Appeals for the Seventh Circuit included a statement about IP addresses in the case United State vs Soybel, citing that "...IP addresses were routed through a third-party internet service provider.  By using a third-party ISP, the defendant knowingly exposed his data to the public and therefore had no expectation of privacy." {{SOYBEL2021}}. In other words, and in accordance to the categories defined in {{SEC:interaction}}, in a Public Interaction there should not be privacy expectations.     
+
+
+
+
 
 ## Mitigations for IP address tracking
 
@@ -238,7 +273,7 @@ The ability to track individual people by IP address has been well understood fo
   - {{GNATCATCHER}} is a single-hop proxy system providing more protection against third-party tracking than a traditional commercial VPN. However, its design maintains the industry-standard reliance on IP addresses for anti-abuse purposes and it provides near backwards compatibility for select services that submit to periodic audits.
   - {{APPLEPRIV}} iCloud Private Relay is described as using two proxies between the client and server, and it would provide a level of protection somewhere between a commercial VPN and Tor.
 - Recent interest has resulted in new protocols such as Oblivious DNS ([ODoH]({{I-D.pauly-oblivious-doh-02.html}})) and Oblivious HTTP ([OHTTP]({{I-D.thomson-http-oblivious}})). While they both prevent tracking by individual parties, they are not intended for the general-purpose web browsing use case.
-- Temporary addresses
+- Temporary addresses <!-- LUIGI volunteers to fill this bullet -->
 
 # Replacement signals for IP addresses
 
@@ -272,7 +307,7 @@ In addition, service providers should only require a signal within the scope it 
 
 ### Privacy Considerations
 
-A signal should not be required without clear justification, service providers should practice data minimization {{!RFC6973}} wherever possible. Requiring excessive signals may be more harmful to user privacy than requiring IP address transparency. This section provides a more details analysis of some signals.
+A signal should not be required without clear justification, service providers should practice data minimization {{!RFC6973}} wherever possible. Requiring excessive signals may be more harmful to user privacy than requiring IP address transparency. This section provides a more detailed analysis of some signals.
 
 ADDRESS_ESCROW gives service providers a time period within which they may obtain the client's IP address, but the information-in-escrow is not immediately available. Service providers should not gain access to the information in secret. A service provider may misuse the information-in-escrow for tracking and privacy-invasion purposes.
 
@@ -335,6 +370,7 @@ Private Access Tokens {{?I-D.private-access-tokens}} provide a technique for par
 
 ## Potential new technologies
 
+TODO
 
 # Security Considerations
 
