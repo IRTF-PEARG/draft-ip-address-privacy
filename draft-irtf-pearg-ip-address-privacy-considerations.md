@@ -1,7 +1,7 @@
 ---
 title: "IP Address Privacy Considerations"
 abbrev: "IP Address Privacy Considerations"
-docname: draft-ip-address-privacy-considerations-latest
+docname: draft-irtf-pearg-ip-address-privacy-considerations-latest
 category: info
 
 ipr: trust200902
