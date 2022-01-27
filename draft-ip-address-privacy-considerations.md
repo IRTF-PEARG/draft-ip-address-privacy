@@ -93,6 +93,15 @@ informative:
   SOYBEL2021:
     title: Seventh Circuit Holds a Search Warrant is not needed for Government Surveillance of IP Addresses
     target: https://www.doescrimepay.com/2021/09/seventh-circuit-holds-a-search-warrant-is-not-needed-for-government-surveillance-of-ip-addresses/ 
+  EU2016:
+    title: Court confirms that IP addresses are personal data in some cases
+    target: https://www.whitecase.com/publications/alert/court-confirms-ip-addresses-are-personal-data-some-cases
+  OPC2013:
+    title: What an IP Address Can Reveal About You
+    target: https://www.priv.gc.ca/en/opc-actions-and-decisions/research/explore-privacy-research/2013/ip_201305/
+  PIPEDA:
+    title: Personal Information Protection and Electronic Documents Act
+    target: https://laws-lois.justice.gc.ca/PDF/P-8.6.pdf
 
 
 --- abstract
@@ -179,7 +188,7 @@ A rough geolocation can be inferred from a client's IP address, which is commonl
 
 #### Legal compliance
 
-Legal and regulatory compliance often needs to take the jurisdiction of the client into account (cf. {{SEC:law}}). This is especially important in cases where regulations are mutually contradictory (i.e. there is no way to be in legal compliance universally). Because Geo-IP is often bound to the IP addresses a given ISP uses, and ISPs tend to operate within national borders, Geo-IP tends to be a good fit for server operators to comply with local laws and regulations.
+Legal and regulatory compliance often needs to take the jurisdiction of the client into account. This is especially important in cases where regulations are mutually contradictory (i.e. there is no way to be in legal compliance universally). Because Geo-IP is often bound to the IP addresses a given ISP uses, and ISPs tend to operate within national borders, Geo-IP tends to be a good fit for server operators to comply with local laws and regulations.
 
 #### Contractual obligations
 
@@ -214,17 +223,17 @@ This section aim at providing some basic information about main examples of laws
 ### General Data Protection Regulation (GDPR) - Europe
 
 General Data Protection Regulation (GDPR) is the European law protecting personal data of natural persons and is considered as a model for several countries beyond Europe {{GDPR}}. It is a "regulation", which means that is formed by "article", aka the law itself, and "recitals", i.e. explanatory notes included in the GDPR itself. GDPR is an important part of the privacy law in Europe, covering everything related to personal data privacy. 
-In particular, Europe considers IP addresses, even temporary ones, as personal identification information that should be treated like any other personal information (e.g. social security number). 
-GDPR is very comprehensive covering as well how to hadle personal information and what is considered as a legal consent from the data subject. The regulation is based on seven principle that are listed hereafter along with an example on what kind of implication the principle may have on IP addresses and their processing.
+In particular, Europe considers IP addresses, even temporary ones, as personal identification information in some cases, and hence should be treated like any other personal information (e.g. social security number). According to the Court of Justice of the European Union (CJEU),  an IP address can be considered as not being personal data in the hands of a party (including ISPs and Web platforms) that has no legal means of obtaining sufficient additional data to link the IP address to a person's real world identity {{EU2016}}.
+GDPR is very comprehensive covering as well how to handle personal information and what is considered as a legal consent from the data subject. The regulation is based on 7 principles that are listed hereafter along with an example on what kind of implication the principle may have on IP addresses and their processing.
 
 1. Lawfulness, fairness and transparency: personal data shall be processed lawfully, fairly and in a transparent manner in relation to individuals.
    - If my ISP uses my IP address for providing Internet Service, this must be done in accordance with the law, with my consent, in a non discriminatory manner.  
 
-2. Purpose limitation: personal data shall be collected for specified, explicit and legitimate purposes; additional data processing is allow for archiving purposes in the public interest, scientific or historical research purposes or statistical purposes.
+2. Purpose limitation: personal data shall be collected for specified, explicit and legitimate purposes; additional data processing is allowed for archiving purposes in the public interest, scientific or historical research purposes or statistical purposes.
    - My ISP can use my IP address to count packets to/from me for billing purposes (related to the service offered) or to create aggregated traffic statistics used to improve the service. 
 
 3. Data minimisation: personal data shall be adequate, relevant and limited to what is necessary in relation to the purposes for which they are processed. 
-   - My ISP can only collect data that is necessary to assure Internet Service, nothing else. For instance, monitoring packet's content is not is not necessary to provide connectivity. 
+   - My ISP can only collect data that is necessary to assure Internet Service, nothing else. For instance, monitoring packet's content is not necessary to provide connectivity. 
 
 4. Accuracy: personal data shall be accurate and, where necessary, kept up to date. 
    - Any information my ISP collects about my IP address must be kept accurate and error free.
@@ -235,29 +244,33 @@ GDPR is very comprehensive covering as well how to hadle personal information an
 6. Security (integrity and confidentiality): personal data shall be protected against unauthorised and/or unlawful access and against accidental loss, destruction or damage.
    - Any information my ISP collects about my IP address must be kept confidential and protected against any form of alteration.
 
-- Accountability: the "controller", i.e. who determines hte purposes and means of personal data processing, shall be responsible for and able to demostrate compliance with the previous principles.
+- Accountability: the "controller", i.e. who determines the purposes and means of personal data processing, shall be responsible for and able to demonstrate compliance with the previous principles.
    - My ISP shall be responsible for any personal data it is collecting and shall be able to demostrate that personale data has been processed in accordance with above listed principles.
 
-The GDPR regulation is relatively complex and it is common practice for enteprises to have an external GDPR consultant and, actually, starting from a certain size, companies have to have a Data Protection Officer (DPO) inside the company itself. Another important aspect of GDPR is "extraterritorial" scope, which means that GDPR applies any comapny offering services in Europe even if not physically based in Europe.  
+The GDPR regulation is relatively complex and it is common practice for enteprises to have an external GDPR consultant and, actually, starting from a certain size, companies have to have a Data Protection Officer (DPO) inside the company itself. Another important aspect of GDPR is "extraterritorial" scope, which means that GDPR applies any company offering services in Europe even if not physically based in Europe.  
 
-### Brazil
+### Lei General de Protecao de Dados Pessoals (LGPD) - Brazil
 
-The "Lei General de Protecao de Dados Pessoals" ([LGPD]), is the Brazilian law on data and privacy protection. LGPD was clearly inspired by GDPR and as such they are very similar, in particular they have exactly the same definition of "personal data" and LGPD includes the "extraterritorial" principle {{BATEMAN21}}. The way LGPD is written suggests that IP addresses is considered personal data that fall under its protection, however, the actual text does mention IP address explicitely.    
+The "Lei General de Protecao de Dados Pessoals" ({{LGPD}}), is the Brazilian law on data and privacy protection. LGPD was clearly inspired by GDPR and as such they are very similar, in particular they have exactly the same definition of "personal data" and LGPD includes the "extraterritorial" principle {{BATEMAN21}}. The way LGPD is written suggests that IP addresses are considered personal data that fall under its protection, however, the actual text does mention IP address explicitly.    
 
-### China
+### Personal Information Protection Law (PIPL) - China
 
-- In 2021, China adopted the Personal Information Protection Law ({{PIPL})}. The PIPL is the equivalent of European GDPR and is actually partially inspired by it. PIPL includes IP addresses as personal data to be protected and use as well consent  as legal basis. Differences look minimal {{SOLOVE21}}, especially with respect to the focus of this document: IP addresses.     
+In 2021, China adopted the Personal Information Protection Law ({{PIPL}). The PIPL is the equivalent of European GDPR and is actually partially inspired by it. PIPL includes IP addresses as personal data to be protected and use as well consent  as legal basis. Differences look minimal {{SOLOVE21}}, especially with respect to the focus of this document: IP addresses.     
 
 
-### Japan
+### Act of Protection of Personal Information (APPI) - Japan
 
-In Japan personal data is protected by the Japan Act of Protection of Personal Information ({{APPI}}), which has been adopted back in 2003 and updated a first time in 2015, and a second time in 2022. In its evolution it has become more similar to GDPR, with who it shares the "extrateritorial" principle (i.e., it applies to all companies offering services in Japan). Furthermore, again similarly to GDPR, APPI consider IP addresses personal information, hence falling under its protection.
+In Japan personal data is protected by the Japan Act of Protection of Personal Information ({{APPI}}), which has been adopted back in 2003 and updated a first time in 2015, and a second time in 2022. In its evolution it has become more similar to GDPR, with who it shares the "extraterritorial" principle (i.e., it applies to all companies offering services in Japan). Furthermore, again similarly to GDPR, APPI consider IP addresses personal information, hence falling under its protection.
 There is, however, a difference in the scope of the protected data. GDPR does not apply to anonymised data, while APPI covers as well how anonymised data should be processed. Both GDPR and APPI are based on the legal principle of consent, however, while GDPR provides specific information about consent, including how to obtain it, APPI does not include such elements.
+
+### Personal Information Protection and Electronic Documents Act (PIPEDA) - Canada
+
+The canadian law relating to data privacy is the Personal Information Protection and Electronic Documents Act ({{PIPEDA}}), dating from 2000. The law governs only the private sector. PIPEDA and GDPR have a very similar approach, identifying what is personal data, the rights of individuals, the purpose and means in processing data. Differently from GDPR, PIPEDA allows the consent to be implicit, whereas GDPR only allows explicit consent, i.e. based only on an explicit action of the individual. With regards to IP addresses, GDPR and PIPEDA have very similar definition on whether and IP address should be considered personal data or not. However, the Office of the Privacy Commissioner (OPC) of Canada published a research paper {{OPC2013}} describing how an IP address, combined with other publicly available information, even without any access to the ISP subscriber records, may permit identification of the owner and his or her Web-browsing or other activities. As such, an IP address may in many circumstances be personal information regardless of whether the ISP subscriber records linking that address with an individual are legally accessible to the organization collecting the IP address.   
 
 
 ### USA
 
-- The United States has opted for a different approach to data protection. Instead of formulating one all-encompassing regulation such as the EU's GDPR, the US chose to implement sector-specific privacy and data protection regulations that work together with state laws to safeguard American citizens' data. As for the IP addresses itself, in 2009, the U.S. Disctirict Court for the Western District of Washighton ruled that IP addresses are not personally identifiable information {{IP2009}}, because an IP address identifies a computer not a person. More recently, the California Consumer Privacy Act included IP addresses as an example personal identification information, but only in the case that IP addresses can reasonably be linked to a particular person {{CCPA}}. In 2021, the sentence of the U.S. Court of Appeals for the Seventh Circuit included a statement about IP addresses in the case United State vs Soybel, citing that "...IP addresses were routed through a third-party internet service provider.  By using a third-party ISP, the defendant knowingly exposed his data to the public and therefore had no expectation of privacy." {{SOYBEL2021}}. In other words, and in accordance to the categories defined in {{SEC:interaction}}, in a Public Interaction there should not be privacy expectations.     
+The United States has opted for a different approach to data protection. Instead of formulating one all-encompassing regulation such as the EU's GDPR, the US chose to implement sector-specific privacy and data protection regulations that work together with state laws to safeguard American citizens' data. As for the IP addresses itself, in 2009, the U.S. District Court for the Western District of Washighton ruled that IP addresses are not personally identifiable information {{IP2009}}, because an IP address identifies a computer not a person. More recently, the California Consumer Privacy Act included IP addresses as an example of personal identification information, but only in the case that IP addresses can reasonably be linked to a particular person {{CCPA}}. In 2021, the sentence of the U.S. Court of Appeals for the Seventh Circuit included a statement about IP addresses in the case United States vs Soybel, citing that "...IP addresses were routed through a third-party internet service provider.  By using a third-party ISP, the defendant knowingly exposed his data to the public and therefore had no expectation of privacy." {{SOYBEL2021}}. In other words, and in accordance to the categories defined in {{SEC:interaction}}, in a Public Interaction there should not be privacy expectations.     
 
 
 
