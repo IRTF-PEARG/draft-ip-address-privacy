@@ -59,7 +59,7 @@ informative:
     target: https://github.com/bslassey/ip-blindness
   APPLEPRIV:
     title: "Apple iCloud Private Relay"
-    target: https://appleinsider.com/articles/21/06/10/how-apple-icloud-private-relay-works
+    target: https://www.apple.com/icloud/docs/iCloud_Private_Relay_Overview_Dec2021.pdf
   TRUSTTOKEN:
     title: "Trust Token API Explainer"
     target: https://github.com/WICG/trust-token-api
