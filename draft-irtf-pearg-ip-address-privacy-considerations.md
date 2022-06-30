@@ -66,6 +66,25 @@ informative:
   WEBAUTHN:
     title: "Web Authentication: An API for accessing Public Key Credentials Level 2"
     target: https://www.w3.org/TR/webauthn-2/
+  GDPR:
+    title: General Data Protection Regulation
+    target: https://en.wikipedia.org/wiki/General_Data_Protection_Regulation   
+  APPI:
+    title: Japan - Data Protection Overview
+    target: https://www.dataguidance.com/notes/japan-data-protection-overview  
+  LGPD:
+    title: General Personal Data Protection Law (Brazil)
+    target: https://en.wikipedia.org/wiki/General_Personal_Data_Protection_Law    
+  PIPL:
+    title: Personal Information Protection Law of the People's Republic of China
+    target: https://en.wikipedia.org/wiki/Personal_Information_Protection_Law_of_the_People%27s_Republic_of_China
+  PIPEDA:
+    title: Personal Information Protection and Electronic Documents Act
+    target: https://laws-lois.justice.gc.ca/PDF/P-8.6.pdf
+  IP2009:
+    title: Washington Court Rules that IP Addresses are not Personally Identifiable Information
+    target: https://www.huntonprivacyblog.com/2009/07/10/washington-court-rules-that-ip-addresses-are-not-personally-identifiable-information/
+
 
 --- abstract
 
@@ -180,14 +199,24 @@ As such, any observer along the path can pick it up and use it for various track
 
 ## IP Privacy Protection and Law
 
-This section aim at providing some basic information about main example of laws adopted worldwide and related to IP address privacy (usually these laws area by product of the broader user privacy protection).
+Various countries, in the last decade, have adopted, or updated, laws that aim at protecting citizens privacy, which includes IP addresses.  
+Very often, these laws are actually part of bigger regulations aiming
+at protecting users' Personal Identifiable Information (PII) in a
+broad sense.
+{{table:laws}} provides a snapshot of relevant existing regulations.
 
-Possible content (to focus only on technical IP address related aspects):
+|Country|Law|IP Address is PII|Consent|
+|-------|---|----------|-------|
+|Brazil |{{LGPD}} - Lei General de Protecao de Dados Pessoals |Yes (not explicitly stated)|Explicit|
+|Canada |{{PIPEDA}} - Personal Information Protection and Electronic Documents Act|Yes |Implicit|
+|China |{{PIPL}} - Personal Information Protection Law |Yes      |Explicit|
+|European Union |{{GDPR}} - General Data Protection Regulation |Yes      |Explicit|
+|Japan |{{APPI}} - Act of Protection of Personal Information |Yes (including anonymized data)|Explicit|
+|USA |  |No      | |
+{: #table:laws title="Relevant privacy laws and regulations"}
 
-- GDPR (General Data Protection Regulation) - EUROPE: Europe considers IP addresses as personal identification information that should be treated like any other personal information e.g. social security number.
-- The United States has opted for a different approach to data protection. Instead of formulating one all-encompassing regulation such as the EU's GDPR, the US chose to implement sector-specific privacy and data protection regulations that work together with state laws to safeguard American citizens' data.
-- In 2020, China released the first draft of Personal Information Protection Law (PIPL). The PIPL is the equivalent of European GDPR and will have significant influence.
-- Japan Protection of Personal Information (APPI) Act (recent changes put the act close to the GDPR model).
+Basically all of the major laws recognizes IP addresses as personal identification information. Brazil does not mention IP addresses explicitly but includes them de facto. Japan does protect even anonymized data. All require an explicit action from the user to grant permission to use PII, except for Canada that allows implicit consent. USA does not have a general federal law, and IP addresses are not considered personally identifiable information {{IP2009}}.
+
 
 ## Mitigations for IP address tracking
 
