@@ -35,7 +35,7 @@ author:
     name: J. Bradley Chen
     organization: Google
     email: bradchen@google.com
- 
+
 
 normative:
 
@@ -212,10 +212,9 @@ broad sense.
 |China |{{PIPL}} - Personal Information Protection Law |Yes      |Explicit|
 |European Union |{{GDPR}} - General Data Protection Regulation |Yes      |Explicit|
 |Japan |{{APPI}} - Act of Protection of Personal Information |Yes (including anonymized data)|Explicit|
-|USA |  |No      | |
 {: #table:laws title="Relevant privacy laws and regulations"}
 
-Basically all of the major laws recognizes IP addresses as personal identification information. Brazil does not mention IP addresses explicitly but includes them de facto. Japan does protect even anonymized data. All require an explicit action from the user to grant permission to use PII, except for Canada that allows implicit consent. USA does not have a general federal law, and IP addresses are not considered personally identifiable information {{IP2009}}.
+In summary, all of the major laws recognizes IP addresses as personal identification information. Brazil does not mention IP addresses explicitly but includes them de facto. Japan does protect even anonymized data. All require an explicit action from the user to grant permission to use PII, except for Canada that allows implicit consent. USA does not have a general federal law, but sector-specific laws pertaining to privacy that would be too difficult to summarize. USA does not consider IP addresses as personally identifiable information {{IP2009}}.
 
 
 ## Mitigations for IP address tracking
