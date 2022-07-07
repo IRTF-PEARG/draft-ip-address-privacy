@@ -68,22 +68,28 @@ informative:
     target: https://www.w3.org/TR/webauthn-2/
   GDPR:
     title: General Data Protection Regulation
-    target: https://en.wikipedia.org/wiki/General_Data_Protection_Regulation   
+    target: https://gdpr.eu/tag/gdpr/   
   APPI:
     title: Japan - Data Protection Overview
     target: https://www.dataguidance.com/notes/japan-data-protection-overview  
   LGPD:
     title: General Personal Data Protection Law (Brazil)
-    target: https://en.wikipedia.org/wiki/General_Personal_Data_Protection_Law    
+    target: https://iapp.org/media/pdf/resource_center/Brazilian_General_Data_Protection_Law.pdf    
+  PIPL-C:
+    title: Personal Information Protection Law of the People's Republic of China (Chinese)
+    target: http://www.npc.gov.cn/npc/c30834/202108/a8c4e3672c74491a80b53a172bb753fe.shtml
   PIPL:
-    title: Personal Information Protection Law of the People's Republic of China
-    target: https://en.wikipedia.org/wiki/Personal_Information_Protection_Law_of_the_People%27s_Republic_of_China
+      title: Personal Information Protection Law of the People's Republic of China (English translation)
+      target: https://digichina.stanford.edu/work/translation-personal-information-protection-law-of-the-peoples-republic-of-china-effective-nov-1-2021/
   PIPEDA:
     title: Personal Information Protection and Electronic Documents Act
     target: https://laws-lois.justice.gc.ca/PDF/P-8.6.pdf
   IP2009:
     title: Washington Court Rules that IP Addresses are not Personally Identifiable Information
     target: https://www.huntonprivacyblog.com/2009/07/10/washington-court-rules-that-ip-addresses-are-not-personally-identifiable-information/
+  CCPA:
+    title: California Consumer Privacy Act (CCPA)
+    target: https://oag.ca.gov/privacy/ccpa
 
 
 --- abstract
@@ -209,12 +215,12 @@ broad sense.
 |-------|---|----------|-------|
 |Brazil |{{LGPD}} - Lei General de Protecao de Dados Pessoals |Yes (not explicitly stated)|Explicit|
 |Canada |{{PIPEDA}} - Personal Information Protection and Electronic Documents Act|Yes |Implicit|
-|China |{{PIPL}} - Personal Information Protection Law |Yes      |Explicit|
+|China |{{PIPL-C}}{{PIPL}} - Personal Information Protection Law |Yes      |Explicit|
 |European Union |{{GDPR}} - General Data Protection Regulation |Yes      |Explicit|
 |Japan |{{APPI}} - Act of Protection of Personal Information |Yes (including anonymized data)|Explicit|
 {: #table:laws title="Relevant privacy laws and regulations"}
 
-In summary, all of the major laws recognizes IP addresses as personal identification information. Brazil does not mention IP addresses explicitly but includes them de facto. Japan does protect even anonymized data. All require an explicit action from the user to grant permission to use PII, except for Canada that allows implicit consent. USA does not have a general federal law, but sector-specific laws pertaining to privacy that would be too difficult to summarize. USA does not consider IP addresses as personally identifiable information {{IP2009}}.
+In summary, all of the major laws recognizes IP addresses as personal identification information. Brazil does not mention IP addresses explicitly but includes them de facto. Japan does protect even anonymized data. All require an explicit action from the user to grant permission to use PII, except for Canada that allows implicit consent. USA does not have a general federal law, but state sector-specific laws pertaining to privacy that would be too difficult to summarize (see {{CCPA}} as an example). USA does not consider IP addresses as personally identifiable information {{IP2009}}.
 
 
 ## Mitigations for IP address tracking
