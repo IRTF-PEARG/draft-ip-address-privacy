@@ -211,7 +211,7 @@ at protecting users' Personal Identifiable Information (PII) in a
 broad sense.
 {{table:laws}} provides a snapshot of relevant existing regulations.
 
-|Country|Law|IP Address is PII|Consent|
+|Country|Law|IP Address is PII|General type of Consent|
 |-------|---|----------|-------|
 |Brazil |{{LGPD}} - Lei General de Protecao de Dados Pessoals |Yes (not explicitly stated)|Explicit|
 |Canada |{{PIPEDA}} - Personal Information Protection and Electronic Documents Act|Yes |Implicit|
@@ -220,7 +220,7 @@ broad sense.
 |Japan |{{APPI}} - Act of Protection of Personal Information |Yes (including anonymized data)|Explicit|
 {: #table:laws title="Relevant privacy laws and regulations"}
 
-In summary, all of the major laws recognizes IP addresses as personal identification information. Brazil does not mention IP addresses explicitly but includes them de facto. Japan does protect even anonymized data. All require an explicit action from the user to grant permission to use PII, except for Canada that allows implicit consent. USA does not have a general federal law, but state sector-specific laws pertaining to privacy that would be too difficult to summarize (see {{CCPA}} as an example). USA does not consider IP addresses as personally identifiable information {{IP2009}}.
+In summary, all of the major laws recognizes IP addresses as personal identification information. Brazil does not mention IP addresses explicitly but includes them de facto. Japan does protect even anonymized data. All require an explicit action from the user to grant permission to use PII, except for Canada that allows implicit consent. Note that all laws include exceptions on the type of consent, which, however are difficult to summarize. USA does not have a general federal law, but state sector-specific laws pertaining to privacy that would be too difficult to summarize (see {{CCPA}} as an example). Depending  on the state, IP addresses may not be considered as personally identifiable information {{IP2009}}.
 
 
 ## Mitigations for IP address tracking
