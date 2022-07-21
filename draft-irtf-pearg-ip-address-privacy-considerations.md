@@ -206,10 +206,7 @@ As such, any observer along the path can pick it up and use it for various track
 ## IP Privacy Protection and Law
 
 Various countries, in the last decade, have adopted, or updated, laws that aim at protecting citizens privacy, which includes IP addresses.  
-Very often, these laws are actually part of bigger regulations aiming
-at protecting users' Personal Identifiable Information (PII) in a
-broad sense.
-{{table:laws}} provides a snapshot of relevant existing regulations.
+Very often, these laws are actually part of larger regulatory frameworks aimed at protecting users' Personal Identifiable Information (PII) in a broad sense. {{table:laws}} provides a snapshot of relevant existing regulations.
 
 |Country|Law|IP Address is PII|General type of Consent|
 |-------|---|----------|-------|
