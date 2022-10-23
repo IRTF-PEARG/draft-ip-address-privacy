@@ -35,7 +35,7 @@ author:
     name: J. Bradley Chen
     organization: Google
     email: bradchen@google.com
- 
+
 
 normative:
 
@@ -66,6 +66,31 @@ informative:
   WEBAUTHN:
     title: "Web Authentication: An API for accessing Public Key Credentials Level 2"
     target: https://www.w3.org/TR/webauthn-2/
+  GDPR:
+    title: General Data Protection Regulation
+    target: https://gdpr.eu/tag/gdpr/   
+  APPI:
+    title: Japan - Data Protection Overview
+    target: https://www.dataguidance.com/notes/japan-data-protection-overview  
+  LGPD:
+    title: General Personal Data Protection Law (Brazil)
+    target: https://iapp.org/media/pdf/resource_center/Brazilian_General_Data_Protection_Law.pdf    
+  PIPL-C:
+    title: Personal Information Protection Law of the People's Republic of China (Chinese)
+    target: http://www.npc.gov.cn/npc/c30834/202108/a8c4e3672c74491a80b53a172bb753fe.shtml
+  PIPL:
+      title: Personal Information Protection Law of the People's Republic of China (English translation)
+      target: https://digichina.stanford.edu/work/translation-personal-information-protection-law-of-the-peoples-republic-of-china-effective-nov-1-2021/
+  PIPEDA:
+    title: Personal Information Protection and Electronic Documents Act
+    target: https://laws-lois.justice.gc.ca/PDF/P-8.6.pdf
+  IP2009:
+    title: Washington Court Rules that IP Addresses are not Personally Identifiable Information
+    target: https://www.huntonprivacyblog.com/2009/07/10/washington-court-rules-that-ip-addresses-are-not-personally-identifiable-information/
+  CCPA:
+    title: California Consumer Privacy Act (CCPA)
+    target: https://oag.ca.gov/privacy/ccpa
+
 
 --- abstract
 
@@ -180,14 +205,20 @@ As such, any observer along the path can pick it up and use it for various track
 
 ## IP Privacy Protection and Law
 
-This section aim at providing some basic information about main example of laws adopted worldwide and related to IP address privacy (usually these laws area by product of the broader user privacy protection).
+Various countries, in the last decade, have adopted, or updated, laws that aim at protecting citizens privacy, which includes IP addresses.  
+Very often, these laws are actually part of larger regulatory frameworks aimed at protecting users' Personal Identifiable Information (PII) in a broad sense. {{table:laws}} provides a snapshot of relevant existing regulations.
 
-Possible content (to focus only on technical IP address related aspects):
+|Country|Law|IP Address is PII|
+|-|-|-|
+|Brazil |{{LGPD}} - Lei General de Protecao de Dados Pessoals |Yes (not explicitly stated)|
+|Canada |{{PIPEDA}} - Personal Information Protection and Electronic Documents Act|Yes |
+|China |{{PIPL-C}}{{PIPL}} - Personal Information Protection Law |Yes|
+|European Union |{{GDPR}} - General Data Protection Regulation |Yes|
+|Japan |{{APPI}} - Act of Protection of Personal Information |Yes (including anonymized data)|
+{: #table:laws title="Relevant privacy laws and regulations"}
 
-- GDPR (General Data Protection Regulation) - EUROPE: Europe considers IP addresses as personal identification information that should be treated like any other personal information e.g. social security number.
-- The United States has opted for a different approach to data protection. Instead of formulating one all-encompassing regulation such as the EU's GDPR, the US chose to implement sector-specific privacy and data protection regulations that work together with state laws to safeguard American citizens' data.
-- In 2020, China released the first draft of Personal Information Protection Law (PIPL). The PIPL is the equivalent of European GDPR and will have significant influence.
-- Japan Protection of Personal Information (APPI) Act (recent changes put the act close to the GDPR model).
+All of the major laws recognizes IP addresses as personal identification information when there is sufficiently strong correlation between an address and a person or when combined with other information to create that correlation. Brazil does not mention IP addresses explicitly but includes them de facto. Japan does protect even anonymized data. All require an explicit action from the user to grant permission to use PII, except for Canada that allows implicit consent. Note that all laws include exceptions on the type of consent, which, however are difficult to summarize. USA does not have a general federal law, but state sector-specific laws pertaining to privacy that would be too difficult to summarize (see {{CCPA}} as an example). Depending  on the state, IP addresses may not be considered as personally identifiable information {{IP2009}}.
+
 
 ## Mitigations for IP address tracking
 
