@@ -8,6 +8,7 @@ ipr: trust200902
 area: General
 workgroup: Network Working Group
 keyword: Internet-Draft
+submissionType: IRTF
 
 stand_alone: yes
 smart_quotes: no
@@ -17,8 +18,8 @@ author:
  -
     ins: M. Finkel
     name: Matthew Finkel
-    organization: The Tor Project
-    email: sysrqb@torproject.org
+    organization: Apple Inc.
+    email: sysrqb@apple.com
  -
     ins: B. Lassey
     name: Bradford Lassey
@@ -36,7 +37,6 @@ author:
     organization: Google
     email: bradchen@google.com
 
-
 normative:
 
 informative:
@@ -47,7 +47,7 @@ informative:
   VPNCMP2: DOI.10.1109/MCOM.2004.1341273
   GEOIP: DOI.10.1145/3442442.3451888
   TOR:
-    title: The Tor Project
+    title: "The Tor Project"
     target: https://www.torproject.org/
   VPNTOR:
     title: "Anonymity communication VPN and Tor: A comparative study"
@@ -67,30 +67,29 @@ informative:
     title: "Web Authentication: An API for accessing Public Key Credentials Level 2"
     target: https://www.w3.org/TR/webauthn-2/
   GDPR:
-    title: General Data Protection Regulation
-    target: https://gdpr.eu/tag/gdpr/   
+    title: "General Data Protection Regulation"
+    target: https://gdpr.eu/tag/gdpr/
   APPI:
-    title: Japan - Data Protection Overview
-    target: https://www.dataguidance.com/notes/japan-data-protection-overview  
+    title: "Japan - Data Protection Overview"
+    target: https://www.dataguidance.com/notes/japan-data-protection-overview
   LGPD:
-    title: General Personal Data Protection Law (Brazil)
-    target: https://iapp.org/media/pdf/resource_center/Brazilian_General_Data_Protection_Law.pdf    
+    title: "General Personal Data Protection Law (Brazil)"
+    target: https://iapp.org/media/pdf/resource_center/Brazilian_General_Data_Protection_Law.pdf
   PIPL-C:
-    title: Personal Information Protection Law of the People's Republic of China (Chinese)
+    title: "Personal Information Protection Law of the People's Republic of China (Chinese)"
     target: http://www.npc.gov.cn/npc/c30834/202108/a8c4e3672c74491a80b53a172bb753fe.shtml
   PIPL:
-      title: Personal Information Protection Law of the People's Republic of China (English translation)
+      title: "Personal Information Protection Law of the People's Republic of China (English translation)"
       target: https://digichina.stanford.edu/work/translation-personal-information-protection-law-of-the-peoples-republic-of-china-effective-nov-1-2021/
   PIPEDA:
-    title: Personal Information Protection and Electronic Documents Act
+    title: "Personal Information Protection and Electronic Documents Act"
     target: https://laws-lois.justice.gc.ca/PDF/P-8.6.pdf
   IP2009:
-    title: Washington Court Rules that IP Addresses are not Personally Identifiable Information
+    title: "Washington Court Rules that IP Addresses are not Personally Identifiable Information"
     target: https://www.huntonprivacyblog.com/2009/07/10/washington-court-rules-that-ip-addresses-are-not-personally-identifiable-information/
   CCPA:
-    title: California Consumer Privacy Act (CCPA)
+    title: "California Consumer Privacy Act (CCPA)"
     target: https://oag.ca.gov/privacy/ccpa
-
 
 --- abstract
 
@@ -205,7 +204,7 @@ As such, any observer along the path can pick it up and use it for various track
 
 ## IP Privacy Protection and Law
 
-Various countries, in the last decade, have adopted, or updated, laws that aim at protecting citizens privacy, which includes IP addresses.  
+Various countries, in the last decade, have adopted, or updated, laws that aim at protecting citizens privacy, which includes IP addresses.
 Very often, these laws are actually part of larger regulatory frameworks aimed at protecting users' Personal Identifiable Information (PII) in a broad sense. {{table:laws}} provides a snapshot of relevant existing regulations.
 
 |Country|Law|IP Address is PII|
@@ -229,7 +228,7 @@ The ability to track individual people by IP address has been well understood fo
 - Address anonymization (e.g. {{GNATCATCHER}} and similar):
   - {{GNATCATCHER}} is a single-hop proxy system providing more protection against third-party tracking than a traditional commercial VPN. However, its design maintains the industry-standard reliance on IP addresses for anti-abuse purposes and it provides near backwards compatibility for select services that submit to periodic audits.
   - {{APPLEPRIV}} iCloud Private Relay is described as using two proxies between the client and server, and it would provide a level of protection somewhere between a commercial VPN and Tor.
-- Recent interest has resulted in new protocols such as Oblivious DNS ([ODoH]({{I-D.pauly-oblivious-doh-02.html}})) and Oblivious HTTP ([OHTTP]({{I-D.thomson-http-oblivious}})). While they both prevent tracking by individual parties, they are not intended for the general-purpose web browsing use case.
+- Recent interest has resulted in new protocols such as Oblivious DNS ([ODoH]({{?I-D.pauly-dprive-oblivious-doh}})) and Oblivious HTTP ([OHTTP]({{?I-D.thomson-ohai-ohttp}})). While they both prevent tracking by individual parties, they are not intended for the general-purpose web browsing use case.
 - Temporary addresses
 
 # Replacement signals for IP addresses
@@ -284,7 +283,7 @@ SOURCE_ASN allows for identifying request patterns originating from an ASN witho
 
 Replacement signals are only useful if they are trustworthy.
 
-[[OPEN ISSUE: https://github.com/ShivanKaul/draft-ip-address-privacy/issues/24]]
+[OPEN ISSUE 24](https://github.com/ShivanKaul/draft-ip-address-privacy/issues/24)
 
 ### Applying Appropriate Signals
 
@@ -338,4 +337,4 @@ This document has no IANA actions.
 # Acknowledgments
 {:numbered="false"}
 
-[[OPEN ISSUE: TODO]]
+[OPEN ISSUE: TODO](https://github.com/ShivanKaul/draft-ip-address-privacy/issues/)
