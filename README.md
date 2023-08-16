@@ -1,6 +1,6 @@
 # Use Cases and Requirements for IP Address Privacy
 
-This is the working area for the individual Internet-Draft, "Use Cases and Requirements for IP Address Privacy".
+This is the working area for the PEARG Internet-Draft, "Use Cases and Requirements for IP Address Privacy".
 
 ## Building the Draft
 
@@ -54,4 +54,4 @@ This is the manual process outlined in the [I-D template docs](https://github.co
 ## Contributing
 
 See the
-[guidelines for contributions](https://github.com/ShivanKaul/draft-ip-address-privacy/blob/main/CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/IRTF-PEARG/draft-ip-address-privacy/blob/main/CONTRIBUTING.md).
