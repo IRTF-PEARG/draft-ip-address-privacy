@@ -105,7 +105,7 @@ informative:
   3P_COOKIES_WEBKIT:
     title: "Tracking Prevention in WebKit: The Default Cookie Policy"
     target: https://webkit.org/tracking-prevention/#the-default-cookie-policy
-    
+
 --- abstract
 
 This document provides an overview of privacy considerations related to user IP addresses. It includes an analysis of some current use cases for tracking of user IP addresses, mainly in the context of anti-abuse. It discusses the privacy issues associated with such tracking and provides input on mechanisms to improve the privacy of this existing model. It then captures requirements for proposed 'replacement signals' for IP addresses from this analysis. In addition, existing and under-development techniques are evaluated for fulfilling these requirements.
