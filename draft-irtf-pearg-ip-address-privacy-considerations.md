@@ -99,10 +99,13 @@ informative:
   CHROME_NET_PART:
     title: "Network State Partitioning"
     target: https://chromestatus.com/feature/6713488334389248
-  PRIVACY_TEST_3P_COOKIES:
-    title: "Tracking cookie protection tests"
-    target: https://privacytests.org/nightly-private.html#:~:text=Tracking%20cookie%20protection%20tests
-
+  3P_COOKIES_CHROME:
+    title: "Building a more private web: A path towards making third party cookies obsolete"
+    target: https://blog.chromium.org/2020/01/building-more-private-web-path-towards.html
+  3P_COOKIES_WEBKIT:
+    title: "Tracking Prevention in WebKit: The Default Cookie Policy"
+    target: https://webkit.org/tracking-prevention/#the-default-cookie-policy
+    
 --- abstract
 
 This document provides an overview of privacy considerations related to user IP addresses. It includes an analysis of some current use cases for tracking of user IP addresses, mainly in the context of anti-abuse. It discusses the privacy issues associated with such tracking and provides input on mechanisms to improve the privacy of this existing model. It then captures requirements for proposed 'replacement signals' for IP addresses from this analysis. In addition, existing and under-development techniques are evaluated for fulfilling these requirements.
@@ -215,8 +218,8 @@ As such, any observer along the path can pick it up and use it for various track
 - Seek information on any e-mail addresses used from a particular IP address which, in turn, could be the subject of further requests for subscriber information.
 
 ### Cross-site vs Same-site
-In a web context, IP Addresses can be used to link a user's activity both within a single site and across multiple sites. Users may want to have a single site recognize them withing a browsing session or across browsing sessions and in fact cookies are a mechanism to do exactly that. If IP Addresses are only stable within the context a first-party cookie, they don't represent any additional privacy threat. However, since clients are currently in control of their first cookies, abusive clients can delete their cookies in an effort to evade detection. IP Addresses currently allow counter-abuse detection to track many such abusive clients across cookie deletions.
-However, IP Addresses, along with other fingerprinting techniques, also allow the linking of client identity across sites in the web context. Third-party cookies can also allow such a capability, but in a more limited manner as practically speaking no one third party cookie is present across all websites. Also, browsers are increasingly putting limits on the ability to use third party cookies in order to combat these threats {{PRIVACY_TEST_3P_COOKIES}}. Other network related information can also be used to link client identity across sites, but that is increasingly being seen as a bug to be addressed by browsers through network state partitioning (e.g. {{MOZ_NET_PART}}, {{BRAVE_NET_PART}}, {{CHROME_NET_PART}}).
+In a web context, IP Addresses can be used to link a user's activity both within a single site and across multiple sites. Users may want to have a single site recognize them within a browsing session or across browsing sessions and in fact cookies are a mechanism to do exactly that. If IP Addresses are only stable within the context a first-party cookie, they don't represent any additional privacy threat. However, since clients are currently in control of their first cookies, abusive clients can delete their cookies in an effort to evade detection. IP Addresses currently allow counter-abuse detection to track many such abusive clients across cookie deletions.
+However, IP Addresses, along with other fingerprinting techniques, also allow the linking of client identity across sites in the web context. Third-party cookies can also allow such a capability, but in a more limited manner as practically speaking no one third party cookie is present across all websites. Also, browsers are increasingly putting limits on the ability to use third party cookies in order to combat these threats {{3P_COOKIES_CHROME}} and {{3P_COOKIES_WEBKIT}}. Other network related information can also be used to link client identity across sites, but that is increasingly being seen as a bug to be addressed by browsers through network state partitioning (e.g. {{MOZ_NET_PART}}, {{BRAVE_NET_PART}}, {{CHROME_NET_PART}}).
 Finally, the above discussion uses the web and browsers as a concrete example, but this generalizes to other contexts such as linking user identity across VoIP solutions, DNS resolvers, video streaming platforms etc.
 
 ## IP Privacy Protection and Law
