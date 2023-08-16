@@ -297,7 +297,7 @@ REIDENTIFICATION explicitly allows a service provider to associate requests acro
 
 REPUTATION partitions users into a set based on their reputation. The privacy invasion associated with this signal is intentionally small.
 
-SOURCE_ASN allows for identifying request patterns originating from an ASN without providing IP address transparency. However, ASNs are not guaranteed to serve large populations, therefore revealing the source ASN of a request may reveal more information about the user than intended.
+SOURCE_ASN allows for identifying request patterns originating from an ASN without providing IP address transparency. However, ASNs are not guaranteed to serve large populations, therefore revealing the source ASN of a request may reveal more information about the user than intended. Also, since ASN corresponds with rough geo, if the ASN is inconsistant with other knowledge of the user that the service knows, it can be an indication of account takeover abuse.
 
 ### Provenance {#provenance}
 
