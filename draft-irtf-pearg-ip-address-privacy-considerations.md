@@ -414,9 +414,9 @@ The ability to track individual people by IP address has been well understood
 for decades. Commercial VPNs and Tor are the most common methods of mitigating
 IP address-based tracking.
 
-- Commerical VPNs offer a layer of indirection between the user and the
+- Commercial VPNs offer a layer of indirection between the user and the
   destination, however if the VPN endpoint's IP address is static then this
-  simply substitutes one address for another. In addition, commerial VPNs
+  simply substitutes one address for another. In addition, commercial VPNs
   replace tracking across sites with a single company that may track their
   users' activities.
 
