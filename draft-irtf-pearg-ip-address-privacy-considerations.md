@@ -178,29 +178,29 @@ This section defines basic terms used in this document, with references to
 pre-existing definitions as appropriate. As in {{!RFC4949}} and {{!RFC6973}},
 each entry is preceded by a dollar sign ($) and a space for automated searching.
 
-Identity:
+$ Identity:
 
 : Extending {{!RFC6973}}, an individual's attributes may only identify an
 individual up to an anonymity set within a given context.
 
-Reputation:
+$ Reputation:
 
 : A random variable with some distribution. A reputation can either be "bad" or
 "good" with some probability according to the distribution.
 
-Reputation context:
+$ Reputation context:
 
 : The context in which a given reputation applies.
 
-Reputation proof:
+$ Reputation proof:
 
 : A non-interactive zero knowledge proof of a reputation signal.
 
-Reputation signal:
+$ Reputation signal:
 
 : A representative of a reputation.
 
-Service provider:
+$ Service provider:
 
 : An entity that provides a service on the Internet; examples services include
 hosted e-mail, e-commerce sites, and cloud computing platforms.
