@@ -1,19 +1,21 @@
 ---
 title: "IP Address Privacy Considerations"
-abbrev: "IP Address Privacy Considerations"
 docname: draft-irtf-pearg-ip-address-privacy-considerations-latest
-category: info
-
-ipr: trust200902
-area: General
-workgroup: Network Working Group
-keyword: Internet-Draft
+v: 3
 submissionType: IRTF
-
-stand_alone: yes
-smart_quotes: no
-pi: [toc, sortrefs, symrefs]
-
+category: info
+area: IRTF
+wg: PEARG
+venue:
+  group: "PEARG"
+  type: "Research Group"
+  mail: "pearg@ietf.org"
+  arch: "https://mailarchive.ietf.org/arch/browse/pearg/"
+  github: "IRTF-PEARG/draft-ip-address-privacy"
+  latest: "https://pearg.org/draft-ip-address-privacy/draft-irtf-pearg-ip-address-privacy-considerations.html"
+keyword:
+  - IP
+  - privacy
 author:
  -
     ins: M. Finkel
