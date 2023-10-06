@@ -249,7 +249,7 @@ The ability to track individual people by IP address has been well understood fo
   - {{GNATCATCHER}} is a single-hop proxy system providing more protection against third-party tracking than a traditional commercial VPN. However, its design maintains the industry-standard reliance on IP addresses for anti-abuse purposes and it provides near backwards compatibility for select services that submit to periodic audits.
   - {{APPLEPRIV}} iCloud Private Relay is described as using two proxies between the client and server, and it would provide a level of protection somewhere between a commercial VPN and Tor.
 - Recent interest has resulted in new protocols such as Oblivious DNS ([ODoH]({{?I-D.pauly-dprive-oblivious-doh}})) and Oblivious HTTP ([OHTTP]({{?I-D.thomson-ohai-ohttp}})). While they both prevent tracking by individual parties, they are not intended for the general-purpose web browsing use case.
-- Temporary addresses
+- The use of temporary addresses is another way to limit IP address-based tracking. Changing addresses over time reduces the window of time during which it is possible to easily correlate network activity when the same address is employed for multiple transactions by the same host. Temporary addresses have been introduced only for IPv6, as an extension of its Stateless Address Configuration mechanism ({{?RFC8981}}). However, since the network prefix remains the same, in many cases it remains possible to identify a cellular user or a household.
 
 # Replacement signals for IP addresses
 
