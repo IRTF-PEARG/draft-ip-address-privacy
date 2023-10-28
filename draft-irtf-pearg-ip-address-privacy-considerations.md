@@ -112,8 +112,8 @@ informative:
 
 This document provides an overview of privacy considerations related to user IP
 addresses. It includes an analysis of some current use cases for tracking of
-user IP addresses, grouping them into two categories: profiling and anti-abuse.
-This document also discusses the
+user IP addresses, grouping them into two categories: personalization and
+anti-abuse. This document also discusses the
 privacy issues associated with such tracking and provides input on mechanisms
 to improve the privacy of this existing model. It then captures requirements
 for proposed 'replacement signals' for IP addresses from this analysis. In
@@ -132,18 +132,17 @@ evolve significantly over time and may well split into multiple drafts as
 content is added.
 
 Tracking of IP addresses is common place on the Internet today, and falls
-roughly into two broad categories. The first is profiling, the creation of
-interest profiles for a given user to serve them relevant advertisements. The
-second is anti-abuse: e.g. anti-fraud, DDoS management, and child protection
-activities. The latter includes uses of IP addresses to determine "reputation"
-{{!RFC5782}} in conjunction with other signals to
+roughly into two broad categories. The first is personalization, the tailoring
+of content for a given user. The second is anti-abuse: e.g. anti-fraud, DDoS
+management, and child protection activities. The latter includes uses of IP
+addresses to determine "reputation" {{!RFC5782}} in conjunction with other signals to
 protect against malicious traffic, since these addresses are usually a
 relatively stable identifier of a request's origin. Servers use these
 reputations in determining whether or not a given packet, connection, or flow
 likely corresponds to malicious traffic. In addition, IP addresses are used in
 investigating past events and attributing responsibility.
 
-Profiling users based on their IP addresses has clear
+Personalizing content based on the user's IP address has clear
 privacy implications ({{WEBTRACKING1}}, {{WEBTRACKING2}}), e.g. user
 fingerprinting and cross-site identity linking. Many technologies exist today
 that allow users to obfuscate their external IP address to avoid such tracking,
@@ -155,7 +154,8 @@ Relay {{APPLEPRIV}}, Gnatcatcher {{GNATCATCHER}}, and Oblivious technologies
 General consideration about privacy for Internet protocols can be found in
 {{!RFC6973}}. This document builds upon {{!RFC6973}} and more specifically
 attempts to capture the following aspects of the tension between use of IP
-addresses to prevent abuse, and users' desire to prevent profiling:
+addresses to prevent abuse, and some users' desire to prevent overzealous
+personalization:
 
 * An analysis of the current use cases, attempting to categorize/group such use
   cases where commonalities exist.
