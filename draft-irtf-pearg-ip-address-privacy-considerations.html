@@ -1,0 +1,2253 @@
+<!DOCTYPE html>
+<html lang="en" class="Internet-Draft">
+<head>
+<meta charset="utf-8">
+<meta content="Common,Latin" name="scripts">
+<meta content="initial-scale=1.0" name="viewport">
+<title>IP Address Privacy Considerations</title>
+<meta content="Matthew Finkel" name="author">
+<meta content="Bradford Lassey" name="author">
+<meta content="Luigi Iannone" name="author">
+<meta content="J. Bradley Chen" name="author">
+<meta content="
+       This document provides an overview of privacy considerations related to user IP
+addresses. It includes an analysis of some current use cases for tracking of
+user IP addresses, grouping them into two categories: personalization and
+anti-abuse. This document also discusses the
+privacy issues associated with such tracking and provides input on mechanisms
+to improve the privacy of this existing model. It then captures requirements
+for proposed 'replacement signals' for IP addresses from this analysis. In
+addition, existing and under-development techniques are evaluated for
+fulfilling these requirements. 
+    " name="description">
+<meta content="xml2rfc 3.18.2" name="generator">
+<meta content="IP" name="keyword">
+<meta content="privacy" name="keyword">
+<meta content="draft-irtf-pearg-ip-address-privacy-considerations-latest" name="ietf.draft">
+<!-- Generator version information:
+  xml2rfc 3.18.2
+    Python 3.11.6
+    ConfigArgParse 1.7
+    google-i18n-address 3.1.0
+    intervaltree 3.1.0
+    Jinja2 3.1.2
+    lxml 4.9.3
+    platformdirs 4.1.0
+    pycountry 22.3.5
+    PyYAML 6.0.1
+    requests 2.31.0
+    setuptools 68.2.2
+    six 1.16.0
+    wcwidth 0.2.12
+-->
+<link href="draft-irtf-pearg-ip-address-privacy-considerations.xml" rel="alternate" type="application/rfc+xml">
+<link href="#copyright" rel="license">
+<style type="text/css">@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Lora SemiBold'), local('Lora-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-semibold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Cabin Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Cabin Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Cabin Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  color-scheme: light dark;
+  --background-color: #fff;
+  --text-color: #222;
+  --title-color: #191919;
+  --link-color: #2a6496;
+  --highlight-color: #f9f9f9;
+  --line-color: #eee;
+  --pilcrow-weak: #ddd;
+  --pilcrow-strong: #bbb;
+  --small-font-size: 14.5px;
+  --font-mono: 'Oxygen Mono', monospace;
+  scrollbar-color: #bbb #eee;
+}
+body {
+  max-width: 600px;
+  margin: 75px auto;
+  padding: 0 5px;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  font: 16px/22px "Lora", serif;
+  scroll-behavior: smooth;
+}
+
+.ears {
+  display: none;
+}
+
+/* headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Cabin Condensed", sans-serif;
+  font-weight: 600;
+  margin: 0.8em 0 0.3em;
+  font-size-adjust: 0.5;
+  color: var(--title-color);
+}
+h1#title {
+  font-size: 32px;
+  line-height: 40px;
+  clear: both;
+}
+h1#title, h1#rfcnum {
+  margin: 1.5em 0 0.2em;
+}
+h1#rfcnum + h1#title {
+  margin: 0.2em 0;
+}
+
+h1, h2, h3 {
+  font-size: 22px;
+  line-height: 27px;
+}
+h4, h5, h6 {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+/* general structure */
+.author {
+  padding-bottom: 0.3em;
+}
+#abstract+p {
+  font-size: 18px;
+  line-height: 24px;
+}
+#abstract+p code, #abstract+p samp, #abstract+p tt {
+  font-size: 16px;
+  line-height: 0;
+}
+
+p {
+  padding: 0;
+  margin: 0.5em 0;
+  text-align: left;
+}
+div {
+  margin: 0;
+}
+.alignRight.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignRight.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignRight {
+  margin: 1em 0;
+}
+.alignRight > *:first-child {
+  border: none;
+  margin: 0;
+  float: right;
+  clear: both;
+}
+.alignRight > *:nth-child(2) {
+  clear: both;
+  display: block;
+  border: none;
+}
+svg {
+  display: block;
+}
+/* font-family isn't space-separated, but =~ will have to do */
+svg[font-family~="monospace" i], svg [font-family~="monospace" i] {
+  font-family: var(--font-mono);
+}
+.alignCenter.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignCenter.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignCenter {
+  margin: 1em 0;
+}
+.alignCenter > *:first-child {
+  border: none;
+  /* this isn't optimal, but it's an existence proof.  PrinceXML doesn't
+     support flexbox yet.
+  */
+  display: table;
+  margin: 0 auto;
+}
+
+/* lists */
+ol, ul {
+  padding: 0;
+  margin: 0 0 0.5em 2em;
+}
+:is(ol, ul) :is(ol, ul) {
+  margin-left: 1em;
+}
+li {
+  margin: 0 0 0.25em 0;
+}
+.ulCompact li {
+  margin: 0;
+}
+ul.empty, .ulEmpty {
+  list-style-type: none;
+}
+ul.empty li, .ulEmpty li {
+  margin-top: 0.5em;
+}
+:is(ul, ol).compact, .ulCompact, .olCompact {
+  line-height: 1;
+  margin: 0 0 0 2em;
+}
+
+/* definition lists */
+dl {
+  clear: left;
+  --indent: 3ch;
+  /* --indent: attr(indent ch); not supported in any browser, but we can dream */
+}
+dl.olPercent {
+  --indent: 5ch;
+}
+dl > dt {
+  float: left;
+  margin-right: 2ch;
+  min-width: 8ch;
+}
+dl.dlNewline > dt {
+  float: none;
+}
+dl > dd {
+  margin-bottom: .8em;
+  margin-left: var(--indent) !important; /* stupid element overrides */
+  min-height: 2ex;
+}
+dl.olPercent > dt {
+  min-width: calc(var(--indent) - 2ch);
+}
+:is(dl.compact, .dlCompact) > dd {
+  margin-bottom: 0;
+}
+:is(dl.compact, .dlCompact) > dd > :is(:first-child, .break:first-child + *) {
+  margin-top: 0;
+}
+:is(dl.compact, .dlCompact) > dd > :is(:last-child) {
+  margin-bottom: 0;
+}
+dl > dd > dl {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+}
+:is(dd, span).break {
+  display: none;
+}
+
+/* links */
+a, a[href].selfRef:hover {
+  text-decoration: none;
+}
+a[href] {
+  color: var(--link-color);
+}
+a[href].selfRef, .iref + a[href].internal {
+  color: var(--text-color);
+}
+a[href]:hover {
+  text-decoration: underline;
+}
+a[href].selfRef:hover {
+  background-color: var(--highlight-color);
+}
+a.xref:is(.cite, .auto), :is(#status-of-memo, #copyright) a {
+  white-space: nowrap;
+}
+
+/* Figures */
+tt, code, pre {
+  background-color: var(--highlight-color);
+  font: 14px/22px var(--font-mono);
+}
+tt, code {
+  /* changing the font for inline elements leads to different ascender
+     and descender heights; as we want to retain baseline alignment,
+     remove leading to avoid altering the final height of lines
+     note: this fails if these blocks take an entire line,
+     a different solution would be great */
+  line-height: 0;
+}
+:is(h1, h2, h3, h4, h5, h6) :is(tt, code) {
+  font-size: 84%;
+}
+pre {
+  border: 1px solid var(--line-color);
+  font-size: 13.5px;
+  line-height: 16px;
+  letter-spacing: -0.2px;
+  margin: 5px;
+  padding: 5px;
+}
+img {
+  max-width: 100%;
+}
+figure {
+  margin: 0.5em 0;
+  padding: 0;
+}
+figure blockquote {
+  margin: 0.8em 0.4em 0.4em;
+}
+figcaption, caption {
+  font-style: italic;
+  margin: 0.5em 1.5em;
+  text-align: left;
+}
+@media screen {
+  /* Auto-collapse boilerplate. */
+  :is(#status-of-memo, #copyright) p {
+    margin: -2px 0;
+    max-height: 0;
+    transition: max-height 2s ease, margin 0.5s ease 0.5s;
+    overflow: hidden;
+  }
+  :is(#status-of-memo, #copyright):hover p,
+  :is(#status-of-memo, #copyright) h2:target ~ p {
+    margin: 0.5em 0;
+    max-height: 500px;
+    overflow: auto;
+  }
+  pre, svg {
+    display: inline-block;
+    overflow-x: auto;
+  }
+  pre {
+    max-width: 100%;
+    width: calc(100% - 22px - 1em);
+  }
+  svg {
+    max-width: calc(100% - 22px - 1em);
+  }
+  figure pre {
+    display: block;
+    width: calc(100% - 25px);
+  }
+  :is(pre, svg) + .pilcrow {
+    display: inline-block;
+    vertical-align: text-bottom;
+    padding-bottom: 8px;
+  }
+}
+
+/* aside, blockquote */
+aside, blockquote {
+  margin-left: 0;
+  padding: 0 2em;
+  font-style: italic;
+}
+blockquote {
+  margin: 1em 0;
+}
+cite {
+  display: block;
+  text-align: right;
+  font-style: italic;
+}
+
+/* tables */
+table {
+  max-width: 100%;
+  margin: 0 0 1em;
+  border-collapse: collapse;
+}
+table.right {
+  margin-left: auto;
+}
+table.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+table.left {
+  margin-right: auto;
+}
+thead, tbody {
+  border: 1px solid var(--line-color);
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 5px 10px;
+}
+th {
+  background-color: var(--line-color);
+}
+:is(tr:nth-child(2n), thead+tbody > tr:nth-child(2n+1)) > td {
+  background-color: var(--background-color);
+}
+:is(tr:nth-child(2n+1), thead+tbody > tr:nth-child(2n)) > td {
+  background-color: var(--highlight-color);
+}
+table caption {
+  margin: 0;
+  padding: 3px 0 3px 1em;
+}
+table p {
+  margin: 0;
+}
+
+/* pilcrow */
+a.pilcrow {
+  margin-left: 3px;
+  opacity: 0.2;
+  user-select: none;
+}
+a.pilcrow[href] { color: var(--pilcrow-weak); }
+a.pilcrow[href]:hover { text-decoration: none; }
+@media not print {
+  :hover > a.pilcrow {
+    opacity: 1;
+  }
+  a.pilcrow[href]:hover {
+    color: var(--pilcrow-strong);
+    background-color: transparent;
+  }
+}
+@media print {
+  a.pilcrow {
+    display: none;
+  }
+}
+
+/* misc */
+hr {
+  border: 0;
+  border-top: 1px solid var(--line-color);
+}
+.bcp14 {
+  font-variant: small-caps;
+  font-weight: 600;
+  font-size: var(--small-font-size);
+}
+.role {
+  font-variant: all-small-caps;
+}
+sub, sup {
+  line-height: 1;
+  font-size: 80%;
+}
+
+/* info block */
+#identifiers {
+  margin: 0;
+  font-size: var(--small-font-size);
+  line-height: 18px;
+  --identifier-width: 15ch;
+}
+#identifiers dt {
+  width: var(--identifier-width);
+  min-width: var(--identifier-width);
+  clear: left;
+  float: left;
+  text-align: right;
+  margin-right: 1ch;
+}
+#identifiers dd {
+  margin: 0;
+  margin-left: calc(1em + var(--identifier-width)) !important;
+  min-width: 5em;
+}
+#identifiers .authors .author {
+  display: inline-block;
+  margin-right: 1.5em;
+}
+#identifiers .authors .org {
+  font-style: italic;
+}
+
+/* The prepared/rendered info at the very bottom of the page */
+.docInfo {
+  color: #999;
+  font-size: 0.9em;
+  font-style: italic;
+  margin-top: 2em;
+}
+.docInfo .prepared {
+  float: left;
+}
+.docInfo .prepared {
+  float: right;
+}
+
+/* table of contents */
+#toc {
+  padding: 0.75em 0 2em 0;
+  margin-bottom: 1em;
+}
+#toc nav ul {
+  margin: 0 0.5em 0 0;
+  padding: 0;
+  list-style: none;
+}
+#toc nav li {
+  line-height: 1.3em;
+  margin: 2px 0;
+  padding-left: 1.2em;
+  text-indent: -1.2em;
+}
+#toc a.xref {
+  white-space: normal;
+}
+/* references */
+.references dt {
+  text-align: right;
+  font-weight: bold;
+  min-width: 10ch;
+  margin-right: 1.5ch;
+}
+.references dt:target::before {
+  content: "⇒";
+  width: 15px;
+  margin: 0 10px 0 -25px;
+}
+.references dd {
+  margin-left: 12ch !important;
+  overflow: auto;
+}
+
+.refInstance {
+  margin-bottom: 1.25em;
+}
+
+.references .ascii {
+  margin-bottom: 0.25em;
+}
+
+/* index */
+#rfc\.index\.index + ul {
+  margin-left: 0;
+}
+
+/* authors */
+address.vcard {
+  font-style: normal;
+  margin: 1em 0;
+}
+address.vcard .nameRole {
+  font-weight: 700;
+  margin-left: 0;
+}
+address.vcard .label {
+  margin: 0.5em 0;
+}
+address.vcard .type {
+  display: none;
+}
+.alternative-contact {
+  margin: 1.5em 0 1em;
+}
+hr.addr {
+  border-top: 1px dashed;
+  margin: 0;
+  color: #ddd;
+  max-width: calc(100% - 16px);
+}
+@media (min-width: 500px) {
+  #authors-addresses > section {
+    column-count: 2;
+    column-gap: 20px;
+  }
+  #authors-addresses > section > h2 {
+    column-span: all;
+  }
+  /* hack for break-inside: avoid-column */
+  #authors-addresses address {
+    display: inline-block;
+    break-inside: avoid-column;
+  }
+}
+
+.rfcEditorRemove p:first-of-type {
+  font-style: italic;
+}
+.cref {
+  background-color: rgba(249, 232, 105, 0.3);
+  padding: 2px 4px;
+}
+.crefSource {
+  font-style: italic;
+}
+/* alternative layout for smaller screens */
+@media screen and (max-width: 929px) {
+  #toc {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    padding: 1px 0 0 0;
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+    opacity: 0.6;
+  }
+  #toc.active {
+      opacity: 1;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 2px 0 2px 6px;
+    padding-right: 1em;
+    font-size: 18px;
+    line-height: 24px;
+    min-width: 190px;
+    text-align: right;
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+  }
+  #toc h2::before { /* css hamburger */
+    float: right;
+    position: relative;
+    width: 1em;
+    height: 1px;
+    left: -164px;
+    margin: 8px 0 0 0;
+    background: white none repeat scroll 0 0;
+    box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
+    content: "";
+  }
+  #toc nav {
+    display: none;
+    background-color: var(--background-color);
+    padding: 0.5em 1em 1em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    height: calc(100vh - 48px);
+    border-left: 1px solid #ddd;
+  }
+  #toc.active nav {
+    display: block;
+  }
+  /* Make the collapsed ToC header render white on gray also when it's a link */
+  #toc h2 a,
+  #toc h2 a:link,
+  #toc h2 a:focus,
+  #toc h2 a:hover,
+  #toc a.toplink,
+  #toc a.toplink:hover {
+    color: white;
+    background-color: #444;
+    text-decoration: none;
+  }
+  #toc a.toplink {
+    margin-top: 2px;
+  }
+}
+
+/* alternative layout for wide screens */
+@media screen and (min-width: 930px) {
+  body {
+    padding-right: 360px;
+    padding-right: calc(min(180px + 20%, 500px));
+  }
+  #toc {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    right: calc(50vw - 480px);
+    width: 312px;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 0.25em 1em 1em 0;
+  }
+  #toc nav {
+    display: block;
+    height: calc(90vh - 84px);
+    bottom: 0;
+    padding: 0.5em 0 2em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+  #toc nav > ul  {
+    margin-bottom: 2em;
+  }
+  #toc ul {
+    margin: 0 0 0 4px;
+    font-size: var(--small-font-size);
+  }
+  #toc ul :is(p, li) {
+    margin: 2px 0;
+    line-height: 22px;
+  }
+  img { /* future proofing */
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* pagination */
+@media print {
+  body {
+    width: 100%;
+  }
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+  #n-copyright-notice {
+    border-bottom: none;
+  }
+  #toc, #n-introduction {
+    page-break-before: always;
+  }
+  #toc {
+    border-top: none;
+    padding-top: 0;
+  }
+  figure, pre, .vcard {
+    page-break-inside: avoid;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+  :is(h2, h3, h4, h5, h6)+*, dd {
+    page-break-before: avoid;
+  }
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 10pt;
+  }
+  table {
+    border: 1px solid #ddd;
+  }
+  td {
+    border-top: 1px solid #ddd;
+  }
+  .toplink {
+    display: none;
+  }
+}
+
+@page :first {
+  padding-top: 0;
+  @top-left {
+    content: normal;
+    border: none;
+  }
+  @top-center {
+    content: normal;
+    border: none;
+  }
+  @top-right {
+    content: normal;
+    border: none;
+  }
+}
+
+@page {
+  size: A4;
+  margin-bottom: 45mm;
+  padding-top: 20px;
+}
+
+/* Changes introduced to fix issues found during implementation */
+
+/* Separate body from document info even without intervening H1 */
+section {
+  clear: both;
+}
+
+/* Top align author divs, to avoid names without organization dropping level with org names */
+.author {
+  vertical-align: top;
+}
+
+/* Style section numbers with more space between number and title */
+.section-number {
+  padding-right: 0.5em;
+}
+
+/* Add styling for a link in the ToC that points to the top of the document */
+a.toplink {
+  float: right;
+  margin: 8px 0.5em 0;
+}
+
+/* Provide styling for table cell text alignment */
+table .text-left {
+  text-align: left;
+}
+table .text-center {
+  text-align: center;
+}
+table .text-right {
+  text-align: right;
+}
+
+/* Make the alternative author contact information look less like just another
+   author, and group it closer with the primary author contact information */
+.alternative-contact {
+  margin: 0.5em 0 0.25em 0;
+}
+address .non-ascii {
+  margin: 0 0 0 2em;
+}
+
+/* With it being possible to set tables with alignment
+  left, center, and right, { width: 100%; } does not make sense */
+table {
+  width: auto;
+}
+
+/* Avoid reference text that sits in a block with very wide left margin,
+   because of a long floating dt label.*/
+.references dd {
+  overflow: visible;
+}
+
+/* Control caption placement */
+caption {
+  caption-side: bottom;
+}
+
+/* Limit the width of the author address vcard, so names in right-to-left
+   script don't end up on the other side of the page. */
+
+address.vcard {
+  max-width: 20em;
+  margin-right: auto;
+}
+
+/* For address alignment dependent on LTR or RTL scripts */
+address div.left {
+  text-align: left;
+}
+address div.right {
+  text-align: right;
+}
+
+/* Dark mode. */
+@media (prefers-color-scheme: dark) {
+:root {
+  --background-color: #121212;
+  --text-color: #f0f0f0;
+  --title-color: #fff;
+  --link-color: #4da4f0;
+  --highlight-color: #282828;
+  --line-color: #444;
+  --pilcrow-weak: #444;
+  --pilcrow-strong: #666;
+  scrollbar-color: #777 #333;
+}
+}
+
+/* SVG Trick: a prefix match works because only black and white are allowed */
+svg :is([stroke="black"], [stroke^="#000"]) {
+  stroke: var(--text-color);
+}
+svg :is([stroke="white"], [stroke^="#fff"]) {
+  stroke: var(--background-color);
+}
+svg :is([fill="black"], [fill^="#000"], :not([fill])) {
+  fill: var(--text-color);
+}
+svg :is([fill="white"], [fill^="#fff"]) {
+  fill: var(--background-color);
+}
+</style>
+
+</head>
+<body class="xml2rfc">
+<table class="ears">
+<thead><tr>
+<td class="left">Internet-Draft</td>
+<td class="center">IP Address Privacy Considerations</td>
+<td class="right">December 2023</td>
+</tr></thead>
+<tfoot><tr>
+<td class="left">Finkel, et al.</td>
+<td class="center">Expires 14 June 2024</td>
+<td class="right">[Page]</td>
+</tr></tfoot>
+</table>
+<div id="external-metadata" class="document-information"></div>
+<div id="internal-metadata" class="document-information">
+<dl id="identifiers">
+<dt class="label-workgroup">Workgroup:</dt>
+<dd class="workgroup">PEARG</dd>
+<dt class="label-internet-draft">Internet-Draft:</dt>
+<dd class="internet-draft">draft-irtf-pearg-ip-address-privacy-considerations-latest</dd>
+<dt class="label-published">Published:</dt>
+<dd class="published">
+<time datetime="2023-12-12" class="published">12 December 2023</time>
+    </dd>
+<dt class="label-intended-status">Intended Status:</dt>
+<dd class="intended-status">Informational</dd>
+<dt class="label-expires">Expires:</dt>
+<dd class="expires"><time datetime="2024-06-14">14 June 2024</time></dd>
+<dt class="label-authors">Authors:</dt>
+<dd class="authors">
+<div class="author">
+      <div class="author-name">M. Finkel</div>
+<div class="org">Apple Inc.</div>
+</div>
+<div class="author">
+      <div class="author-name">B. Lassey</div>
+<div class="org">Google</div>
+</div>
+<div class="author">
+      <div class="author-name">L. Iannone</div>
+<div class="org">Huawei</div>
+</div>
+<div class="author">
+      <div class="author-name">J. B. Chen</div>
+<div class="org">Google</div>
+</div>
+</dd>
+</dl>
+</div>
+<h1 id="title">IP Address Privacy Considerations</h1>
+<section id="section-abstract">
+      <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
+<p id="section-abstract-1">This document provides an overview of privacy considerations related to user IP
+addresses. It includes an analysis of some current use cases for tracking of
+user IP addresses, grouping them into two categories: personalization and
+anti-abuse. This document also discusses the
+privacy issues associated with such tracking and provides input on mechanisms
+to improve the privacy of this existing model. It then captures requirements
+for proposed 'replacement signals' for IP addresses from this analysis. In
+addition, existing and under-development techniques are evaluated for
+fulfilling these requirements.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+</section>
+<section class="note rfcEditorRemove" id="section-note.1">
+      <h2 id="name-about-this-document">
+<a href="#name-about-this-document" class="section-name selfRef">About This Document</a>
+      </h2>
+<p id="section-note.1-1">This note is to be removed before publishing as an RFC.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
+<p id="section-note.1-2">
+        The latest revision of this draft can be found at <span><a href="https://pearg.org/draft-ip-address-privacy/draft-irtf-pearg-ip-address-privacy-considerations.html">https://pearg.org/draft-ip-address-privacy/draft-irtf-pearg-ip-address-privacy-considerations.html</a></span>.
+        Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-irtf-pearg-ip-address-privacy-considerations/">https://datatracker.ietf.org/doc/draft-irtf-pearg-ip-address-privacy-considerations/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
+<p id="section-note.1-3">
+        Discussion of this document takes place on the
+        PEARG Research Group mailing list (<span><a href="mailto:pearg@ietf.org">mailto:pearg@ietf.org</a></span>),
+        which is archived at <span><a href="https://mailarchive.ietf.org/arch/browse/pearg/">https://mailarchive.ietf.org/arch/browse/pearg/</a></span>.
+        Subscribe at <span><a href="https://www.ietf.org/mailman/listinfo/pearg/">https://www.ietf.org/mailman/listinfo/pearg/</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
+<p id="section-note.1-4">Source for this draft and an issue tracker can be found at
+        <span><a href="https://github.com/IRTF-PEARG/draft-ip-address-privacy">https://github.com/IRTF-PEARG/draft-ip-address-privacy</a></span>.<a href="#section-note.1-4" class="pilcrow">¶</a></p>
+</section>
+<div id="status-of-memo">
+<section id="section-boilerplate.1">
+        <h2 id="name-status-of-this-memo">
+<a href="#name-status-of-this-memo" class="section-name selfRef">Status of This Memo</a>
+        </h2>
+<p id="section-boilerplate.1-1">
+        This Internet-Draft is submitted in full conformance with the
+        provisions of BCP 78 and BCP 79.<a href="#section-boilerplate.1-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-2">
+        Internet-Drafts are working documents of the Internet Engineering Task
+        Force (IETF). Note that other groups may also distribute working
+        documents as Internet-Drafts. The list of current Internet-Drafts is
+        at <span><a href="https://datatracker.ietf.org/drafts/current/">https://datatracker.ietf.org/drafts/current/</a></span>.<a href="#section-boilerplate.1-2" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-3">
+        Internet-Drafts are draft documents valid for a maximum of six months
+        and may be updated, replaced, or obsoleted by other documents at any
+        time. It is inappropriate to use Internet-Drafts as reference
+        material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-4">
+        This Internet-Draft will expire on 14 June 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="copyright">
+<section id="section-boilerplate.2">
+        <h2 id="name-copyright-notice">
+<a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
+        </h2>
+<p id="section-boilerplate.2-1">
+            Copyright (c) 2023 IETF Trust and the persons identified as the
+            document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.2-2">
+            This document is subject to BCP 78 and the IETF Trust's Legal
+            Provisions Relating to IETF Documents
+            (<span><a href="https://trustee.ietf.org/license-info">https://trustee.ietf.org/license-info</a></span>) in effect on the date of
+            publication of this document. Please review these documents
+            carefully, as they describe your rights and restrictions with
+            respect to this document.<a href="#section-boilerplate.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="toc">
+<section id="section-toc.1">
+        <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
+<a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
+        </h2>
+<nav class="toc"><ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
+            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
+            <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-terminology" class="internal xref">Terminology</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1">
+                <p id="section-toc.1-1.2.2.1.1" class="keepWithNext"><a href="#section-2.1" class="auto internal xref">2.1</a>.  <a href="#name-categories-of-interaction" class="internal xref">Categories of Interaction</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-mitigations-for-ip-address-" class="internal xref">Mitigations for IP address tracking</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-accepted-uses-of-ip-address" class="internal xref">Accepted Uses of IP Addresses</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-anti-abuse" class="internal xref">Anti-abuse</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-ddos-and-botnets" class="internal xref">DDoS and Botnets</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
+                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-multi-platform-threat-model" class="internal xref">Multi-platform threat models</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4">
+                <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="auto internal xref">4.4</a>.  <a href="#name-rough-geolocation" class="internal xref">Rough Geolocation</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.5">
+                <p id="section-toc.1-1.4.2.5.1"><a href="#section-4.5" class="auto internal xref">4.5</a>.  <a href="#name-legal-compliance" class="internal xref">Legal compliance</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.6">
+                <p id="section-toc.1-1.4.2.6.1"><a href="#section-4.6" class="auto internal xref">4.6</a>.  <a href="#name-contractual-obligations" class="internal xref">Contractual obligations</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.7">
+                <p id="section-toc.1-1.4.2.7.1"><a href="#section-4.7" class="auto internal xref">4.7</a>.  <a href="#name-locally-relevant-content" class="internal xref">Locally relevant content</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-implications-of-ip-addresse" class="internal xref">Implications of IP addresses</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1">
+                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-next-user-implications" class="internal xref">Next-User Implications</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2">
+                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-privacy-implications" class="internal xref">Privacy Implications</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3">
+                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="auto internal xref">5.3</a>.  <a href="#name-cross-site-vs-same-site" class="internal xref">Cross-site vs Same-site</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-ip-privacy-protection-and-l" class="internal xref">IP Privacy Protection and Law</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-replacement-signals-for-ip-" class="internal xref">Replacement signals for IP addresses</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1">
+                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="auto internal xref">7.1</a>.  <a href="#name-signals" class="internal xref">Signals</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1.2.1">
+                    <p id="section-toc.1-1.7.2.1.2.1.1"><a href="#section-7.1.1" class="auto internal xref">7.1.1</a>.  <a href="#name-adoption" class="internal xref">Adoption</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1.2.2">
+                    <p id="section-toc.1-1.7.2.1.2.2.1"><a href="#section-7.1.2" class="auto internal xref">7.1.2</a>.  <a href="#name-privacy-considerations" class="internal xref">Privacy Considerations</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1.2.3">
+                    <p id="section-toc.1-1.7.2.1.2.3.1"><a href="#section-7.1.3" class="auto internal xref">7.1.3</a>.  <a href="#name-provenance" class="internal xref">Provenance</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1.2.4">
+                    <p id="section-toc.1-1.7.2.1.2.4.1"><a href="#section-7.1.4" class="auto internal xref">7.1.4</a>.  <a href="#name-applying-appropriate-signal" class="internal xref">Applying Appropriate Signals</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2">
+                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="auto internal xref">7.2</a>.  <a href="#name-evaluation-of-existing-tech" class="internal xref">Evaluation of existing technologies</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1">
+                <p id="section-toc.1-1.10.2.1.1"><a href="#section-10.1" class="auto internal xref">10.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.2">
+                <p id="section-toc.1-1.10.2.2.1"><a href="#section-10.2" class="auto internal xref">10.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+</li>
+        </ul>
+</nav>
+</section>
+</div>
+<div id="introduction">
+<section id="section-1">
+      <h2 id="name-introduction">
+<a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
+      </h2>
+<p id="section-1-1">The initial intention of this draft is to capture an overview of the problem
+space and research on proposed solutions concerning privacy considerations
+related to user IP addresses (informally, IP privacy). The draft is likely to
+evolve significantly over time and may well split into multiple drafts as
+content is added.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">Tracking of IP addresses is common place on the Internet today, and falls
+roughly into two broad categories. The first is personalization, the tailoring
+of content for a given user. The second is anti-abuse: e.g. anti-fraud, DDoS
+management, and child protection activities. The latter includes uses of IP
+addresses to determine "reputation" <span>[<a href="#RFC5782" class="cite xref">RFC5782</a>]</span> in conjunction with other signals to
+protect against malicious traffic, since these addresses are usually a
+relatively stable identifier of a request's origin. Servers use these
+reputations in determining whether or not a given packet, connection, or flow
+likely corresponds to malicious traffic. In addition, IP addresses are used in
+investigating past events and attributing responsibility.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">Personalizing content based on the user's IP address has clear
+privacy implications (<span>[<a href="#WEBTRACKING1" class="cite xref">WEBTRACKING1</a>]</span>, <span>[<a href="#WEBTRACKING2" class="cite xref">WEBTRACKING2</a>]</span>), e.g. user
+fingerprinting and cross-site identity linking. Many technologies exist today
+that allow users to obfuscate their external IP address to avoid such tracking,
+e.g. VPNs (<span>[<a href="#VPNCMP1" class="cite xref">VPNCMP1</a>]</span>, <span>[<a href="#VPNCMP2" class="cite xref">VPNCMP2</a>]</span>) and Tor (<span>[<a href="#TOR" class="cite xref">TOR</a>]</span>, <span>[<a href="#VPNTOR" class="cite xref">VPNTOR</a>]</span>). Several new
+technologies are emerging, as well, in the landscape, e.g. Apple iCloud Private
+Relay <span>[<a href="#APPLEPRIV" class="cite xref">APPLEPRIV</a>]</span>, Gnatcatcher <span>[<a href="#GNATCATCHER" class="cite xref">GNATCATCHER</a>]</span>, and Oblivious technologies
+(ODoH <span>[<a href="#I-D.pauly-dprive-oblivious-doh" class="cite xref">I-D.pauly-dprive-oblivious-doh</a>]</span>, OHTTP <span>[<a href="#I-D.thomson-ohai-ohttp" class="cite xref">I-D.thomson-ohai-ohttp</a>]</span>).<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">General consideration about privacy for Internet protocols can be found in
+<span>[<a href="#RFC6973" class="cite xref">RFC6973</a>]</span>. This document builds upon <span>[<a href="#RFC6973" class="cite xref">RFC6973</a>]</span> and more specifically
+attempts to capture the following aspects of the tension between use of IP
+addresses to prevent abuse, and some users' desire to prevent overzealous
+personalization:<a href="#section-1-4" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-1-5.1">
+          <p id="section-1-5.1.1">An analysis of the current use cases, attempting to categorize/group such use
+cases where commonalities exist.<a href="#section-1-5.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-1-5.2">
+          <p id="section-1-5.2.1">Find ways to enhance the privacy of existing uses of IP addresses.<a href="#section-1-5.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-1-5.3">
+          <p id="section-1-5.3.1">Generating requirements for proposed 'replacement signals' from this analysis
+(these could be different for each category/group of use cases).<a href="#section-1-5.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-1-5.4">
+          <p id="section-1-5.4.1">Research to evaluate existing technologies or propose new mechanisms for such
+signals.<a href="#section-1-5.4.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-1-6">With the goal of replacing IP addresses as a fundemental signal, the following
+sections enumerate existing use cases and describe applicable substitution
+signals. This description may not be exhaustive due to the breadth of IP
+address usage.<a href="#section-1-6" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="terminology">
+<section id="section-2">
+      <h2 id="name-terminology">
+<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-terminology" class="section-name selfRef">Terminology</a>
+      </h2>
+<p id="section-2-1">(Work in progress)<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-2">This section defines basic terms used in this document, with references to
+pre-existing definitions as appropriate. As in <span>[<a href="#RFC4949" class="cite xref">RFC4949</a>]</span> and <span>[<a href="#RFC6973" class="cite xref">RFC6973</a>]</span>,
+each entry is preceded by a dollar sign ($) and a space for automated searching.<a href="#section-2-2" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-2-3">
+        <dt id="section-2-3.1">$ Identity:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-3.2">
+          <p id="section-2-3.2.1">Extending <span>[<a href="#RFC6973" class="cite xref">RFC6973</a>]</span>, an individual's attributes may only identify an
+individual up to an anonymity set within a given context.<a href="#section-2-3.2.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-3.3">$ Reputation:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-3.4">
+          <p id="section-2-3.4.1">A random variable with some distribution. A reputation can either be "bad" or
+"good" with some probability according to the distribution.<a href="#section-2-3.4.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-3.5">$ Reputation context:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-3.6">
+          <p id="section-2-3.6.1">The context in which a given reputation applies.<a href="#section-2-3.6.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-3.7">$ Reputation proof:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-3.8">
+          <p id="section-2-3.8.1">A non-interactive zero knowledge proof of a reputation signal.<a href="#section-2-3.8.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-3.9">$ Reputation signal:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-3.10">
+          <p id="section-2-3.10.1">A representative of a reputation.<a href="#section-2-3.10.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-3.11">$ Service provider:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-3.12">
+          <p id="section-2-3.12.1">An entity that provides a service on the Internet; examples services include
+hosted e-mail, e-commerce sites, and cloud computing platforms.<a href="#section-2-3.12.1" class="pilcrow">¶</a></p>
+</dd>
+      <dd class="break"></dd>
+</dl>
+<div id="categories-of-interaction">
+<section id="section-2.1">
+        <h3 id="name-categories-of-interaction">
+<a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-categories-of-interaction" class="section-name selfRef">Categories of Interaction</a>
+        </h3>
+<p id="section-2.1-1">Interactions between parties on the Internet may be classified into one (or
+more) of three categories:<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-2.1-2">
+          <dt id="section-2.1-2.1">Private Interaction:</dt>
+          <dd style="margin-left: 1.5em" id="section-2.1-2.2">
+            <p id="section-2.1-2.2.1">An interaction occuring between mutually consenting parties, with a mutual
+expectation of privacy.<a href="#section-2.1-2.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-2.1-2.3">Public Interaction:</dt>
+          <dd style="margin-left: 1.5em" id="section-2.1-2.4">
+            <p id="section-2.1-2.4.1">An interaction occuring between multiple parties that are not engaged in a
+Private Interaction.<a href="#section-2.1-2.4.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-2.1-2.5">Consumption:</dt>
+          <dd style="margin-left: 1.5em" id="section-2.1-2.6">
+            <p id="section-2.1-2.6.1">An interaction where one party primarily receives information from other
+parties.<a href="#section-2.1-2.6.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
+</section>
+</div>
+</section>
+</div>
+<div id="mitigations-for-ip-address-tracking">
+<section id="section-3">
+      <h2 id="name-mitigations-for-ip-address-">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-mitigations-for-ip-address-" class="section-name selfRef">Mitigations for IP address tracking</a>
+      </h2>
+<p id="section-3-1">The ability to track individual people by IP address has been well understood
+for decades. Due to the prevalence of systems that profile users using their IP
+addresses, countermeasures have been developed. Commercial VPNs and Tor are the
+most common methods of mitigating IP address-based tracking.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3-2.1">
+          <p id="section-3-2.1.1">Commercial VPNs offer a layer of indirection between the user and the
+destination, however if the VPN endpoint's IP address is static then this
+simply substitutes one address for another. In addition, commercial VPNs
+replace tracking across sites with a single company that may track their
+users' activities.<a href="#section-3-2.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-3-2.2">
+          <p id="section-3-2.2.1">Tor is another mitigation option due to its dynamic path selection and
+distributed network of relays, however its current design suffers from
+degraded performance. In addition, correct application integration is
+difficult and not common.<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-3-2.3">
+          <p id="section-3-2.3.1">Address anonymization (e.g. <span>[<a href="#GNATCATCHER" class="cite xref">GNATCATCHER</a>]</span> and similar):<a href="#section-3-2.3.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3-2.3.2.1">
+              <p id="section-3-2.3.2.1.1"><span>[<a href="#GNATCATCHER" class="cite xref">GNATCATCHER</a>]</span> is a single-hop proxy system providing more protection
+against third-party tracking than a traditional commercial VPN. However,
+its design maintains the industry-standard reliance on IP addresses for
+anti-abuse purposes and it provides near backwards compatibility for select
+services that submit to periodic audits.<a href="#section-3-2.3.2.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-3-2.3.2.2">
+              <p id="section-3-2.3.2.2.1"><span>[<a href="#APPLEPRIV" class="cite xref">APPLEPRIV</a>]</span> iCloud Private Relay is described as using two proxies
+between the client and server, and it would provide a level of protection
+somewhere between a commercial VPN and Tor.<a href="#section-3-2.3.2.2.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</li>
+        <li class="normal" id="section-3-2.4">
+          <p id="section-3-2.4.1">Recent interest has resulted in new protocols such as Oblivious DNS
+(<span>[<a href="#I-D.pauly-dprive-oblivious-doh" class="cite xref">I-D.pauly-dprive-oblivious-doh</a>]</span>) and Oblivious HTTP
+(<span>[<a href="#I-D.thomson-ohai-ohttp" class="cite xref">I-D.thomson-ohai-ohttp</a>]</span>). While they both prevent tracking by
+individual parties, they are not intended for the general-purpose web
+browsing use case.<a href="#section-3-2.4.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-3-2.5">
+          <p id="section-3-2.5.1">The use of temporary addresses is another way to limit IP address-based
+tracking. Changing addresses over time reduces the window of time during
+which it is possible to easily correlate network activity when the same
+address is employed for multiple transactions by the same host. Temporary
+addresses have been introduced only for IPv6, as an extension of its
+Stateless Address Configuration mechanism (<span>[<a href="#RFC8981" class="cite xref">RFC8981</a>]</span>). However, since the
+network prefix remains the same, in many cases it remains possible to
+identify a cellular user or a household.<a href="#section-3-2.5.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+</section>
+</div>
+<div id="accepted-uses-of-ip-addresses">
+<section id="section-4">
+      <h2 id="name-accepted-uses-of-ip-address">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-accepted-uses-of-ip-address" class="section-name selfRef">Accepted Uses of IP Addresses</a>
+      </h2>
+<p id="section-4-1">The mitigations described above are often designed to prevent unwanted uses of
+IP addresses such as profiling users. However, they often prevent other uses of
+IP addresses that users did not necessarily want or intend to disrupt.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<div id="antiabuse">
+<section id="section-4.1">
+        <h3 id="name-anti-abuse">
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-anti-abuse" class="section-name selfRef">Anti-abuse</a>
+        </h3>
+<p id="section-4.1-1">IP addresses are a passive identifier used in defensive operations. They allow
+correlating requests, attribution, and recognizing numerous attacks, including:<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.1-2.1">
+            <p id="section-4.1-2.1.1">account takeover<a href="#section-4.1-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-2.2">
+            <p id="section-4.1-2.2.1">advertising fraud (e.g., click-fraud)<a href="#section-4.1-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-2.3">
+            <p id="section-4.1-2.3.1">disinformation operations (e.g., detecting scaled and/or coordinated attacks)<a href="#section-4.1-2.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-2.4">
+            <p id="section-4.1-2.4.1">financial fraud (e.g., stolen credit cards, email account compromise)<a href="#section-4.1-2.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-2.5">
+            <p id="section-4.1-2.5.1">malware/ransomware (e.g., detecting C2 connections)<a href="#section-4.1-2.5.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-2.6">
+            <p id="section-4.1-2.6.1">phishing<a href="#section-4.1-2.6.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-2.7">
+            <p id="section-4.1-2.7.1">real-world harm (e.g., child abuse)<a href="#section-4.1-2.7.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-2.8">
+            <p id="section-4.1-2.8.1">scraping (e.g., e-commerce, search)<a href="#section-4.1-2.8.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-2.9">
+            <p id="section-4.1-2.9.1">spam (e.g., email, comments)<a href="#section-4.1-2.9.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-2.10">
+            <p id="section-4.1-2.10.1">vulnerability exploitation (e.g., "hacking")<a href="#section-4.1-2.10.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-4.1-3">Malicious activity recognized by one service provider may be shared with other
+services <span>[<a href="#RFC5782" class="cite xref">RFC5782</a>]</span> as a way of limiting harm.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="ddos-and-botnets">
+<section id="section-4.2">
+        <h3 id="name-ddos-and-botnets">
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-ddos-and-botnets" class="section-name selfRef">DDoS and Botnets</a>
+        </h3>
+<p id="section-4.2-1">Cyber-attackers can leverage the good reputation of an IP address to carry out
+specific attacks that wouldn't work otherwise. Main examples are Distributed
+Denial of Service (DDoS) attacks carried out by spoofing a trusted (i.e.,
+having good reputation) IP address (which may or may not be the victim of the
+attack) so that the servers used to generate the DDoS traffic actually respond
+to the attackers trigger (i.e., spoofed packets). Similarly botnets may use
+spoofed addresses in order to gain access and attack services that otherwise
+would not be reachable.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="multi-platform-threat-models">
+<section id="section-4.3">
+        <h3 id="name-multi-platform-threat-model">
+<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-multi-platform-threat-model" class="section-name selfRef">Multi-platform threat models</a>
+        </h3>
+<p id="section-4.3-1">As siloed (single-platform) abuse defenses improve, abusers have moved to
+multi-platform threat models. For example, a public discussion platform with a
+culture of anonymity may redirect traffic to YouTube as a video library,
+bypassing YouTube defenses that otherwise reduce exposure of potentially
+harmful content. Similarly, a minor could be solicited by an adult
+impersonating a child on a popular social media platform, then redirected to a
+smaller, less established and less defended platform where illegal activity
+could occur. Phishing attacks are also common. There are many such
+cross-platform abuse models and they cause significant public harm. IP
+addresses are commonly used to investigate, understand and communicate these
+cross-platform threats. There are very few alternatives for cross-platform
+signals.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="rough-geolocation">
+<section id="section-4.4">
+        <h3 id="name-rough-geolocation">
+<a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-rough-geolocation" class="section-name selfRef">Rough Geolocation</a>
+        </h3>
+<p id="section-4.4-1">A rough geolocation can be inferred from a client's IP address, which is
+commonly known as either IP-Geo or Geo-IP. This information can have several
+useful implications. When abuse extends beyond attacks in the digital space, IP
+addresses may help identify the physical location of real-world harm, such as
+child exploitation.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="legal-compliance">
+<section id="section-4.5">
+        <h3 id="name-legal-compliance">
+<a href="#section-4.5" class="section-number selfRef">4.5. </a><a href="#name-legal-compliance" class="section-name selfRef">Legal compliance</a>
+        </h3>
+<p id="section-4.5-1">Legal and regulatory compliance often needs to take the jurisdiction of the
+client into account. This is especially important in cases where regulations
+are mutually contradictory (i.e. there is no way to be in legal compliance
+universally). Because Geo-IP is often bound to the IP addresses a given ISP
+uses, and ISPs tend to operate within national borders, Geo-IP tends to be a
+good fit for server operators to comply with local laws and regulations<a href="#section-4.5-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="contractual-obligations">
+<section id="section-4.6">
+        <h3 id="name-contractual-obligations">
+<a href="#section-4.6" class="section-number selfRef">4.6. </a><a href="#name-contractual-obligations" class="section-name selfRef">Contractual obligations</a>
+        </h3>
+<p id="section-4.6-1">Similar to legal compliance, some content and media has licensing terms that
+are valid only for certain locations. The rough geolocation derived from IP
+addresses allow this content to be hosted on the web.<a href="#section-4.6-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="locally-relevant-content">
+<section id="section-4.7">
+        <h3 id="name-locally-relevant-content">
+<a href="#section-4.7" class="section-number selfRef">4.7. </a><a href="#name-locally-relevant-content" class="section-name selfRef">Locally relevant content</a>
+        </h3>
+<p id="section-4.7-1">Rough geolocation can also be useful to tailor content to the client's location
+simply to improve their experience. A search for "coffee shop" can include
+results of coffee shops within reasonable travel distance from a user rather
+than generic information about coffee shops, a merchant's website could show
+brick and mortar stores near the user and a news site can surface locally
+relevant news stories that wouldn't be as interesting to visitors from other
+locations.<a href="#section-4.7-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="implications-of-ip-addresses">
+<section id="section-5">
+      <h2 id="name-implications-of-ip-addresse">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-implications-of-ip-addresse" class="section-name selfRef">Implications of IP addresses</a>
+      </h2>
+<div id="next-user-implications">
+<section id="section-5.1">
+        <h3 id="name-next-user-implications">
+<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-next-user-implications" class="section-name selfRef">Next-User Implications</a>
+        </h3>
+<p id="section-5.1-1">When an attacker uses IP addresses with "good" reputations, the collateral
+damage poses a serious risk to legitimate service providers, developers, and
+end users. IP addresses may become assocaited with a "bad" reputation from
+temporal abuse, and legitimate users may be affected by blocklists as a result.
+This unintended impact may hurt the reputation of a service or an end user
+<span>[<a href="#RFC6269" class="cite xref">RFC6269</a>]</span>.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="privacy-implications">
+<section id="section-5.2">
+        <h3 id="name-privacy-implications">
+<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-privacy-implications" class="section-name selfRef">Privacy Implications</a>
+        </h3>
+<p id="section-5.2-1">IP addresses are sent in the clear throughout the packet journey over the
+Internet. As such, any observer along the path can pick it up and use it for
+various tracking purposes. Beside basic information about the network or the
+device, it is possible to associate an IP address to an end user, hence, the
+relevance of IP addresses for user privacy. A very short list of information
+about user, device, and network that can be obtained via the IP address.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5.2-2.1">
+            <p id="section-5.2-2.1.1">Determine who owns and operates the network. Searching the WHOIS database
+using an IP address can provide a range of information about the organization
+to which the address is assigned, including a name, phone number, and civic
+address;<a href="#section-5.2-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-5.2-2.2">
+            <p id="section-5.2-2.2.1">Through a reverse DNS lookup and/or traceroute the computer name can be
+obtained, which often contains clues to logical and physical location;<a href="#section-5.2-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-5.2-2.3">
+            <p id="section-5.2-2.3.1">Geo-localisation of the device (hence the user) through various techniques
+<span>[<a href="#GEOIP" class="cite xref">GEOIP</a>]</span>. Depending on the lookup tool used, this could include country,
+region/state, city, latitude/longitude, telephone area code and a
+location-specific map;<a href="#section-5.2-2.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-5.2-2.4">
+            <p id="section-5.2-2.4.1">Search the Internet using the IP address or computer names. The results of
+these searches might reveal peer-to-peer (P2P) activities (e.g., file
+sharing), records in web server log files, or glimpses of the individual's
+web activities (e.g., Wikipedia edits). These bits of individuals' online
+history may reveal their political inclinations, state of health, sexuality,
+religious sentiments and a range of other personal characteristics,
+preoccupations and individual interests;<a href="#section-5.2-2.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-5.2-2.5">
+            <p id="section-5.2-2.5.1">Seek information on any e-mail addresses used from a particular IP address
+which, in turn, could be the subject of further requests for subscriber
+information.<a href="#section-5.2-2.5.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+</section>
+</div>
+<div id="cross-site-vs-same-site">
+<section id="section-5.3">
+        <h3 id="name-cross-site-vs-same-site">
+<a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-cross-site-vs-same-site" class="section-name selfRef">Cross-site vs Same-site</a>
+        </h3>
+<p id="section-5.3-1">In a web context, IP Addresses can be used to link a user's activity both
+within a single site and across multiple sites. Users may want to have a single
+site recognize them within a browsing session or across browsing sessions and
+in fact cookies are a mechanism to do exactly that. If IP Addresses are only
+stable within the context a first-party cookie, they don't represent any
+additional privacy threat. However, since clients are currently in control of
+their first-party cookies, abusive clients can delete their cookies in an
+effort to evade detection. IP Addresses currently allow counter-abuse detection
+to track many such abusive clients across cookie deletions. However, IP
+Addresses, along with other fingerprinting techniques, also allow the linking
+of client identity across sites in the web context. Third-party cookies can
+also allow such a capability, but in a more limited manner as practically
+speaking no one third-party cookie is present across all websites. Also,
+browsers are increasingly putting limits on the ability to use third-party
+cookies in order to combat these threats <span>[<a href="#_3P_COOKIES_CHROME" class="cite xref">_3P_COOKIES_CHROME</a>]</span> and
+<span>[<a href="#_3P_COOKIES_WEBKIT" class="cite xref">_3P_COOKIES_WEBKIT</a>]</span>. Other network related information can also be used to
+link client identity across sites, but that is increasingly being seen as a bug
+to be addressed by browsers through network state partitioning (e.g.
+<span>[<a href="#MOZ_NET_PART" class="cite xref">MOZ_NET_PART</a>]</span>, <span>[<a href="#BRAVE_NET_PART" class="cite xref">BRAVE_NET_PART</a>]</span>, <span>[<a href="#CHROME_NET_PART" class="cite xref">CHROME_NET_PART</a>]</span>). Finally, the above
+discussion uses the web and browsers as a concrete example, but this
+generalizes to other contexts such as linking user identity across VoIP
+solutions, DNS resolvers, video streaming platforms etc.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="ip-privacy-protection-and-law">
+<section id="section-6">
+      <h2 id="name-ip-privacy-protection-and-l">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-ip-privacy-protection-and-l" class="section-name selfRef">IP Privacy Protection and Law</a>
+      </h2>
+<p id="section-6-1">Various countries, in the last decade, have adopted, or updated, laws that aim
+at protecting citizens privacy, which includes IP addresses. Very often, these
+laws are actually part of larger regulatory frameworks aimed at protecting
+users' Personal Identifiable Information (PII) in a broad sense. <a href="#table_laws" class="auto internal xref">Table 1</a>
+provides a snapshot of relevant existing regulations.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<span id="name-relevant-privacy-laws-and-r"></span><div id="table_laws">
+<table class="center" id="table-1">
+        <caption>
+<a href="#table-1" class="selfRef">Table 1</a>:
+<a href="#name-relevant-privacy-laws-and-r" class="selfRef">Relevant privacy laws and regulations</a>
+        </caption>
+<thead>
+          <tr>
+            <th class="text-left" rowspan="1" colspan="1">Country</th>
+            <th class="text-left" rowspan="1" colspan="1">Law</th>
+            <th class="text-left" rowspan="1" colspan="1">IP Address is PII</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">Brazil</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#LGPD" class="cite xref">LGPD</a>]</span> - Lei General de Protecao de Dados Pessoals</td>
+            <td class="text-left" rowspan="1" colspan="1">Yes (not explicitly stated)</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">Canada</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#PIPEDA" class="cite xref">PIPEDA</a>]</span> - Personal Information Protection and Electronic Documents Act</td>
+            <td class="text-left" rowspan="1" colspan="1">Yes</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">China</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#PIPL-C" class="cite xref">PIPL-C</a>]</span><span>[<a href="#PIPL" class="cite xref">PIPL</a>]</span> - Personal Information Protection Law</td>
+            <td class="text-left" rowspan="1" colspan="1">Yes</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">European Union</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#GDPR" class="cite xref">GDPR</a>]</span> - General Data Protection Regulation</td>
+            <td class="text-left" rowspan="1" colspan="1">Yes</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">Japan</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#APPI" class="cite xref">APPI</a>]</span> - Act of Protection of Personal Information</td>
+            <td class="text-left" rowspan="1" colspan="1">Yes (including anonymized data)</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+<p id="section-6-3">All of the major laws recognizes IP addresses as personal identification
+information when there is sufficiently strong correlation between an address
+and a person or when combined with other information to create that
+correlation. Brazil does not mention IP addresses explicitly but includes them
+de facto. Japan does protect even anonymized data. All require an explicit
+action from the user to grant permission to use PII, except for Canada that
+allows implicit consent. Note that all laws include exceptions on the type of
+consent, which, however are difficult to summarize. USA does not have a general
+federal law, but state sector-specific laws pertaining to privacy that would be
+too difficult to summarize (see <span>[<a href="#CCPA" class="cite xref">CCPA</a>]</span> as an example). Depending on the
+state, IP addresses may not be considered as personally identifiable
+information <span>[<a href="#IP2009" class="cite xref">IP2009</a>]</span>.<a href="#section-6-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="replacement-signals-for-ip-addresses">
+<section id="section-7">
+      <h2 id="name-replacement-signals-for-ip-">
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-replacement-signals-for-ip-" class="section-name selfRef">Replacement signals for IP addresses</a>
+      </h2>
+<p id="section-7-1">Fundamentally, the current ecosystem operates by making the immediate peer of a
+connection accountable for bad traffic, rather than the source of the traffic
+itself. This is problematic because in some network architectures the peer node
+of the connection is simply routing traffic for other clients, and any client's
+use of that node may be only temporary. Ideally, clients could present
+appropriate identification end-to-end that is separate from the IP address, and
+uniquely bound to a given connection.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<div id="signals">
+<section id="section-7.1">
+        <h3 id="name-signals">
+<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-signals" class="section-name selfRef">Signals</a>
+        </h3>
+<p id="section-7.1-1">There are 7 classes of signals identified in this document that may be used in
+place of IP addresses. A signal's provenance is a critical property and will be
+discussed in <a href="#provenance" class="auto internal xref">Section 7.1.3</a>.<a href="#section-7.1-1" class="pilcrow">¶</a></p>
+<p id="section-7.1-2">ADDRESS_ESCROW:<a href="#section-7.1-2" class="pilcrow">¶</a></p>
+<p id="section-7.1-3">:Provides sufficient information for retroactively obtaining a client's IP
+address.<a href="#section-7.1-3" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-7.1-4">
+          <dt id="section-7.1-4.1">IDENTITY_TRANSPARENCY:</dt>
+          <dd style="margin-left: 1.5em" id="section-7.1-4.2">
+            <p id="section-7.1-4.2.1">Reveals a person's identity within a context.<a href="#section-7.1-4.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-7.1-4.3">IS_HUMAN:</dt>
+          <dd style="margin-left: 1.5em" id="section-7.1-4.4">
+            <p id="section-7.1-4.4.1">Informs the recipient that, most likely, a human recently proved their
+presence on the opposite end of the connection.<a href="#section-7.1-4.4.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-7.1-4.5">PEER_INTEGRITY:</dt>
+          <dd style="margin-left: 1.5em" id="section-7.1-4.6">
+            <p id="section-7.1-4.6.1">Provides a secure, remote attestation of hardware and/or software state.<a href="#section-7.1-4.6.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-7.1-4.7">REIDENTIFICATION:</dt>
+          <dd style="margin-left: 1.5em" id="section-7.1-4.8">
+            <p id="section-7.1-4.8.1">Provides a mechanism for identifying the same user across different
+connections within a time period.<a href="#section-7.1-4.8.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-7.1-4.9">REPUTATION:</dt>
+          <dd style="margin-left: 1.5em" id="section-7.1-4.10">
+            <p id="section-7.1-4.10.1">Provides the recipient with a proof of reputation from a reputation provider.<a href="#section-7.1-4.10.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-7.1-4.11">SOURCE_ASN:</dt>
+          <dd style="margin-left: 1.5em" id="section-7.1-4.12">
+            <p id="section-7.1-4.12.1">Reveals the ASN from which the client is connecting.<a href="#section-7.1-4.12.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
+<p id="section-7.1-5">In some situations one of the above signals may be a sufficient replacement
+signal in isolation, or more than one signal may be needed in combination.<a href="#section-7.1-5" class="pilcrow">¶</a></p>
+<p id="section-7.1-6">Separately, there are three signal categories that are out-of-scope for this
+document but are important improvements for mitigating abuse on platforms.<a href="#section-7.1-6" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-7.1-7">
+          <dt id="section-7.1-7.1">Publisher norms:</dt>
+          <dd style="margin-left: 1.5em" id="section-7.1-7.2">
+            <p id="section-7.1-7.2.1">Standard expections of publishers including identity transparency and
+conflicts of interest.<a href="#section-7.1-7.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-7.1-7.3">Protocol improvements:</dt>
+          <dd style="margin-left: 1.5em" id="section-7.1-7.4">
+            <p id="section-7.1-7.4.1">Increasing security of existing protocols.<a href="#section-7.1-7.4.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-7.1-7.5">Ecosystem improvements:</dt>
+          <dd style="margin-left: 1.5em" id="section-7.1-7.6">
+            <p id="section-7.1-7.6.1">Reducing reliance on less secure systems, for example, migrating user
+authentication from password-based to WebAuthn <span>[<a href="#WEBAUTHN" class="cite xref">WEBAUTHN</a>]</span> and relying on
+multiple factors (MFA).<a href="#section-7.1-7.6.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
+<div id="adoption">
+<section id="section-7.1.1">
+          <h4 id="name-adoption">
+<a href="#section-7.1.1" class="section-number selfRef">7.1.1. </a><a href="#name-adoption" class="section-name selfRef">Adoption</a>
+          </h4>
+<p id="section-7.1.1-1">Adoption of replacement signals requires coordination between user agents,
+service providers, and proxy services. Some user agents and proxy services may
+support only a subset of these signals, while service providers may require
+additional signals. A mechanism of negotiation may be needed for communicating
+these requirements.<a href="#section-7.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-7.1.1-2">In addition, service providers should only require a signal within the scope it
+will be used. In the same way that service provides only require user
+authentication when the user requests access to a non-public resource, a signal
+should not be pre-emptively requested before it is needed. The categories of
+interaction described above may help define scopes within a service, and they
+may help communicate to the user the reasoning for requiring a signal.<a href="#section-7.1.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="privacy-considerations">
+<section id="section-7.1.2">
+          <h4 id="name-privacy-considerations">
+<a href="#section-7.1.2" class="section-number selfRef">7.1.2. </a><a href="#name-privacy-considerations" class="section-name selfRef">Privacy Considerations</a>
+          </h4>
+<p id="section-7.1.2-1">A signal should not be required without clear justification, service providers
+should practice data minimization <span>[<a href="#RFC6973" class="cite xref">RFC6973</a>]</span> wherever possible. Requiring
+excessive signals may be more harmful to user privacy than requiring IP address
+transparency. This section provides a more details analysis of some signals.<a href="#section-7.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-7.1.2-2">ADDRESS_ESCROW gives service providers a time period within which they may
+obtain the client's IP address, but the information-in-escrow is not
+immediately available. Service providers should not gain access to the
+information in secret. A service provider may misuse the information-in-escrow
+for tracking and privacy-invasion purposes.<a href="#section-7.1.2-2" class="pilcrow">¶</a></p>
+<p id="section-7.1.2-3">PEER_INTEGRITY partitions users into two groups with valid and invalid
+hardware/software state, at a minimum. If the signal reveals more information,
+then it may allow more granular tracking of small sets of devices.<a href="#section-7.1.2-3" class="pilcrow">¶</a></p>
+<p id="section-7.1.2-4">IDENTITY_TRANSPARENCY may expose significant information about a user to a
+service provider; the resulting privacy invasion may be significantly worse
+than IP address transparency causes.<a href="#section-7.1.2-4" class="pilcrow">¶</a></p>
+<p id="section-7.1.2-5">IS_HUMAN depends on the mechanism used for proving humanness.<a href="#section-7.1.2-5" class="pilcrow">¶</a></p>
+<p id="section-7.1.2-6">REIDENTIFICATION explicitly allows a service provider to associate requests
+across unlinkable connections. This signal allows for profiling user behavior
+and tracking user activity without requesting more identifying information.
+First-party reidentification is a use case for this signal.<a href="#section-7.1.2-6" class="pilcrow">¶</a></p>
+<p id="section-7.1.2-7">REPUTATION partitions users into a set based on their reputation. The privacy
+invasion associated with this signal is intentionally small.<a href="#section-7.1.2-7" class="pilcrow">¶</a></p>
+<p id="section-7.1.2-8">SOURCE_ASN allows for identifying request patterns originating from an ASN
+without providing IP address transparency. However, ASNs are not guaranteed to
+serve large populations, therefore revealing the source ASN of a request may
+reveal more information about the user than intended.<a href="#section-7.1.2-8" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="provenance">
+<section id="section-7.1.3">
+          <h4 id="name-provenance">
+<a href="#section-7.1.3" class="section-number selfRef">7.1.3. </a><a href="#name-provenance" class="section-name selfRef">Provenance</a>
+          </h4>
+<p id="section-7.1.3-1">Replacement signals are only useful if they are trustworthy.<a href="#section-7.1.3-1" class="pilcrow">¶</a></p>
+<p id="section-7.1.3-2"><a href="https://github.com/IRTF-PEARG/draft-ip-address-privacy/issues/24">OPEN ISSUE 24</a><a href="#section-7.1.3-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="applying-appropriate-signals">
+<section id="section-7.1.4">
+          <h4 id="name-applying-appropriate-signal">
+<a href="#section-7.1.4" class="section-number selfRef">7.1.4. </a><a href="#name-applying-appropriate-signal" class="section-name selfRef">Applying Appropriate Signals</a>
+          </h4>
+<p id="section-7.1.4-1">As previous discussed, IP addresses are used for various reasons; therefore,
+describing a one-size-fits-all replacement signal is not appropriate. In
+addition, the quality and quantity of replacement signals needed by a service
+depends on the category of interaction of its users and potential attacks on
+the service.<a href="#section-7.1.4-1" class="pilcrow">¶</a></p>
+<p id="section-7.1.4-2">As an example, the attacks listed above in <a href="#antiabuse" class="auto internal xref">Section 4.1</a> can be organized into
+six groups based on the signals that may sufficiently replace IP addresses:<a href="#section-7.1.4-2" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-7.1.4-3">
+<li id="section-7.1.4-3.1">
+              <p id="section-7.1.4-3.1.1">IS_HUMAN, REPUTATION, REIDENTIFICATION, PEER_INTEGRITY<a href="#section-7.1.4-3.1.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-7.1.4-3.1.2.1">
+                  <p id="section-7.1.4-3.1.2.1.1">advertising fraud (e.g., click-fraud)<a href="#section-7.1.4-3.1.2.1.1" class="pilcrow">¶</a></p>
+</li>
+                <li class="normal" id="section-7.1.4-3.1.2.2">
+                  <p id="section-7.1.4-3.1.2.2.1">phishing<a href="#section-7.1.4-3.1.2.2.1" class="pilcrow">¶</a></p>
+</li>
+                <li class="normal" id="section-7.1.4-3.1.2.3">
+                  <p id="section-7.1.4-3.1.2.3.1">scraping (e.g., e-commerce, search)<a href="#section-7.1.4-3.1.2.3.1" class="pilcrow">¶</a></p>
+</li>
+                <li class="normal" id="section-7.1.4-3.1.2.4">
+                  <p id="section-7.1.4-3.1.2.4.1">spam (e.g., email, comments)<a href="#section-7.1.4-3.1.2.4.1" class="pilcrow">¶</a></p>
+</li>
+              </ul>
+</li>
+            <li id="section-7.1.4-3.2">
+              <p id="section-7.1.4-3.2.1">IS_HUMAN, REPUTATION, REIDENTIFICATION, ecosystem improvements<a href="#section-7.1.4-3.2.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-7.1.4-3.2.2.1">
+                  <p id="section-7.1.4-3.2.2.1.1">account takeover<a href="#section-7.1.4-3.2.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              </ul>
+</li>
+            <li id="section-7.1.4-3.3">
+              <p id="section-7.1.4-3.3.1">IS_HUMAN, REPUTATION, SOURCE_ASN<a href="#section-7.1.4-3.3.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-7.1.4-3.3.2.1">
+                  <p id="section-7.1.4-3.3.2.1.1">influence (e.g., brigading, astroturfing)<a href="#section-7.1.4-3.3.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              </ul>
+</li>
+            <li id="section-7.1.4-3.4">
+              <p id="section-7.1.4-3.4.1">publisher norms, (publisher) IDENTITY_TRANSPARENCY, PEER_INTEGRITY<a href="#section-7.1.4-3.4.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-7.1.4-3.4.2.1">
+                  <p id="section-7.1.4-3.4.2.1.1">disinformation operations (e.g., detecting scaled and/or coordinated
+attacks)<a href="#section-7.1.4-3.4.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              </ul>
+</li>
+            <li id="section-7.1.4-3.5">
+              <p id="section-7.1.4-3.5.1">publisher norms, (publisher) IDENTITY_TRANSPARENCY, ADDRESS_ESCROW<a href="#section-7.1.4-3.5.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-7.1.4-3.5.2.1">
+                  <p id="section-7.1.4-3.5.2.1.1">real-world harm (e.g., child abuse)<a href="#section-7.1.4-3.5.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              </ul>
+</li>
+            <li id="section-7.1.4-3.6">
+              <p id="section-7.1.4-3.6.1">IDENTITY_TRANSPARENCY, protocol improvements<a href="#section-7.1.4-3.6.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-7.1.4-3.6.2.1">
+                  <p id="section-7.1.4-3.6.2.1.1">financial fraud (e.g., stolen credit cards, email account compromise)<a href="#section-7.1.4-3.6.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              </ul>
+</li>
+          </ol>
+<p id="section-7.1.4-4">The remaining two attack categories fall outside of the scope of this document.<a href="#section-7.1.4-4" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-7.1.4-5.1">
+              <p id="section-7.1.4-5.1.1">malware/ransomware (e.g., detecting C2 connections)<a href="#section-7.1.4-5.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-7.1.4-5.2">
+              <p id="section-7.1.4-5.2.1">vulnerability exploitation (e.g., "hacking")<a href="#section-7.1.4-5.2.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+<p id="section-7.1.4-6">Note, IP addresses do not provide a perfect signal in their existing usage, and
+the above replacement signals do not provide a better signal in all cases.<a href="#section-7.1.4-6" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="evaluation-of-existing-technologies">
+<section id="section-7.2">
+        <h3 id="name-evaluation-of-existing-tech">
+<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-evaluation-of-existing-tech" class="section-name selfRef">Evaluation of existing technologies</a>
+        </h3>
+<p id="section-7.2-1">Technologies exist that are designed to solve some of the problems described in
+this document.<a href="#section-7.2-1" class="pilcrow">¶</a></p>
+<p id="section-7.2-2">Privacy Pass <span>[<a href="#I-D.ietf-privacypass-protocol" class="cite xref">I-D.ietf-privacypass-protocol</a>]</span> is a useful building block for
+solving numerous problems. Its design involves an interaction between a client
+and server where, at the end, the client is issued a set of anonymous tokens.
+These tokens may be redeemed at a later time, and this redemption should not be
+linkable with the initial issuance interaction. One existing use case is
+substituting a CAPTCHA challenge with a token, where successfully solving a
+CAPTCHA challenge results in a client being issued a set of anonymous tokens,
+and these tokens may be used in the future to bypass solving another CAPTCHA
+challenge. Therefore, Privacy Pass may be acceptable as an IS_HUMAN signal by
+some service providers. The current token design can't carry additional
+metadata like a user's reputation or an expiration date, and the tokens are not
+bound to an identity. The unlinkability property of the tokens is dependent on
+the implementation of key consistency <span>[<a href="#I-D.wood-key-consistency" class="cite xref">I-D.wood-key-consistency</a>]</span>.<a href="#section-7.2-2" class="pilcrow">¶</a></p>
+<p id="section-7.2-3">Trust Token <span>[<a href="#TRUSTTOKEN" class="cite xref">TRUSTTOKEN</a>]</span> is an extension of Privacy Pass where the issuance
+and redemption functionality are provided in the browser setting. The tokens
+are allowed to carry public and private metadata as extensions.<a href="#section-7.2-3" class="pilcrow">¶</a></p>
+<p id="section-7.2-4">Private Access Tokens <span>[<a href="#I-D.private-access-tokens" class="cite xref">I-D.private-access-tokens</a>]</span> provide a technique for
+partitioning clients based on a per-origin policy within a time period. Its use
+cases include rate-limiting access to content and geo-location. PATs could be
+used as a REIDENTIFICATION signal or a replacement signal for GeoIP, depending
+on requirements.<a href="#section-7.2-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="security-considerations">
+<section id="section-8">
+      <h2 id="name-security-considerations">
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      </h2>
+<p id="section-8-1">This draft discussses IP address use cases, underlying requirements, and
+possible replacement signals. Adoption challenges and privacy considerations
+for those signals are also discussed. Further work is needed to build and
+evaluate these signals as suitable replacements for IP addresses.<a href="#section-8-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="iana-considerations">
+<section id="section-9">
+      <h2 id="name-iana-considerations">
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+      </h2>
+<p id="section-9-1">This document has no IANA actions.<a href="#section-9-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<section id="section-10">
+      <h2 id="name-references">
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-references" class="section-name selfRef">References</a>
+      </h2>
+<div id="sec-normative-references">
+<section id="section-10.1">
+        <h3 id="name-normative-references">
+<a href="#section-10.1" class="section-number selfRef">10.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+        </h3>
+<dl class="references">
+<dt id="RFC4949">[RFC4949]</dt>
+        <dd>
+<span class="refAuthor">Shirey, R.</span>, <span class="refTitle">"Internet Security Glossary, Version 2"</span>, <span class="seriesInfo">FYI 36</span>, <span class="seriesInfo">RFC 4949</span>, <span class="seriesInfo">DOI 10.17487/RFC4949</span>, <time datetime="2007-08" class="refDate">August 2007</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4949">https://www.rfc-editor.org/rfc/rfc4949</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC5782">[RFC5782]</dt>
+        <dd>
+<span class="refAuthor">Levine, J.</span>, <span class="refTitle">"DNS Blacklists and Whitelists"</span>, <span class="seriesInfo">RFC 5782</span>, <span class="seriesInfo">DOI 10.17487/RFC5782</span>, <time datetime="2010-02" class="refDate">February 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5782">https://www.rfc-editor.org/rfc/rfc5782</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6269">[RFC6269]</dt>
+        <dd>
+<span class="refAuthor">Ford, M., Ed.</span>, <span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Durand, A.</span>, <span class="refAuthor">Levis, P.</span>, and <span class="refAuthor">P. Roberts</span>, <span class="refTitle">"Issues with IP Address Sharing"</span>, <span class="seriesInfo">RFC 6269</span>, <span class="seriesInfo">DOI 10.17487/RFC6269</span>, <time datetime="2011-06" class="refDate">June 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6269">https://www.rfc-editor.org/rfc/rfc6269</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6973">[RFC6973]</dt>
+      <dd>
+<span class="refAuthor">Cooper, A.</span>, <span class="refAuthor">Tschofenig, H.</span>, <span class="refAuthor">Aboba, B.</span>, <span class="refAuthor">Peterson, J.</span>, <span class="refAuthor">Morris, J.</span>, <span class="refAuthor">Hansen, M.</span>, and <span class="refAuthor">R. Smith</span>, <span class="refTitle">"Privacy Considerations for Internet Protocols"</span>, <span class="seriesInfo">RFC 6973</span>, <span class="seriesInfo">DOI 10.17487/RFC6973</span>, <time datetime="2013-07" class="refDate">July 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6973">https://www.rfc-editor.org/rfc/rfc6973</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="sec-informative-references">
+<section id="section-10.2">
+        <h3 id="name-informative-references">
+<a href="#section-10.2" class="section-number selfRef">10.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+        </h3>
+<dl class="references">
+<dt id="APPI">[APPI]</dt>
+        <dd>
+<span class="refTitle">"Japan - Data Protection Overview"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.dataguidance.com/notes/japan-data-protection-overview">https://www.dataguidance.com/notes/japan-data-protection-overview</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="APPLEPRIV">[APPLEPRIV]</dt>
+        <dd>
+<span class="refTitle">"Apple iCloud Private Relay"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.apple.com/icloud/docs/iCloud_Private_Relay_Overview_Dec2021.pdf">https://www.apple.com/icloud/docs/iCloud_Private_Relay_Overview_Dec2021.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="BRAVE_NET_PART">[BRAVE_NET_PART]</dt>
+        <dd>
+<span class="refTitle">"Partitioning network-state for privacy"</span>, <span>n.d.</span>, <span>&lt;<a href="https://brave.com/privacy-updates/14-partitioning-network-state/">https://brave.com/privacy-updates/14-partitioning-network-state/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="CCPA">[CCPA]</dt>
+        <dd>
+<span class="refTitle">"California Consumer Privacy Act (CCPA)"</span>, <span>n.d.</span>, <span>&lt;<a href="https://oag.ca.gov/privacy/ccpa">https://oag.ca.gov/privacy/ccpa</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="CHROME_NET_PART">[CHROME_NET_PART]</dt>
+        <dd>
+<span class="refTitle">"Network State Partitioning"</span>, <span>n.d.</span>, <span>&lt;<a href="https://chromestatus.com/feature/6713488334389248">https://chromestatus.com/feature/6713488334389248</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="GDPR">[GDPR]</dt>
+        <dd>
+<span class="refTitle">"General Data Protection Regulation"</span>, <span>n.d.</span>, <span>&lt;<a href="https://gdpr.eu/tag/gdpr/">https://gdpr.eu/tag/gdpr/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="GEOIP">[GEOIP]</dt>
+        <dd>
+<span class="refAuthor">Dan, O.</span>, <span class="refAuthor">Parikh, V.</span>, and <span class="refAuthor">B. Davison</span>, <span class="refTitle">"IP Geolocation Using Traceroute Location Propagation and IP Range Location Interpolation"</span>, <span class="refContent">ACM</span>, <span class="seriesInfo">Companion Proceedings of the Web Conference 2021</span>, <span class="seriesInfo">DOI 10.1145/3442442.3451888</span>, <time datetime="2021-04" class="refDate">April 2021</time>, <span>&lt;<a href="https://doi.org/10.1145/3442442.3451888">https://doi.org/10.1145/3442442.3451888</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="GNATCATCHER">[GNATCATCHER]</dt>
+        <dd>
+<span class="refTitle">"Global Network Address Translation Combined with Audited and Trusted CDN or HTTP-Proxy Eliminating Reidentification"</span>, <span>n.d.</span>, <span>&lt;<a href="https://github.com/bslassey/ip-blindness">https://github.com/bslassey/ip-blindness</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-privacypass-protocol">[I-D.ietf-privacypass-protocol]</dt>
+        <dd>
+<span class="refAuthor">Celi, S.</span>, <span class="refAuthor">Davidson, A.</span>, <span class="refAuthor">Valdez, S.</span>, and <span class="refAuthor">C. A. Wood</span>, <span class="refTitle">"Privacy Pass Issuance Protocol"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-privacypass-protocol-16</span>, <time datetime="2023-10-03" class="refDate">3 October 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-privacypass-protocol-16">https://datatracker.ietf.org/doc/html/draft-ietf-privacypass-protocol-16</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.pauly-dprive-oblivious-doh">[I-D.pauly-dprive-oblivious-doh]</dt>
+        <dd>
+<span class="refAuthor">Kinnear, E.</span>, <span class="refAuthor">McManus, P.</span>, <span class="refAuthor">Pauly, T.</span>, <span class="refAuthor">Verma, T.</span>, and <span class="refAuthor">C. A. Wood</span>, <span class="refTitle">"Oblivious DNS over HTTPS"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-pauly-dprive-oblivious-doh-11</span>, <time datetime="2022-02-17" class="refDate">17 February 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-pauly-dprive-oblivious-doh-11">https://datatracker.ietf.org/doc/html/draft-pauly-dprive-oblivious-doh-11</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.private-access-tokens">[I-D.private-access-tokens]</dt>
+        <dd>
+<span class="refAuthor">Hendrickson, S.</span>, <span class="refAuthor">Iyengar, J.</span>, <span class="refAuthor">Pauly, T.</span>, <span class="refAuthor">Valdez, S.</span>, and <span class="refAuthor">C. A. Wood</span>, <span class="refTitle">"Private Access Tokens"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-private-access-tokens-01</span>, <time datetime="2021-10-25" class="refDate">25 October 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-private-access-tokens-01">https://datatracker.ietf.org/doc/html/draft-private-access-tokens-01</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.thomson-ohai-ohttp">[I-D.thomson-ohai-ohttp]</dt>
+        <dd>
+<span class="refAuthor">Thomson, M.</span> and <span class="refAuthor">C. A. Wood</span>, <span class="refTitle">"Oblivious HTTP"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-thomson-ohai-ohttp-00</span>, <time datetime="2021-10-25" class="refDate">25 October 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-thomson-ohai-ohttp-00">https://datatracker.ietf.org/doc/html/draft-thomson-ohai-ohttp-00</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.wood-key-consistency">[I-D.wood-key-consistency]</dt>
+        <dd>
+<span class="refAuthor">Davidson, A.</span>, <span class="refAuthor">Finkel, M.</span>, <span class="refAuthor">Thomson, M.</span>, and <span class="refAuthor">C. A. Wood</span>, <span class="refTitle">"Key Consistency and Discovery"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-wood-key-consistency-03</span>, <time datetime="2022-08-17" class="refDate">17 August 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-wood-key-consistency-03">https://datatracker.ietf.org/doc/html/draft-wood-key-consistency-03</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="IP2009">[IP2009]</dt>
+        <dd>
+<span class="refTitle">"Washington Court Rules that IP Addresses are not Personally Identifiable Information"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.huntonprivacyblog.com/2009/07/10/washington-court-rules-that-ip-addresses-are-not-personally-identifiable-information/">https://www.huntonprivacyblog.com/2009/07/10/washington-court-rules-that-ip-addresses-are-not-personally-identifiable-information/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="LGPD">[LGPD]</dt>
+        <dd>
+<span class="refTitle">"General Personal Data Protection Law (Brazil)"</span>, <span>n.d.</span>, <span>&lt;<a href="https://iapp.org/media/pdf/resource_center/Brazilian_General_Data_Protection_Law.pdf">https://iapp.org/media/pdf/resource_center/Brazilian_General_Data_Protection_Law.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="MOZ_NET_PART">[MOZ_NET_PART]</dt>
+        <dd>
+<span class="refTitle">"State Partitioning"</span>, <span>n.d.</span>, <span>&lt;<a href="https://developer.mozilla.org/en-US/docs/Web/Privacy/State_Partitioning#network_partitioning">https://developer.mozilla.org/en-US/docs/Web/Privacy/State_Partitioning#network_partitioning</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="PIPEDA">[PIPEDA]</dt>
+        <dd>
+<span class="refTitle">"Personal Information Protection and Electronic Documents Act"</span>, <span>n.d.</span>, <span>&lt;<a href="https://laws-lois.justice.gc.ca/PDF/P-8.6.pdf">https://laws-lois.justice.gc.ca/PDF/P-8.6.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="PIPL">[PIPL]</dt>
+        <dd>
+<span class="refTitle">"Personal Information Protection Law of the People's Republic of China (English translation)"</span>, <span>n.d.</span>, <span>&lt;<a href="https://digichina.stanford.edu/work/translation-personal-information-protection-law-of-the-peoples-republic-of-china-effective-nov-1-2021/">https://digichina.stanford.edu/work/translation-personal-information-protection-law-of-the-peoples-republic-of-china-effective-nov-1-2021/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="PIPL-C">[PIPL-C]</dt>
+        <dd>
+<span class="refTitle">"Personal Information Protection Law of the People's Republic of China (Chinese)"</span>, <span>n.d.</span>, <span>&lt;<a href="http://www.npc.gov.cn/npc/c30834/202108/a8c4e3672c74491a80b53a172bb753fe.shtml">http://www.npc.gov.cn/npc/c30834/202108/a8c4e3672c74491a80b53a172bb753fe.shtml</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8981">[RFC8981]</dt>
+        <dd>
+<span class="refAuthor">Gont, F.</span>, <span class="refAuthor">Krishnan, S.</span>, <span class="refAuthor">Narten, T.</span>, and <span class="refAuthor">R. Draves</span>, <span class="refTitle">"Temporary Address Extensions for Stateless Address Autoconfiguration in IPv6"</span>, <span class="seriesInfo">RFC 8981</span>, <span class="seriesInfo">DOI 10.17487/RFC8981</span>, <time datetime="2021-02" class="refDate">February 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8981">https://www.rfc-editor.org/rfc/rfc8981</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="TOR">[TOR]</dt>
+        <dd>
+<span class="refTitle">"The Tor Project"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.torproject.org/">https://www.torproject.org/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="TRUSTTOKEN">[TRUSTTOKEN]</dt>
+        <dd>
+<span class="refTitle">"Trust Token API Explainer"</span>, <span>n.d.</span>, <span>&lt;<a href="https://github.com/WICG/trust-token-api">https://github.com/WICG/trust-token-api</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="VPNCMP1">[VPNCMP1]</dt>
+        <dd>
+<span class="refAuthor">Osswald, L.</span>, <span class="refAuthor">Haeberle, M.</span>, and <span class="refAuthor">M. Menth</span>, <span class="refTitle">"Performance Comparison of VPN Solutions"</span>, <span class="refContent">Universität Tübingen</span>, <span class="seriesInfo">DOI 10.15496/PUBLIKATION-41810</span>, <time datetime="2020-05" class="refDate">May 2020</time>, <span>&lt;<a href="https://doi.org/10.15496/PUBLIKATION-41810">https://doi.org/10.15496/PUBLIKATION-41810</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="VPNCMP2">[VPNCMP2]</dt>
+        <dd>
+<span class="refAuthor">Khanvilkar, S.</span> and <span class="refAuthor">A. Khokhar</span>, <span class="refTitle">"Virtual private networks: an overview with performance evaluation"</span>, <span class="refContent">Institute of Electrical and Electronics Engineers (IEEE)</span>, <span class="seriesInfo">IEEE Communications Magazine vol. 42, no. 10, pp. 146-154</span>, <span class="seriesInfo">DOI 10.1109/mcom.2004.1341273</span>, <time datetime="2004-10" class="refDate">October 2004</time>, <span>&lt;<a href="https://doi.org/10.1109/mcom.2004.1341273">https://doi.org/10.1109/mcom.2004.1341273</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="VPNTOR">[VPNTOR]</dt>
+        <dd>
+<span class="refAuthor">Ramadhani, E.</span>, <span class="refTitle">"Anonymity communication VPN and Tor: A comparative study"</span>, <span>n.d.</span>, <span>&lt;<a href="Journal%20of%20Physics%20Conference%20Series">Journal of Physics Conference Series</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="WEBAUTHN">[WEBAUTHN]</dt>
+        <dd>
+<span class="refTitle">"Web Authentication: An API for accessing Public Key Credentials Level 2"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.w3.org/TR/webauthn-2/">https://www.w3.org/TR/webauthn-2/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="WEBTRACKING1">[WEBTRACKING1]</dt>
+        <dd>
+<span class="refAuthor">Bujlow, T.</span>, <span class="refAuthor">Carela-Espanol, V.</span>, <span class="refAuthor">Lee, B.</span>, and <span class="refAuthor">P. Barlet-Ros</span>, <span class="refTitle">"A Survey on Web Tracking: Mechanisms, Implications, and Defenses"</span>, <span class="refContent">Institute of Electrical and Electronics Engineers (IEEE)</span>, <span class="seriesInfo">Proceedings of the IEEE vol. 105, no. 8, pp. 1476-1510</span>, <span class="seriesInfo">DOI 10.1109/jproc.2016.2637878</span>, <time datetime="2017-08" class="refDate">August 2017</time>, <span>&lt;<a href="https://doi.org/10.1109/jproc.2016.2637878">https://doi.org/10.1109/jproc.2016.2637878</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="WEBTRACKING2">[WEBTRACKING2]</dt>
+        <dd>
+<span class="refAuthor">Mishra, V.</span>, <span class="refAuthor">Laperdrix, P.</span>, <span class="refAuthor">Vastel, A.</span>, <span class="refAuthor">Rudametkin, W.</span>, <span class="refAuthor">Rouvoy, R.</span>, and <span class="refAuthor">M. Lopatka</span>, <span class="refTitle">"Don’t Count Me Out: On the Relevance of IP Address in the Tracking Ecosystem"</span>, <span class="refContent">ACM</span>, <span class="seriesInfo">Proceedings of The Web Conference 2020</span>, <span class="seriesInfo">DOI 10.1145/3366423.3380161</span>, <time datetime="2020-04" class="refDate">April 2020</time>, <span>&lt;<a href="https://doi.org/10.1145/3366423.3380161">https://doi.org/10.1145/3366423.3380161</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="_3P_COOKIES_CHROME">[_3P_COOKIES_CHROME]</dt>
+        <dd>
+<span class="refTitle">"Building a more private web: A path towards making third party cookies obsolete"</span>, <span>n.d.</span>, <span>&lt;<a href="https://blog.chromium.org/2020/01/building-more-private-web-path-towards.html">https://blog.chromium.org/2020/01/building-more-private-web-path-towards.html</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="_3P_COOKIES_WEBKIT">[_3P_COOKIES_WEBKIT]</dt>
+      <dd>
+<span class="refTitle">"Tracking Prevention in WebKit: The Default Cookie Policy"</span>, <span>n.d.</span>, <span>&lt;<a href="https://webkit.org/tracking-prevention/#the-default-cookie-policy">https://webkit.org/tracking-prevention/#the-default-cookie-policy</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</div>
+</section>
+<div id="acknowledgments">
+<section id="appendix-A">
+      <h2 id="name-acknowledgments">
+<a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
+      </h2>
+<p id="appendix-A-1">TODO acknowledge<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="authors-addresses">
+<section id="appendix-B">
+      <h2 id="name-authors-addresses">
+<a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
+      </h2>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Matthew Finkel</span></div>
+<div dir="auto" class="left"><span class="org">Apple Inc.</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:sysrqb@apple.com" class="email">sysrqb@apple.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Bradford Lassey</span></div>
+<div dir="auto" class="left"><span class="org">Google</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:lassey@chromium.org" class="email">lassey@chromium.org</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Luigi Iannone</span></div>
+<div dir="auto" class="left"><span class="org">Huawei Technologies France S.A.S.U</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:luigi.iannone@huawei.com" class="email">luigi.iannone@huawei.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">J. Bradley Chen</span></div>
+<div dir="auto" class="left"><span class="org">Google</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:bradchen@google.com" class="email">bradchen@google.com</a>
+</div>
+</address>
+</section>
+</div>
+<script>const toc = document.getElementById("toc");
+toc.querySelector("h2").addEventListener("click", e => {
+  toc.classList.toggle("active");
+});
+toc.querySelector("nav").addEventListener("click", e => {
+  toc.classList.remove("active");
+});
+</script>
+</body>
+</html>
