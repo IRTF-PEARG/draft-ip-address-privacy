@@ -5,12 +5,12 @@
 PEARG                                                          M. Finkel
 Internet-Draft                                                Apple Inc.
 Intended status: Informational                                 B. Lassey
-Expires: 8 April 2024                                             Google
+Expires: 14 June 2024                                             Google
                                                               L. Iannone
                                                                   Huawei
                                                               J. B. Chen
                                                                   Google
-                                                          6 October 2023
+                                                        12 December 2023
 
 
                    IP Address Privacy Considerations
@@ -20,13 +20,14 @@ Abstract
 
    This document provides an overview of privacy considerations related
    to user IP addresses.  It includes an analysis of some current use
-   cases for tracking of user IP addresses, mainly in the context of
-   anti-abuse.  It discusses the privacy issues associated with such
-   tracking and provides input on mechanisms to improve the privacy of
-   this existing model.  It then captures requirements for proposed
-   'replacement signals' for IP addresses from this analysis.  In
-   addition, existing and under-development techniques are evaluated for
-   fulfilling these requirements.
+   cases for tracking of user IP addresses, grouping them into two
+   categories: personalization and anti-abuse.  This document also
+   discusses the privacy issues associated with such tracking and
+   provides input on mechanisms to improve the privacy of this existing
+   model.  It then captures requirements for proposed 'replacement
+   signals' for IP addresses from this analysis.  In addition, existing
+   and under-development techniques are evaluated for fulfilling these
+   requirements.
 
 About This Document
 
@@ -61,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 April 2024.
+   This Internet-Draft will expire on 14 June 2024.
 
 Copyright Notice
 
@@ -79,30 +80,32 @@ Table of Contents
    1.  Introduction
    2.  Terminology
      2.1.  Categories of Interaction
-   3.  IP address tracking
-     3.1.  IP address use cases
-       3.1.1.  Anti-abuse
-       3.1.2.  DDoS and Botnets
-       3.1.3.  Multi-platform threat models
-       3.1.4.  Rough Geolocation
-     3.2.  Implications of IP addresses
-       3.2.1.  Next-User Implications
-       3.2.2.  Privacy Implications
-       3.2.3.  Cross-site vs Same-site
-     3.3.  IP Privacy Protection and Law
-     3.4.  Mitigations for IP address tracking
-   4.  Replacement signals for IP addresses
-     4.1.  Signals
-       4.1.1.  Adoption
-       4.1.2.  Privacy Considerations
-       4.1.3.  Provenance
-       4.1.4.  Applying Appropriate Signals
-     4.2.  Evaluation of existing technologies
-   5.  Security Considerations
-   6.  IANA Considerations
-   7.  References
-     7.1.  Normative References
-     7.2.  Informative References
+   3.  Mitigations for IP address tracking
+   4.  Accepted Uses of IP Addresses
+     4.1.  Anti-abuse
+     4.2.  DDoS and Botnets
+     4.3.  Multi-platform threat models
+     4.4.  Rough Geolocation
+     4.5.  Legal compliance
+     4.6.  Contractual obligations
+     4.7.  Locally relevant content
+   5.  Implications of IP addresses
+     5.1.  Next-User Implications
+     5.2.  Privacy Implications
+     5.3.  Cross-site vs Same-site
+   6.  IP Privacy Protection and Law
+   7.  Replacement signals for IP addresses
+     7.1.  Signals
+       7.1.1.  Adoption
+       7.1.2.  Privacy Considerations
+       7.1.3.  Provenance
+       7.1.4.  Applying Appropriate Signals
+     7.2.  Evaluation of existing technologies
+   8.  Security Considerations
+   9.  IANA Considerations
+   10. References
+     10.1.  Normative References
+     10.2.  Informative References
    Acknowledgments
    Authors' Addresses
 
@@ -115,31 +118,33 @@ Table of Contents
    split into multiple drafts as content is added.
 
    Tracking of IP addresses is common place on the Internet today, and
-   is particularly widely used in the context of anti-abuse, e.g. anti-
-   fraud, DDoS management, and child protection activities.  IP
-   addresses are currently used in determining "reputation" [RFC5782] in
-   conjunction with other signals to protect against malicious traffic,
-   since these addresses are usually a relatively stable identifier of a
-   request's origin.  Servers use these reputations in determining
-   whether or not a given packet, connection, or flow likely corresponds
-   to malicious traffic.  In addition, IP addresses are used in
-   investigating past events and attributing responsibility.
+   falls roughly into two broad categories.  The first is
+   personalization, the tailoring of content for a given user.  The
+   second is anti-abuse: e.g. anti-fraud, DDoS management, and child
+   protection activities.  The latter includes uses of IP addresses to
+   determine "reputation" [RFC5782] in conjunction with other signals to
+   protect against malicious traffic, since these addresses are usually
+   a relatively stable identifier of a request's origin.  Servers use
+   these reputations in determining whether or not a given packet,
+   connection, or flow likely corresponds to malicious traffic.  In
+   addition, IP addresses are used in investigating past events and
+   attributing responsibility.
 
-   However, identifying the activity of users based on IP addresses has
-   clear privacy implications ([WEBTRACKING1], [WEBTRACKING2]), e.g.
-   user fingerprinting and cross-site identity linking.  Many
-   technologies exist today that allow users to obfuscate their external
-   IP address to avoid such tracking, e.g.  VPNs ([VPNCMP1], [VPNCMP2])
-   and Tor ([TOR], [VPNTOR]).  Several new technologies are emerging, as
-   well, in the landscape, e.g.  Apple iCloud Private Relay [APPLEPRIV],
+   Personalizing content based on the user's IP address has clear
+   privacy implications ([WEBTRACKING1], [WEBTRACKING2]), e.g. user
+   fingerprinting and cross-site identity linking.  Many technologies
+   exist today that allow users to obfuscate their external IP address
+   to avoid such tracking, e.g.  VPNs ([VPNCMP1], [VPNCMP2]) and Tor
+   ([TOR], [VPNTOR]).  Several new technologies are emerging, as well,
+   in the landscape, e.g.  Apple iCloud Private Relay [APPLEPRIV],
    Gnatcatcher [GNATCATCHER], and Oblivious technologies (ODoH
    [I-D.pauly-dprive-oblivious-doh], OHTTP [I-D.thomson-ohai-ohttp]).
 
    General consideration about privacy for Internet protocols can be
    found in [RFC6973].  This document builds upon [RFC6973] and more
    specifically attempts to capture the following aspects of the tension
-   between valid use cases for user identification and the related
-   privacy concerns, including:
+   between use of IP addresses to prevent abuse, and some users' desire
+   to prevent overzealous personalization:
 
    *  An analysis of the current use cases, attempting to categorize/
       group such use cases where commonalities exist.
@@ -201,11 +206,62 @@ Table of Contents
    Consumption:  An interaction where one party primarily receives
       information from other parties.
 
-3.  IP address tracking
+3.  Mitigations for IP address tracking
 
-3.1.  IP address use cases
+   The ability to track individual people by IP address has been well
+   understood for decades.  Due to the prevalence of systems that
+   profile users using their IP addresses, countermeasures have been
+   developed.  Commercial VPNs and Tor are the most common methods of
+   mitigating IP address-based tracking.
 
-3.1.1.  Anti-abuse
+   *  Commercial VPNs offer a layer of indirection between the user and
+      the destination, however if the VPN endpoint's IP address is
+      static then this simply substitutes one address for another.  In
+      addition, commercial VPNs replace tracking across sites with a
+      single company that may track their users' activities.
+
+   *  Tor is another mitigation option due to its dynamic path selection
+      and distributed network of relays, however its current design
+      suffers from degraded performance.  In addition, correct
+      application integration is difficult and not common.
+
+   *  Address anonymization (e.g.  [GNATCATCHER] and similar):
+
+      -  [GNATCATCHER] is a single-hop proxy system providing more
+         protection against third-party tracking than a traditional
+         commercial VPN.  However, its design maintains the industry-
+         standard reliance on IP addresses for anti-abuse purposes and
+         it provides near backwards compatibility for select services
+         that submit to periodic audits.
+
+      -  [APPLEPRIV] iCloud Private Relay is described as using two
+         proxies between the client and server, and it would provide a
+         level of protection somewhere between a commercial VPN and Tor.
+
+   *  Recent interest has resulted in new protocols such as Oblivious
+      DNS ([I-D.pauly-dprive-oblivious-doh]) and Oblivious HTTP
+      ([I-D.thomson-ohai-ohttp]).  While they both prevent tracking by
+      individual parties, they are not intended for the general-purpose
+      web browsing use case.
+
+   *  The use of temporary addresses is another way to limit IP address-
+      based tracking.  Changing addresses over time reduces the window
+      of time during which it is possible to easily correlate network
+      activity when the same address is employed for multiple
+      transactions by the same host.  Temporary addresses have been
+      introduced only for IPv6, as an extension of its Stateless Address
+      Configuration mechanism ([RFC8981]).  However, since the network
+      prefix remains the same, in many cases it remains possible to
+      identify a cellular user or a household.
+
+4.  Accepted Uses of IP Addresses
+
+   The mitigations described above are often designed to prevent
+   unwanted uses of IP addresses such as profiling users.  However, they
+   often prevent other uses of IP addresses that users did not
+   necessarily want or intend to disrupt.
+
+4.1.  Anti-abuse
 
    IP addresses are a passive identifier used in defensive operations.
    They allow correlating requests, attribution, and recognizing
@@ -236,7 +292,7 @@ Table of Contents
    Malicious activity recognized by one service provider may be shared
    with other services [RFC5782] as a way of limiting harm.
 
-3.1.2.  DDoS and Botnets
+4.2.  DDoS and Botnets
 
    Cyber-attackers can leverage the good reputation of an IP address to
    carry out specific attacks that wouldn't work otherwise.  Main
@@ -248,7 +304,7 @@ Table of Contents
    spoofed addresses in order to gain access and attack services that
    otherwise would not be reachable.
 
-3.1.3.  Multi-platform threat models
+4.3.  Multi-platform threat models
 
    As siloed (single-platform) abuse defenses improve, abusers have
    moved to multi-platform threat models.  For example, a public
@@ -264,7 +320,7 @@ Table of Contents
    communicate these cross-platform threats.  There are very few
    alternatives for cross-platform signals.
 
-3.1.4.  Rough Geolocation
+4.4.  Rough Geolocation
 
    A rough geolocation can be inferred from a client's IP address, which
    is commonly known as either IP-Geo or Geo-IP.  This information can
@@ -272,7 +328,7 @@ Table of Contents
    in the digital space, IP addresses may help identify the physical
    location of real-world harm, such as child exploitation.
 
-3.1.4.1.  Legal compliance
+4.5.  Legal compliance
 
    Legal and regulatory compliance often needs to take the jurisdiction
    of the client into account.  This is especially important in cases
@@ -282,14 +338,14 @@ Table of Contents
    national borders, Geo-IP tends to be a good fit for server operators
    to comply with local laws and regulations
 
-3.1.4.2.  Contractual obligations
+4.6.  Contractual obligations
 
    Similar to legal compliance, some content and media has licensing
    terms that are valid only for certain locations.  The rough
    geolocation derived from IP addresses allow this content to be hosted
    on the web.
 
-3.1.4.3.  Locally relevant content
+4.7.  Locally relevant content
 
    Rough geolocation can also be useful to tailor content to the
    client's location simply to improve their experience.  A search for
@@ -300,9 +356,9 @@ Table of Contents
    stories that wouldn't be as interesting to visitors from other
    locations.
 
-3.2.  Implications of IP addresses
+5.  Implications of IP addresses
 
-3.2.1.  Next-User Implications
+5.1.  Next-User Implications
 
    When an attacker uses IP addresses with "good" reputations, the
    collateral damage poses a serious risk to legitimate service
@@ -312,7 +368,7 @@ Table of Contents
    unintended impact may hurt the reputation of a service or an end user
    [RFC6269].
 
-3.2.2.  Privacy Implications
+5.2.  Privacy Implications
 
    IP addresses are sent in the clear throughout the packet journey over
    the Internet.  As such, any observer along the path can pick it up
@@ -349,7 +405,7 @@ Table of Contents
       address which, in turn, could be the subject of further requests
       for subscriber information.
 
-3.2.3.  Cross-site vs Same-site
+5.3.  Cross-site vs Same-site
 
    In a web context, IP Addresses can be used to link a user's activity
    both within a single site and across multiple sites.  Users may want
@@ -377,7 +433,7 @@ Table of Contents
    contexts such as linking user identity across VoIP solutions, DNS
    resolvers, video streaming platforms etc.
 
-3.3.  IP Privacy Protection and Law
+6.  IP Privacy Protection and Law
 
    Various countries, in the last decade, have adopted, or updated, laws
    that aim at protecting citizens privacy, which includes IP addresses.
@@ -422,53 +478,7 @@ Table of Contents
    [CCPA] as an example).  Depending on the state, IP addresses may not
    be considered as personally identifiable information [IP2009].
 
-3.4.  Mitigations for IP address tracking
-
-   The ability to track individual people by IP address has been well
-   understood for decades.  Commercial VPNs and Tor are the most common
-   methods of mitigating IP address-based tracking.
-
-   *  Commercial VPNs offer a layer of indirection between the user and
-      the destination, however if the VPN endpoint's IP address is
-      static then this simply substitutes one address for another.  In
-      addition, commercial VPNs replace tracking across sites with a
-      single company that may track their users' activities.
-
-   *  Tor is another mitigation option due to its dynamic path selection
-      and distributed network of relays, however its current design
-      suffers from degraded performance.  In addition, correct
-      application integration is difficult and not common.
-
-   *  Address anonymization (e.g.  [GNATCATCHER] and similar):
-
-      -  [GNATCATCHER] is a single-hop proxy system providing more
-         protection against third-party tracking than a traditional
-         commercial VPN.  However, its design maintains the industry-
-         standard reliance on IP addresses for anti-abuse purposes and
-         it provides near backwards compatibility for select services
-         that submit to periodic audits.
-
-      -  [APPLEPRIV] iCloud Private Relay is described as using two
-         proxies between the client and server, and it would provide a
-         level of protection somewhere between a commercial VPN and Tor.
-
-   *  Recent interest has resulted in new protocols such as Oblivious
-      DNS ([I-D.pauly-dprive-oblivious-doh]) and Oblivious HTTP
-      ([I-D.thomson-ohai-ohttp]).  While they both prevent tracking by
-      individual parties, they are not intended for the general-purpose
-      web browsing use case.
-
-   *  The use of temporary addresses is another way to limit IP address-
-      based tracking.  Changing addresses over time reduces the window
-      of time during which it is possible to easily correlate network
-      activity when the same address is employed for multiple
-      transactions by the same host.  Temporary addresses have been
-      introduced only for IPv6, as an extension of its Stateless Address
-      Configuration mechanism ([RFC8981]).  However, since the network
-      prefix remains the same, in many cases it remains possible to
-      identify a cellular user or a household.
-
-4.  Replacement signals for IP addresses
+7.  Replacement signals for IP addresses
 
    Fundamentally, the current ecosystem operates by making the immediate
    peer of a connection accountable for bad traffic, rather than the
@@ -479,11 +489,11 @@ Table of Contents
    identification end-to-end that is separate from the IP address, and
    uniquely bound to a given connection.
 
-4.1.  Signals
+7.1.  Signals
 
    There are 7 classes of signals identified in this document that may
    be used in place of IP addresses.  A signal's provenance is a
-   critical property and will be discussed in Section 4.1.3.
+   critical property and will be discussed in Section 7.1.3.
 
    ADDRESS_ESCROW:
 
@@ -523,7 +533,7 @@ Table of Contents
       for example, migrating user authentication from password-based to
       WebAuthn [WEBAUTHN] and relying on multiple factors (MFA).
 
-4.1.1.  Adoption
+7.1.1.  Adoption
 
    Adoption of replacement signals requires coordination between user
    agents, service providers, and proxy services.  Some user agents and
@@ -539,7 +549,7 @@ Table of Contents
    may help define scopes within a service, and they may help
    communicate to the user the reasoning for requiring a signal.
 
-4.1.2.  Privacy Considerations
+7.1.2.  Privacy Considerations
 
    A signal should not be required without clear justification, service
    providers should practice data minimization [RFC6973] wherever
@@ -581,14 +591,14 @@ Table of Contents
    source ASN of a request may reveal more information about the user
    than intended.
 
-4.1.3.  Provenance
+7.1.3.  Provenance
 
    Replacement signals are only useful if they are trustworthy.
 
    OPEN ISSUE 24 (https://github.com/IRTF-PEARG/draft-ip-address-
    privacy/issues/24)
 
-4.1.4.  Applying Appropriate Signals
+7.1.4.  Applying Appropriate Signals
 
    As previous discussed, IP addresses are used for various reasons;
    therefore, describing a one-size-fits-all replacement signal is not
@@ -596,7 +606,7 @@ Table of Contents
    signals needed by a service depends on the category of interaction of
    its users and potential attacks on the service.
 
-   As an example, the attacks listed above in Section 3.1.1 can be
+   As an example, the attacks listed above in Section 4.1 can be
    organized into six groups based on the signals that may sufficiently
    replace IP addresses:
 
@@ -645,7 +655,7 @@ Table of Contents
    usage, and the above replacement signals do not provide a better
    signal in all cases.
 
-4.2.  Evaluation of existing technologies
+7.2.  Evaluation of existing technologies
 
    Technologies exist that are designed to solve some of the problems
    described in this document.
@@ -677,7 +687,7 @@ Table of Contents
    geo-location.  PATs could be used as a REIDENTIFICATION signal or a
    replacement signal for GeoIP, depending on requirements.
 
-5.  Security Considerations
+8.  Security Considerations
 
    This draft discussses IP address use cases, underlying requirements,
    and possible replacement signals.  Adoption challenges and privacy
@@ -685,13 +695,13 @@ Table of Contents
    needed to build and evaluate these signals as suitable replacements
    for IP addresses.
 
-6.  IANA Considerations
+9.  IANA Considerations
 
    This document has no IANA actions.
 
-7.  References
+10.  References
 
-7.1.  Normative References
+10.1.  Normative References
 
    [RFC4949]  Shirey, R., "Internet Security Glossary, Version 2",
               FYI 36, RFC 4949, DOI 10.17487/RFC4949, August 2007,
@@ -712,7 +722,7 @@ Table of Contents
               DOI 10.17487/RFC6973, July 2013,
               <https://www.rfc-editor.org/rfc/rfc6973>.
 
-7.2.  Informative References
+10.2.  Informative References
 
    [APPI]     "Japan - Data Protection Overview", n.d.,
               <https://www.dataguidance.com/notes/japan-data-protection-
