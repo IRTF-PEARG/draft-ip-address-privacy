@@ -112,7 +112,8 @@ informative:
 
 This document provides an overview of privacy considerations related to user IP
 addresses. It includes an analysis of some current use cases for tracking of
-user IP addresses, mainly in the context of anti-abuse. It discusses the
+user IP addresses, grouping them into two categories: personalization and
+anti-abuse. This document also discusses the
 privacy issues associated with such tracking and provides input on mechanisms
 to improve the privacy of this existing model. It then captures requirements
 for proposed 'replacement signals' for IP addresses from this analysis. In
@@ -130,17 +131,18 @@ related to user IP addresses (informally, IP privacy). The draft is likely to
 evolve significantly over time and may well split into multiple drafts as
 content is added.
 
-Tracking of IP addresses is common place on the Internet today, and is
-particularly widely used in the context of anti-abuse, e.g. anti-fraud, DDoS
-management, and child protection activities. IP addresses are currently used in
-determining "reputation" {{!RFC5782}} in conjunction with other signals to
+Tracking of IP addresses is common place on the Internet today, and falls
+roughly into two broad categories. The first is personalization, the tailoring
+of content for a given user. The second is anti-abuse: e.g. anti-fraud, DDoS
+management, and child protection activities. The latter includes uses of IP
+addresses to determine "reputation" {{!RFC5782}} in conjunction with other signals to
 protect against malicious traffic, since these addresses are usually a
 relatively stable identifier of a request's origin. Servers use these
 reputations in determining whether or not a given packet, connection, or flow
 likely corresponds to malicious traffic. In addition, IP addresses are used in
 investigating past events and attributing responsibility.
 
-However, identifying the activity of users based on IP addresses has clear
+Personalizing content based on the user's IP address has clear
 privacy implications ({{WEBTRACKING1}}, {{WEBTRACKING2}}), e.g. user
 fingerprinting and cross-site identity linking. Many technologies exist today
 that allow users to obfuscate their external IP address to avoid such tracking,
@@ -151,8 +153,9 @@ Relay {{APPLEPRIV}}, Gnatcatcher {{GNATCATCHER}}, and Oblivious technologies
 
 General consideration about privacy for Internet protocols can be found in
 {{!RFC6973}}. This document builds upon {{!RFC6973}} and more specifically
-attempts to capture the following aspects of the tension between valid use
-cases for user identification and the related privacy concerns, including:
+attempts to capture the following aspects of the tension between use of IP
+addresses to prevent abuse, and some users' desire to prevent overzealous
+personalization:
 
 * An analysis of the current use cases, attempting to categorize/group such use
   cases where commonalities exist.
@@ -225,194 +228,13 @@ Consumption:
 : An interaction where one party primarily receives information from other
 parties.
 
-# IP address tracking
 
-## IP address use cases
-
-### Anti-abuse {#antiabuse}
-
-IP addresses are a passive identifier used in defensive operations. They allow
-correlating requests, attribution, and recognizing numerous attacks, including:
-
-- account takeover
-- advertising fraud (e.g., click-fraud)
-- disinformation operations (e.g., detecting scaled and/or coordinated attacks)
-- financial fraud (e.g., stolen credit cards, email account compromise)
-- malware/ransomware (e.g., detecting C2 connections)
-- phishing
-- real-world harm (e.g., child abuse)
-- scraping (e.g., e-commerce, search)
-- spam (e.g., email, comments)
-- vulnerability exploitation (e.g., "hacking")
-
-Malicious activity recognized by one service provider may be shared with other
-services {{!RFC5782}} as a way of limiting harm.
-
-### DDoS and Botnets
-
-Cyber-attackers can leverage the good reputation of an IP address to carry out
-specific attacks that wouldn't work otherwise. Main examples are Distributed
-Denial of Service (DDoS) attacks carried out by spoofing a trusted (i.e.,
-having good reputation) IP address (which may or may not be the victim of the
-attack) so that the servers used to generate the DDoS traffic actually respond
-to the attackers trigger (i.e., spoofed packets). Similarly botnets may use
-spoofed addresses in order to gain access and attack services that otherwise
-would not be reachable.
-
-### Multi-platform threat models
-
-As siloed (single-platform) abuse defenses improve, abusers have moved to
-multi-platform threat models. For example, a public discussion platform with a
-culture of anonymity may redirect traffic to YouTube as a video library,
-bypassing YouTube defenses that otherwise reduce exposure of potentially
-harmful content. Similarly, a minor could be solicited by an adult
-impersonating a child on a popular social media platform, then redirected to a
-smaller, less established and less defended platform where illegal activity
-could occur. Phishing attacks are also common. There are many such
-cross-platform abuse models and they cause significant public harm. IP
-addresses are commonly used to investigate, understand and communicate these
-cross-platform threats. There are very few alternatives for cross-platform
-signals.
-
-### Rough Geolocation
-
-A rough geolocation can be inferred from a client's IP address, which is
-commonly known as either IP-Geo or Geo-IP. This information can have several
-useful implications. When abuse extends beyond attacks in the digital space, IP
-addresses may help identify the physical location of real-world harm, such as
-child exploitation.
-
-#### Legal compliance
-
-Legal and regulatory compliance often needs to take the jurisdiction of the
-client into account. This is especially important in cases where regulations
-are mutually contradictory (i.e. there is no way to be in legal compliance
-universally). Because Geo-IP is often bound to the IP addresses a given ISP
-uses, and ISPs tend to operate within national borders, Geo-IP tends to be a
-good fit for server operators to comply with local laws and regulations
-
-#### Contractual obligations
-
-Similar to legal compliance, some content and media has licensing terms that
-are valid only for certain locations. The rough geolocation derived from IP
-addresses allow this content to be hosted on the web.
-
-#### Locally relevant content
-
-Rough geolocation can also be useful to tailor content to the client's location
-simply to improve their experience. A search for "coffee shop" can include
-results of coffee shops within reasonable travel distance from a user rather
-than generic information about coffee shops, a merchant's website could show
-brick and mortar stores near the user and a news site can surface locally
-relevant news stories that wouldn't be as interesting to visitors from other
-locations.
-
-## Implications of IP addresses
-
-### Next-User Implications
-
-When an attacker uses IP addresses with "good" reputations, the collateral
-damage poses a serious risk to legitimate service providers, developers, and
-end users. IP addresses may become assocaited with a "bad" reputation from
-temporal abuse, and legitimate users may be affected by blocklists as a result.
-This unintended impact may hurt the reputation of a service or an end user
-{{!RFC6269}}.
-
-### Privacy Implications
-
-IP addresses are sent in the clear throughout the packet journey over the
-Internet. As such, any observer along the path can pick it up and use it for
-various tracking purposes. Beside basic information about the network or the
-device, it is possible to associate an IP address to an end user, hence, the
-relevance of IP addresses for user privacy. A very short list of information
-about user, device, and network that can be obtained via the IP address.
-
-- Determine who owns and operates the network. Searching the WHOIS database
-  using an IP address can provide a range of information about the organization
-  to which the address is assigned, including a name, phone number, and civic
-  address;
-
-- Through a reverse DNS lookup and/or traceroute the computer name can be
-  obtained, which often contains clues to logical and physical location;
-
-- Geo-localisation of the device (hence the user) through various techniques
-  {{GEOIP}}. Depending on the lookup tool used, this could include country,
-  region/state, city, latitude/longitude, telephone area code and a
-  location-specific map;
-
-- Search the Internet using the IP address or computer names. The results of
-  these searches might reveal peer-to-peer (P2P) activities (e.g., file
-  sharing), records in web server log files, or glimpses of the individual's
-  web activities (e.g., Wikipedia edits). These bits of individuals' online
-  history may reveal their political inclinations, state of health, sexuality,
-  religious sentiments and a range of other personal characteristics,
-  preoccupations and individual interests;
-
-- Seek information on any e-mail addresses used from a particular IP address
-  which, in turn, could be the subject of further requests for subscriber
-  information.
-
-### Cross-site vs Same-site
-
-In a web context, IP Addresses can be used to link a user's activity both
-within a single site and across multiple sites. Users may want to have a single
-site recognize them within a browsing session or across browsing sessions and
-in fact cookies are a mechanism to do exactly that. If IP Addresses are only
-stable within the context a first-party cookie, they don't represent any
-additional privacy threat. However, since clients are currently in control of
-their first-party cookies, abusive clients can delete their cookies in an
-effort to evade detection. IP Addresses currently allow counter-abuse detection
-to track many such abusive clients across cookie deletions. However, IP
-Addresses, along with other fingerprinting techniques, also allow the linking
-of client identity across sites in the web context. Third-party cookies can
-also allow such a capability, but in a more limited manner as practically
-speaking no one third-party cookie is present across all websites. Also,
-browsers are increasingly putting limits on the ability to use third-party
-cookies in order to combat these threats {{3P_COOKIES_CHROME}} and
-{{3P_COOKIES_WEBKIT}}. Other network related information can also be used to
-link client identity across sites, but that is increasingly being seen as a bug
-to be addressed by browsers through network state partitioning (e.g.
-{{MOZ_NET_PART}}, {{BRAVE_NET_PART}}, {{CHROME_NET_PART}}). Finally, the above
-discussion uses the web and browsers as a concrete example, but this
-generalizes to other contexts such as linking user identity across VoIP
-solutions, DNS resolvers, video streaming platforms etc.
-
-## IP Privacy Protection and Law
-
-Various countries, in the last decade, have adopted, or updated, laws that aim
-at protecting citizens privacy, which includes IP addresses. Very often, these
-laws are actually part of larger regulatory frameworks aimed at protecting
-users' Personal Identifiable Information (PII) in a broad sense. {{table:laws}}
-provides a snapshot of relevant existing regulations.
-
-|Country|Law|IP Address is PII|
-|-|-|-|
-|Brazil |{{LGPD}} - Lei General de Protecao de Dados Pessoals |Yes (not explicitly stated)|
-|Canada |{{PIPEDA}} - Personal Information Protection and Electronic Documents Act|Yes |
-|China |{{PIPL-C}}{{PIPL}} - Personal Information Protection Law |Yes|
-|European Union |{{GDPR}} - General Data Protection Regulation |Yes|
-|Japan |{{APPI}} - Act of Protection of Personal Information |Yes (including anonymized data)|
-{: #table:laws title="Relevant privacy laws and regulations"}
-
-All of the major laws recognizes IP addresses as personal identification
-information when there is sufficiently strong correlation between an address
-and a person or when combined with other information to create that
-correlation. Brazil does not mention IP addresses explicitly but includes them
-de facto. Japan does protect even anonymized data. All require an explicit
-action from the user to grant permission to use PII, except for Canada that
-allows implicit consent. Note that all laws include exceptions on the type of
-consent, which, however are difficult to summarize. USA does not have a general
-federal law, but state sector-specific laws pertaining to privacy that would be
-too difficult to summarize (see {{CCPA}} as an example). Depending on the
-state, IP addresses may not be considered as personally identifiable
-information {{IP2009}}.
-
-
-## Mitigations for IP address tracking
+# Mitigations for IP address tracking
 
 The ability to track individual people by IP address has been well understood
-for decades. Commercial VPNs and Tor are the most common methods of mitigating
-IP address-based tracking.
+for decades. Due to the prevalence of systems that profile users using their IP
+addresses, countermeasures have been developed. Commercial VPNs and Tor are the
+most common methods of mitigating IP address-based tracking.
 
 - Commercial VPNs offer a layer of indirection between the user and the
   destination, however if the VPN endpoint's IP address is static then this
@@ -451,6 +273,191 @@ IP address-based tracking.
   Stateless Address Configuration mechanism ({{?RFC8981}}). However, since the
   network prefix remains the same, in many cases it remains possible to
   identify a cellular user or a household.
+
+# Accepted Uses of IP Addresses
+
+The mitigations described above are often designed to prevent unwanted uses of
+IP addresses such as profiling users. However, they often prevent other uses of
+IP addresses that users did not necessarily want or intend to disrupt.
+
+## Anti-abuse {#antiabuse}
+
+IP addresses are a passive identifier used in defensive operations. They allow
+correlating requests, attribution, and recognizing numerous attacks, including:
+
+- account takeover
+- advertising fraud (e.g., click-fraud)
+- disinformation operations (e.g., detecting scaled and/or coordinated attacks)
+- financial fraud (e.g., stolen credit cards, email account compromise)
+- malware/ransomware (e.g., detecting C2 connections)
+- phishing
+- real-world harm (e.g., child abuse)
+- scraping (e.g., e-commerce, search)
+- spam (e.g., email, comments)
+- vulnerability exploitation (e.g., "hacking")
+
+Malicious activity recognized by one service provider may be shared with other
+services {{!RFC5782}} as a way of limiting harm.
+
+## DDoS and Botnets
+
+Cyber-attackers can leverage the good reputation of an IP address to carry out
+specific attacks that wouldn't work otherwise. Main examples are Distributed
+Denial of Service (DDoS) attacks carried out by spoofing a trusted (i.e.,
+having good reputation) IP address (which may or may not be the victim of the
+attack) so that the servers used to generate the DDoS traffic actually respond
+to the attackers trigger (i.e., spoofed packets). Similarly botnets may use
+spoofed addresses in order to gain access and attack services that otherwise
+would not be reachable.
+
+## Multi-platform threat models
+
+As siloed (single-platform) abuse defenses improve, abusers have moved to
+multi-platform threat models. For example, a public discussion platform with a
+culture of anonymity may redirect traffic to YouTube as a video library,
+bypassing YouTube defenses that otherwise reduce exposure of potentially
+harmful content. Similarly, a minor could be solicited by an adult
+impersonating a child on a popular social media platform, then redirected to a
+smaller, less established and less defended platform where illegal activity
+could occur. Phishing attacks are also common. There are many such
+cross-platform abuse models and they cause significant public harm. IP
+addresses are commonly used to investigate, understand and communicate these
+cross-platform threats. There are very few alternatives for cross-platform
+signals.
+
+## Rough Geolocation
+
+A rough geolocation can be inferred from a client's IP address, which is
+commonly known as either IP-Geo or Geo-IP. This information can have several
+useful implications. When abuse extends beyond attacks in the digital space, IP
+addresses may help identify the physical location of real-world harm, such as
+child exploitation.
+
+## Legal compliance
+
+Legal and regulatory compliance often needs to take the jurisdiction of the
+client into account. This is especially important in cases where regulations
+are mutually contradictory (i.e. there is no way to be in legal compliance
+universally). Because Geo-IP is often bound to the IP addresses a given ISP
+uses, and ISPs tend to operate within national borders, Geo-IP tends to be a
+good fit for server operators to comply with local laws and regulations
+
+## Contractual obligations
+
+Similar to legal compliance, some content and media has licensing terms that
+are valid only for certain locations. The rough geolocation derived from IP
+addresses allow this content to be hosted on the web.
+
+## Locally relevant content
+
+Rough geolocation can also be useful to tailor content to the client's location
+simply to improve their experience. A search for "coffee shop" can include
+results of coffee shops within reasonable travel distance from a user rather
+than generic information about coffee shops, a merchant's website could show
+brick and mortar stores near the user and a news site can surface locally
+relevant news stories that wouldn't be as interesting to visitors from other
+locations.
+
+# Implications of IP addresses
+
+## Next-User Implications
+
+When an attacker uses IP addresses with "good" reputations, the collateral
+damage poses a serious risk to legitimate service providers, developers, and
+end users. IP addresses may become assocaited with a "bad" reputation from
+temporal abuse, and legitimate users may be affected by blocklists as a result.
+This unintended impact may hurt the reputation of a service or an end user
+{{!RFC6269}}.
+
+## Privacy Implications
+
+IP addresses are sent in the clear throughout the packet journey over the
+Internet. As such, any observer along the path can pick it up and use it for
+various tracking purposes. Beside basic information about the network or the
+device, it is possible to associate an IP address to an end user, hence, the
+relevance of IP addresses for user privacy. A very short list of information
+about user, device, and network that can be obtained via the IP address.
+
+- Determine who owns and operates the network. Searching the WHOIS database
+  using an IP address can provide a range of information about the organization
+  to which the address is assigned, including a name, phone number, and civic
+  address;
+
+- Through a reverse DNS lookup and/or traceroute the computer name can be
+  obtained, which often contains clues to logical and physical location;
+
+- Geo-localisation of the device (hence the user) through various techniques
+  {{GEOIP}}. Depending on the lookup tool used, this could include country,
+  region/state, city, latitude/longitude, telephone area code and a
+  location-specific map;
+
+- Search the Internet using the IP address or computer names. The results of
+  these searches might reveal peer-to-peer (P2P) activities (e.g., file
+  sharing), records in web server log files, or glimpses of the individual's
+  web activities (e.g., Wikipedia edits). These bits of individuals' online
+  history may reveal their political inclinations, state of health, sexuality,
+  religious sentiments and a range of other personal characteristics,
+  preoccupations and individual interests;
+
+- Seek information on any e-mail addresses used from a particular IP address
+  which, in turn, could be the subject of further requests for subscriber
+  information.
+
+## Cross-site vs Same-site
+
+In a web context, IP Addresses can be used to link a user's activity both
+within a single site and across multiple sites. Users may want to have a single
+site recognize them within a browsing session or across browsing sessions and
+in fact cookies are a mechanism to do exactly that. If IP Addresses are only
+stable within the context a first-party cookie, they don't represent any
+additional privacy threat. However, since clients are currently in control of
+their first-party cookies, abusive clients can delete their cookies in an
+effort to evade detection. IP Addresses currently allow counter-abuse detection
+to track many such abusive clients across cookie deletions. However, IP
+Addresses, along with other fingerprinting techniques, also allow the linking
+of client identity across sites in the web context. Third-party cookies can
+also allow such a capability, but in a more limited manner as practically
+speaking no one third-party cookie is present across all websites. Also,
+browsers are increasingly putting limits on the ability to use third-party
+cookies in order to combat these threats {{3P_COOKIES_CHROME}} and
+{{3P_COOKIES_WEBKIT}}. Other network related information can also be used to
+link client identity across sites, but that is increasingly being seen as a bug
+to be addressed by browsers through network state partitioning (e.g.
+{{MOZ_NET_PART}}, {{BRAVE_NET_PART}}, {{CHROME_NET_PART}}). Finally, the above
+discussion uses the web and browsers as a concrete example, but this
+generalizes to other contexts such as linking user identity across VoIP
+solutions, DNS resolvers, video streaming platforms etc.
+
+# IP Privacy Protection and Law
+
+Various countries, in the last decade, have adopted, or updated, laws that aim
+at protecting citizens privacy, which includes IP addresses. Very often, these
+laws are actually part of larger regulatory frameworks aimed at protecting
+users' Personal Identifiable Information (PII) in a broad sense. {{table:laws}}
+provides a snapshot of relevant existing regulations.
+
+|Country|Law|IP Address is PII|
+|-|-|-|
+|Brazil |{{LGPD}} - Lei General de Protecao de Dados Pessoals |Yes (not explicitly stated)|
+|Canada |{{PIPEDA}} - Personal Information Protection and Electronic Documents Act|Yes |
+|China |{{PIPL-C}}{{PIPL}} - Personal Information Protection Law |Yes|
+|European Union |{{GDPR}} - General Data Protection Regulation |Yes|
+|Japan |{{APPI}} - Act of Protection of Personal Information |Yes (including anonymized data)|
+{: #table:laws title="Relevant privacy laws and regulations"}
+
+All of the major laws recognizes IP addresses as personal identification
+information when there is sufficiently strong correlation between an address
+and a person or when combined with other information to create that
+correlation. Brazil does not mention IP addresses explicitly but includes them
+de facto. Japan does protect even anonymized data. All require an explicit
+action from the user to grant permission to use PII, except for Canada that
+allows implicit consent. Note that all laws include exceptions on the type of
+consent, which, however are difficult to summarize. USA does not have a general
+federal law, but state sector-specific laws pertaining to privacy that would be
+too difficult to summarize (see {{CCPA}} as an example). Depending on the
+state, IP addresses may not be considered as personally identifiable
+information {{IP2009}}.
+
 
 # Replacement signals for IP addresses
 
