@@ -1,2 +1,3 @@
-# Automatically generated CODEOWNERS file.
-draft-ip-address-privacy.md shivankaulsahib@gmail.com
+# Automatically generated CODEOWNERS
+# Regenerate with `make update-codeowners`
+draft-irtf-pearg-ip-address-privacy-considerations.md sysrqb@apple.com lassey@chromium.org luigi.iannone@huawei.com bradchen@google.com
