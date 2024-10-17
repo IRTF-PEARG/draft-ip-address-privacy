@@ -5,12 +5,12 @@
 PEARG                                                          M. Finkel
 Internet-Draft                                                Apple Inc.
 Intended status: Informational                                 B. Lassey
-Expires: 14 June 2024                                             Google
+Expires: 20 April 2025                                            Google
                                                               L. Iannone
                                                                   Huawei
                                                               J. B. Chen
                                                                   Google
-                                                        12 December 2023
+                                                         17 October 2024
 
 
                    IP Address Privacy Considerations
@@ -62,11 +62,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 June 2024.
+   This Internet-Draft will expire on 20 April 2025.
 
 Copyright Notice
 
-   Copyright (c) 2023 IETF Trust and the persons identified as the
+   Copyright (c) 2024 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
