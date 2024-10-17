@@ -1,11 +1,12 @@
-# Use Cases and Requirements for IP Address Privacy
+# IP Address Privacy Considerations
 
-This is the working area for the PEARG Internet-Draft, "Use Cases and Requirements for IP Address Privacy".
+This is the working area for the individual Internet-Draft, "IP Address Privacy Considerations".
 
-* [Editor's Copy](https://pearg.org/draft-ip-address-privacy/draft-irtf-pearg-ip-address-privacy-considerations.html)
-* [Datatracker Page](https://datatracker.ietf.org/doc/draft-irtf-pearg-ip-address-privacy-considerations/)
-* [RG Draft](https://datatracker.ietf.org/doc/html/draft-irtf-pearg-ip-address-privacy-considerations)
-* [Compare Editor's Copy to WG Draft](https://IRTF-PEARG.github.io/draft-ip-address-privacy/#go.draft-irtf-pearg-ip-address-privacy-considerations.diff)
+* [Editor's Copy](https://IRTF-PEARG.github.io/draft-ip-address-privacy/#go.draft-irtf-pearg-ip-address-privacy-considerations.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-irtf-pearg-ip-address-privacy-considerations)
+* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-irtf-pearg-ip-address-privacy-considerations)
+* [Compare Editor's Copy to Individual Draft](https://IRTF-PEARG.github.io/draft-ip-address-privacy/#go.draft-irtf-pearg-ip-address-privacy-considerations.diff)
+
 
 ## Contributing
 
@@ -26,3 +27,4 @@ $ make
 
 Command line usage requires that you have the necessary software installed.  See
 [the instructions](https://github.com/martinthomson/i-d-template/blob/main/doc/SETUP.md).
+
