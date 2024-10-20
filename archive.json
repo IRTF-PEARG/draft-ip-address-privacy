@@ -1,7 +1,7 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-03-29T00:07:16.839910+00:00",
-  "repo": "ShivanKaul/draft-ip-address-privacy",
+  "timestamp": "2024-10-20T01:22:56.307986+00:00",
+  "repo": "IRTF-PEARG/draft-ip-address-privacy",
   "labels": [
     {
       "name": "bug",
@@ -24,14 +24,14 @@
       "color": "a2eeef"
     },
     {
-      "name": "help wanted",
-      "description": "Extra attention is needed",
-      "color": "008672"
-    },
-    {
       "name": "good first issue",
       "description": "Good for newcomers",
       "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
     },
     {
       "name": "invalid",
@@ -54,16 +54,16 @@
       "number": 5,
       "id": "MDU6SXNzdWU5NzIxNjU5NDc=",
       "title": "Counterabuse: avoiding benefits to bad actors. ",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/issues/5",
-      "state": "OPEN",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/issues/5",
+      "state": "CLOSED",
       "author": "jbradleychen",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Privacy providing technologies can support good ends (protecting the average user\u2019s privacy) and bad (providing cover for criminal activity). What principles and guidelines can we establish to support good user privacy while not making it harder to manage abuse?",
       "createdAt": "2021-08-16T23:12:00Z",
-      "updatedAt": "2021-11-09T01:02:21Z",
-      "closedAt": null,
+      "updatedAt": "2023-08-16T17:15:45Z",
+      "closedAt": "2023-08-16T17:15:45Z",
       "comments": [
         {
           "author": "sysrqb",
@@ -113,6 +113,20 @@
           "body": "Please feel to pull whatever is useful from our conversations.\n\nI have been a bit busy and may have lost the thread here overall.\nIf there is someplace where you are looking for input or feedback\nplease let me know.\n\nBrad\n\nOn Thu, Nov 4, 2021 at 9:02 AM Matthew Finkel ***@***.***>\nwrote:\n\n> I don't think it is responsible to perpetuate systems that systematically\n> enable abusive publishers to avoid accumulating reputation.\n>\n> I also want to pull out this sentence. I believe this is getting at the\n> underlying goal and it is well phrased, but we are coming at it from\n> different perspectives. This is a challenging balancing act, but I believe\n> finding that balance is an important objective, over all.\n>\n> \u2014\n> You are receiving this because you authored the thread.\n> Reply to this email directly, view it on GitHub\n> <https://github.com/ShivanKaul/draft-ip-address-privacy/issues/5#issuecomment-961185586>,\n> or unsubscribe\n> <https://github.com/notifications/unsubscribe-auth/AVG426XSP44HW6FAA7ALTZ3UKKVA3ANCNFSM5CIVHQDQ>\n> .\n> Triage notifications on the go with GitHub Mobile for iOS\n> <https://apps.apple.com/app/apple-store/id1477376905?ct=notification-email&mt=8&pt=524675>\n> or Android\n> <https://play.google.com/store/apps/details?id=com.github.android&referrer=utm_campaign%3Dnotification-email%26utm_medium%3Demail%26utm_source%3Dgithub>.\n>\n>\n",
           "createdAt": "2021-11-09T01:02:21Z",
           "updatedAt": "2021-11-09T01:02:21Z"
+        },
+        {
+          "author": "bslassey",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The current draft discusses replacement signals that would be needed to replace the use IP addresses, including the need to have signals for reputation. I think this captures the discussion here, but perhaps I'm missing something. Can we close this out?",
+          "createdAt": "2023-07-28T17:37:45Z",
+          "updatedAt": "2023-07-28T17:37:45Z"
+        },
+        {
+          "author": "sysrqb",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Hearing no objections, we'll close this issue.",
+          "createdAt": "2023-08-16T17:15:45Z",
+          "updatedAt": "2023-08-16T17:15:45Z"
         }
       ]
     },
@@ -120,16 +134,16 @@
       "number": 6,
       "id": "MDU6SXNzdWU5NzIxNjY4NzI=",
       "title": "Counterabuse: law enforcement support.",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/issues/6",
-      "state": "OPEN",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/issues/6",
+      "state": "CLOSED",
       "author": "jbradleychen",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "What support should the Internet provide to support legitimate law enforcement inquiries and referrals?\r\n",
       "createdAt": "2021-08-16T23:13:47Z",
-      "updatedAt": "2021-08-25T18:25:40Z",
-      "closedAt": null,
+      "updatedAt": "2023-08-16T17:16:22Z",
+      "closedAt": "2023-08-16T17:16:21Z",
       "comments": [
         {
           "author": "sysrqb",
@@ -140,7 +154,7 @@
         },
         {
           "author": "jbradleychen",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "\"can also be used by law enforcement\" seems too weak to me. Your framing seems to rely on the assumption of a fair-minded user, e.g. that users are generally not abusive. That assumption collapses when services become very large, and effectively include everybody, which means they include all the criminals, criminals who are statistically insignificant but do disproportionate harm to the public and the platforms.\r\n\r\nYour reframing equates success with the success and safety of providers. Can you reformulate it to recognize the importance of public safety?\r\n\r\nYour reframing ignores the reality of corrupt and lawless service providers, whose success should not be a priority.",
           "createdAt": "2021-08-20T17:39:14Z",
           "updatedAt": "2021-08-20T22:45:46Z"
@@ -154,14 +168,14 @@
         },
         {
           "author": "jbradleychen",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "Hmm; I think we should try to realize online systems that are at least as private and as safe as the offline alternatives, as much as offline alternatives exist. If we do that, then the public gets better privacy and safety by moving online, avoiding regressions.\r\n\r\nIf this makes sense to you, then we could think about what tech has done for privacy, and what it has done for safety.",
           "createdAt": "2021-08-21T21:04:27Z",
           "updatedAt": "2021-08-21T21:04:27Z"
         },
         {
           "author": "jbradleychen",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "As system designers, I think our responsibility is to design systems that, over time, favor honesty and truth over dishonesty and deception. Privacy can support honesty and truth by protecting vulnerable individuals, enabling them to live in safety and in some cases to share truth more safely. Privacy is not enough though; it also protects dishonest individuals. Is there an argument that privacy favors honesty over deception?\r\n\r\nFor individuals whose actions impact public safety, Identity Transparency protects honesty and truth by making it possible for the public to hold them accountable. Without accountability, dishonesty has no consequences. Accountability can enable technology to favor truth and support public safety.",
           "createdAt": "2021-08-22T14:02:52Z",
           "updatedAt": "2021-08-22T14:14:19Z"
@@ -175,10 +189,24 @@
         },
         {
           "author": "jbradleychen",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "I agree that identity transparency does not prevent all abuse, but preventing all abuse is not the right goal. In any system with free speech and due process there will be abuse, and I think we need to protect free speech and due process.\r\n\r\nIdentity transparency makes accountability possible, and I would argue that making accountability possible is a reasonable goal. When accountability is impossible, abuse has no consequences, and the platform is indifferent to truth and honesty.\r\n\r\nRequiring identity transparency is a bad idea, but ignoring it is not so great either. In a platform that supports both anonymity and identity transparency, transparent actors are accountable, so they are subject to incentives for truth and honesty, and are incrementally more trustworthy.\r\n\r\nYour suggestion to explore examples and consider another doc are reasonable. Or maybe a conversation. I hesitated to jump-in here because I don't want to obstruct useful progress on privacy. There may even be cases where we must tolerate a regression in safety in deference to privacy, but I don't think we should let that happen by accident.",
           "createdAt": "2021-08-25T18:25:40Z",
           "updatedAt": "2021-08-25T18:25:40Z"
+        },
+        {
+          "author": "bslassey",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The current draft discusses address escrow, which seems to be aimed at this issue. Can this be closed out?",
+          "createdAt": "2023-07-28T17:39:24Z",
+          "updatedAt": "2023-07-28T17:39:24Z"
+        },
+        {
+          "author": "sysrqb",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Hearing no objections, we'll close this issue.",
+          "createdAt": "2023-08-16T17:16:22Z",
+          "updatedAt": "2023-08-16T17:16:22Z"
         }
       ]
     },
@@ -186,15 +214,15 @@
       "number": 7,
       "id": "MDU6SXNzdWU5NzIxNzA0MDQ=",
       "title": "Counterabuse: multi-platform threat models",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/issues/7",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/issues/7",
       "state": "OPEN",
       "author": "jbradleychen",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "As siloed defenses against abuse have improved, abusers have moved to multi-platform threat models. For example, a public discussion platform with a culture of anonymity may redirect traffic to YouTube as a video library, bypassing YouTube defenses that otherwise reduce exposure of potentially harmful content. Similarly, a minor could be solicited by an adult impersonating a child on a popular social media platform, then redirected to a smaller, less established and less defended platform where illegal activity could occur. There are many such cross-platform abuse models and they cause significant public harm. In a world with strong cross-platform privacy barriers, how should such threats be managed?\r\n",
       "createdAt": "2021-08-16T23:20:49Z",
-      "updatedAt": "2021-08-26T18:17:53Z",
+      "updatedAt": "2023-08-16T17:17:01Z",
       "closedAt": null,
       "comments": [
         {
@@ -206,7 +234,7 @@
         },
         {
           "author": "jbradleychen",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "For the YouTube redirect, YouTube will see a redirect from the discussion platform. Without a proxy, YouTube could better estimate the number of distinct users, geographic distribution, and other useful demographics. This isn't really about specific mitigations, it is more about the investigation that supports understanding a threat and designing specific mitigations. In the extreme, abuse fighting is reduced to waiting for a disaster and then cleaning up the mess. This is not a good outcome for public safety. There is no single counterabuse signal more important than IP address.\r\n\r\nThe above assumes high-traffic volumes. I think the second example is representative of the low-traffic case. \r\n\r\nFor the second example, parents have a responsibility for being responsible parents. Governments have a responsibility for making responsible parenting possible. When the environment for parenting includes features that are particularly dangerous, and that are harming children, at a certain point a legitimate government is compelled to mitigate the danger, lest they lose the confidence of the people. Such government interventions can avoided if the systems in question self regulate. The radio and the printing press are examples of revolutionary technologies that contributed to tremendous disruption and later became safer through regulation and through industry norms.\r\n\r\nThese threat models represent significant public safety risks and harms. Achieving safety is not so simple as IP address transparency, as we have that today, and things are still getting worse. That is driving the industry towards systems that are less available for anonymous, unverified users, a bad outcome for privacy. To preserve anonymous service access we need to recognize and mitigate features that threaten privacy or safety.",
           "createdAt": "2021-08-20T17:25:18Z",
           "updatedAt": "2021-08-20T17:25:18Z"
@@ -220,17 +248,24 @@
         },
         {
           "author": "jbradleychen",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "I don't think it should be out of scope. I can work on a PR.",
           "createdAt": "2021-08-26T15:50:05Z",
           "updatedAt": "2021-08-26T15:50:05Z"
         },
         {
           "author": "jbradleychen",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "Related discussion here:\r\nhttps://twitter.com/i/status/1430628745799421954?cn=ZmxleGlibGVfcmVjcw%3D%3D&refsrc=email",
           "createdAt": "2021-08-26T18:17:53Z",
           "updatedAt": "2021-08-26T18:17:53Z"
+        },
+        {
+          "author": "bslassey",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> I don't think it should be out of scope. I can work on a PR.\r\n\r\n@jbradleychen have you had a chance to work on a PR?",
+          "createdAt": "2023-08-16T17:17:01Z",
+          "updatedAt": "2023-08-16T17:17:01Z"
         }
       ]
     },
@@ -238,16 +273,16 @@
       "number": 8,
       "id": "MDU6SXNzdWU5NzMwNjk0MjQ=",
       "title": "Define cross-site versus same-site privacy risks",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/issues/8",
-      "state": "OPEN",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/issues/8",
+      "state": "CLOSED",
       "author": "bslassey",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Fingerprinting in general and IP addresses in particular can be used to identify users both across sites and within a single website. IP Privacy and anti-fraud and abuse solutions will vary greatly based on which of these privacy risks we are attempting to address.\r\n\r\nMy suggestion is to focus on preventing cross-site re identification and tracking but to keep same-site re-identification and tracking out of scope for this document. WDYT?",
       "createdAt": "2021-08-17T21:11:49Z",
-      "updatedAt": "2021-11-03T23:04:08Z",
-      "closedAt": null,
+      "updatedAt": "2023-08-16T17:31:51Z",
+      "closedAt": "2023-08-16T17:31:51Z",
       "comments": [
         {
           "author": "chris-wood",
@@ -318,16 +353,16 @@
       "number": 9,
       "id": "MDU6SXNzdWU5NzM2OTM4OTk=",
       "title": "Define categories of anti-abuse patterns",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/issues/9",
-      "state": "OPEN",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/issues/9",
+      "state": "CLOSED",
       "author": "bslassey",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "At a very broad level, I believe there are two forms of abuse against a single system that an IP privacy solution must consider. The first is a small set of attackers pretending to be many to prevent their abuse from being detected and blocked, which is generally the case when it comes to Denial of Service attacks (which is why distributed Denial of Service is a useful attack pattern). \r\n\r\nThe second category is when an attacker is attempting to impersonate a victim. This is the case with credential theft in general and can be protected against with technologies such as WebAuthn and techniques such as 2FA. \r\n\r\nBeing specific about the types of abuse will help us determine the types of preventative measures that may be appropriate.\r\n\r\nI will note that these two categories are intentionally scoped to a single system. There is a third broad category where independant systems can use IP addresses as identifiers to warn others of threats. rfc5782 is one example of a standardized system to share such threat intelligence. This would also include tying an IP address to a real world identity.\r\n\r\nAnd of course if there are other broad categories I'm missing, we should identify and define them.",
       "createdAt": "2021-08-18T13:54:23Z",
-      "updatedAt": "2021-11-03T19:09:07Z",
-      "closedAt": null,
+      "updatedAt": "2023-07-28T19:50:39Z",
+      "closedAt": "2023-07-28T19:50:39Z",
       "comments": [
         {
           "author": "chris-wood",
@@ -338,7 +373,7 @@
         },
         {
           "author": "bslassey",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "Impersonation could also be attacking a service if for example the goal of the attacker is to steal the credentials of an admin.  Are you thinking of a specific way that defining the goal of the attacker could be useful?\r\n",
           "createdAt": "2021-08-25T22:16:27Z",
           "updatedAt": "2021-08-25T22:16:27Z"
@@ -352,7 +387,7 @@
         },
         {
           "author": "bslassey",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "I certainly agree that the solutions for DoS will most likely be different from the solutions for account take over, which is effectively what I'm driving at here.",
           "createdAt": "2021-08-25T23:25:04Z",
           "updatedAt": "2021-08-25T23:25:04Z"
@@ -363,6 +398,13 @@
           "body": "In #11 we enumerated some common abuse patterns where IP addresses are used to find some signal in the noise. That only partially addressed the goal of this issue (as I understand it). #16 addressing the remainder, insofar as it applies specific \"replacement signals\" in an effort to discover abuse patterns when client IP addresses are not available.\r\n\r\nOne risk of this approach, where we evaluate each category of abuse in isolation, is that we potentially miss the forest through the trees. As an example (based on the current PR), if a server wants to detect and mitigate against both `influence campaigns` and `financial fraud`, then they may require a set of signals like: `IS_HUMAN`, `REPUTATION`, `REIDENTIFICATION`, `SOURCE_ASN`, and `IDENTITY_TRANSPARENCY`. Depending on some factors, this set of information could be at least as identifying as `ADDRESS_ESCROW` except without the escrow, but it may not as obvious from the client's perspective. We need to be careful about the effect of combining signals.\r\n\r\nFor this issue, I believe we can close it when #16 is merged, but let me know if you think we're not addressing some aspect of this.",
           "createdAt": "2021-11-03T19:09:06Z",
           "updatedAt": "2021-11-03T19:09:06Z"
+        },
+        {
+          "author": "bslassey",
+          "authorAssociation": "COLLABORATOR",
+          "body": " > For this issue, I believe we can close it when #16 is merged, but let me know if you think we're not addressing some aspect of this.\r\nagreed\r\n",
+          "createdAt": "2023-07-28T19:50:39Z",
+          "updatedAt": "2023-07-28T19:50:39Z"
         }
       ]
     },
@@ -370,10 +412,10 @@
       "number": 10,
       "id": "MDU6SXNzdWU5NzM2OTQyOTk=",
       "title": "Add rough geolocation as use case for IP",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/issues/10",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/issues/10",
       "state": "CLOSED",
       "author": "bslassey",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "IP addresses are used productively in the case of tailoring content to the user's rough geolocation.  There are probably many uses of this rough geolocation information, but two that come immediately to mind are conforming to local laws and providing locally relevant content (for example: a merchant's website showing the nearest physical store, a search engine showing local coffee shops when a user searches for \"coffee shop\" or a news site showing locally relevant news). ",
@@ -401,7 +443,7 @@
       "number": 15,
       "id": "MDU6SXNzdWU5ODMzMjQ5Nzk=",
       "title": "A mechanism for first-party re-identification",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/issues/15",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/issues/15",
       "state": "OPEN",
       "author": "bakkot",
       "authorAssociation": "NONE",
@@ -409,39 +451,64 @@
       "labels": [],
       "body": "Summary: IP blindness seems like it's mainly aimed at combatting the cross-site tracking which IP addresses facilitate. But individual sites also use IP addresses to correlate traffic for individuals across multiple visits to that one site, for combatting certain kinds of abuse. This proposal ought to have some way to let those individual sites still re-identify users across multiple visits.\r\n\r\n---\r\n\r\nMoving discussion from [here](https://github.com/ShivanKaul/draft-ip-address-privacy/issues/8#issuecomment-908604082). Let me quote some bits of my comments there:\r\n\r\n> It seems reasonable to say that the focus of this document is to provide alternatives for the use cases served by cross-site re-identification, but I think it's important to consider the effects of IP privacy on same-site re-identification as well.\r\n> (For context, I work on an anti-abuse product at Shape Security which does exactly this sort of same-site re-identification.)\r\n> Cookies are opt-in, so that's not particularly viable as an anti-abuse mechanism, particularly if account takeover or denial of service is in scope.\r\n> [...]\r\n> Attackers need to not be able to opt out of sending the signal. Or rather, real users need to opt out so infrequently that outright blocking anyone who does not send it is acceptable. Cookies don't work here because any first-time visitor will lack cookies for the site, which means you can't simply block anyone who lacks cookies.\r\n\r\nThere's some discussion in that thread about the feasibility of a mechanism which required the server to request some additional signal from the client, which I won't copy over, but we can continue discussing it here. ",
       "createdAt": "2021-08-31T00:35:59Z",
-      "updatedAt": "2021-08-31T00:35:59Z",
+      "updatedAt": "2023-08-16T17:35:08Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "bslassey",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The draft now includes several sections discussing anti-abuse needs, including same-site. Do you think this sufficiently addresses your concerns?",
+          "createdAt": "2023-08-16T17:35:08Z",
+          "updatedAt": "2023-08-16T17:35:08Z"
+        }
+      ]
     },
     {
       "number": 17,
       "id": "I_kwDOFm-2Oc4-K32k",
       "title": "Does a reputation system solve a problem?",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/issues/17",
-      "state": "OPEN",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/issues/17",
+      "state": "CLOSED",
       "author": "sysrqb",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "One of the original goals of this draft was describing a \"user reputation system\" (for example, as a replacement for IP address reputation) that solved problems for platforms, in theory, while giving people/users some measure of control over that reputation. The draft envisioned some amount of transparency and appeal process built in to the system. Recently, this draft is now focusing broadly on a toolbox of replacement signals - each signal replaces some use case of IP addresses. However, where reputation fits into this new collection of signals is not clear, and the breadth/scale of such a reputation system isn't clear either, nor is it clear if such a system is desirable in reality.",
       "createdAt": "2021-11-03T03:12:51Z",
-      "updatedAt": "2021-11-03T03:12:51Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2023-08-16T17:20:14Z",
+      "closedAt": "2023-08-16T17:20:13Z",
+      "comments": [
+        {
+          "author": "bslassey",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I think the text now puts a reputation system as one tool in a toolbox to combat abuse. Do you think this needs further clarification?",
+          "createdAt": "2023-07-28T19:57:26Z",
+          "updatedAt": "2023-07-28T19:57:37Z"
+        },
+        {
+          "author": "sysrqb",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I think that's sufficient.",
+          "createdAt": "2023-08-16T17:20:13Z",
+          "updatedAt": "2023-08-16T17:20:13Z"
+        }
+      ]
     },
     {
       "number": 19,
       "id": "I_kwDOFm-2Oc4-S46t",
       "title": "Add some more use cases of IP addresses from PAT",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/issues/19",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/issues/19",
       "state": "OPEN",
       "author": "sysrqb",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "sysrqb"
+      ],
       "labels": [],
       "body": "The Private Access Tokens draft highlights a couple use cases we don't quite capture in the current text: https://datatracker.ietf.org/doc/html/draft-private-access-tokens-01.txt#section-1.4\r\n\r\nTwo are:\r\n - `limit the amount of content an IP address can access over a given time period (referred to as a \"metered paywall\")`\r\n - `rate-limit access from an IP address to prevent fraud and abuse`\r\n\r\nWe already include anti-abuse usage, but we don't mention \"rate-limiting\" - that seems useful.",
       "createdAt": "2021-11-04T19:48:00Z",
-      "updatedAt": "2021-11-04T19:48:00Z",
+      "updatedAt": "2023-08-16T17:36:03Z",
       "closedAt": null,
       "comments": []
     },
@@ -449,15 +516,17 @@
       "number": 20,
       "id": "I_kwDOFm-2Oc4-TKyh",
       "title": "Add Signal for GeoIP replacement",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/issues/20",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/issues/20",
       "state": "OPEN",
       "author": "sysrqb",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "sysrqb"
+      ],
       "labels": [],
       "body": "Private Access Tokens provides a mechanism for geo-fencing, and that is mentioned in this draft as a use case of IP addresses, but there isn't a particular signal that is described as a replacement for GeoIP - `SOURCE_ASN` comes close, but it is has a different purpose and has the wrong scope. I'll suggest a `GEO_LOCATION` signal as a placeholder.",
       "createdAt": "2021-11-04T21:14:17Z",
-      "updatedAt": "2021-11-04T21:14:44Z",
+      "updatedAt": "2023-08-16T17:36:13Z",
       "closedAt": null,
       "comments": []
     },
@@ -465,15 +534,17 @@
       "number": 21,
       "id": "I_kwDOFm-2Oc4-eIop",
       "title": "Email protocol improvements?",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/issues/21",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/issues/21",
       "state": "OPEN",
       "author": "sysrqb",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "sysrqb"
+      ],
       "labels": [],
       "body": "Re-prioritizing https://github.com/ShivanKaul/draft-ip-address-privacy/pull/16#discussion_r742243270. If there are any proposed protocol improvements that we can highlight, then let's capture it as an example.",
       "createdAt": "2021-11-09T01:23:09Z",
-      "updatedAt": "2021-11-09T01:23:09Z",
+      "updatedAt": "2023-08-16T17:40:03Z",
       "closedAt": null,
       "comments": []
     },
@@ -481,7 +552,7 @@
       "number": 23,
       "id": "I_kwDOFm-2Oc4-5azo",
       "title": "Geo signals",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/issues/23",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/issues/23",
       "state": "OPEN",
       "author": "jbradleychen",
       "authorAssociation": "CONTRIBUTOR",
@@ -497,32 +568,42 @@
       "number": 24,
       "id": "I_kwDOFm-2Oc4_jnUT",
       "title": "Signal provenance and trust",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/issues/24",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/issues/24",
       "state": "OPEN",
       "author": "chris-wood",
       "authorAssociation": "COLLABORATOR",
-      "assignees": [],
+      "assignees": [
+        "sysrqb"
+      ],
       "labels": [],
       "body": "... pulled from the draft.",
       "createdAt": "2021-11-29T17:21:41Z",
-      "updatedAt": "2021-11-29T17:21:41Z",
+      "updatedAt": "2023-08-16T17:53:33Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "sysrqb",
+          "authorAssociation": "COLLABORATOR",
+          "body": "We should explain that provenance and trust are important and we should say as such around where the signals are introduced.",
+          "createdAt": "2023-08-16T17:53:33Z",
+          "updatedAt": "2023-08-16T17:53:33Z"
+        }
+      ]
     },
     {
       "number": 27,
       "id": "I_kwDOFm-2Oc5CezTf",
       "title": "Move information about laws/regulations into separate document?",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/issues/27",
-      "state": "OPEN",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/issues/27",
+      "state": "CLOSED",
       "author": "sysrqb",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "The [IP Privacy Protection and Law](https://github.com/ShivanKaul/draft-ip-address-privacy/blob/main/draft-ip-address-privacy-considerations.md#ip-privacy-protection-and-law) section will grow quite large with #26. Documenting the current legal implications of IP addresses seems helpful within the context of finding solutions for IP address privacy, however this draft should not be overwhelming with information on the various topics. We should consider factoring out some information into a new draft, perhaps creating a \"snapshot\" of the current legal landscape on this topic (similar to the [survey of censorship techniques](https://datatracker.ietf.org/doc/draft-irtf-pearg-censorship/)).",
       "createdAt": "2022-01-26T18:53:13Z",
-      "updatedAt": "2022-01-27T14:43:39Z",
-      "closedAt": null,
+      "updatedAt": "2023-08-16T17:55:55Z",
+      "closedAt": "2023-08-16T17:55:55Z",
       "comments": [
         {
           "author": "ggx",
@@ -530,6 +611,20 @@
           "body": "That would be OK for me, I have no strong position on this. Just two questions:\r\n- Wouldn't be worth it to ask actually on the mailing list what do people prefer?\r\n- Assuming we go for a split, I can certainly seed a draft \"IP Privacy Protection and Law\", should it go as an individual submission initially?",
           "createdAt": "2022-01-27T14:43:39Z",
           "updatedAt": "2022-01-27T14:43:39Z"
+        },
+        {
+          "author": "bslassey",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I think what got merged in PR 33 fits well within the document. Anything going into further depth would probably need to be moved out. What do you think @sysrqb? ",
+          "createdAt": "2023-08-16T17:55:12Z",
+          "updatedAt": "2023-08-16T17:55:12Z"
+        },
+        {
+          "author": "sysrqb",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I agree, that sounds good to me. We can close this one now.",
+          "createdAt": "2023-08-16T17:55:55Z",
+          "updatedAt": "2023-08-16T17:55:55Z"
         }
       ]
     },
@@ -537,23 +632,52 @@
       "number": 28,
       "id": "I_kwDOFm-2Oc5ChiJL",
       "title": "Temporary Addresses",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/issues/28",
-      "state": "OPEN",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/issues/28",
+      "state": "CLOSED",
       "author": "ggx",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "I can fill this bullet.",
       "createdAt": "2022-01-27T11:18:31Z",
-      "updatedAt": "2022-01-27T11:18:31Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2023-10-06T20:17:36Z",
+      "closedAt": "2023-10-06T20:17:36Z",
+      "comments": [
+        {
+          "author": "sysrqb",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@ggx do you still want to add more details?",
+          "createdAt": "2023-08-16T17:57:46Z",
+          "updatedAt": "2023-08-16T17:57:46Z"
+        },
+        {
+          "author": "ggx",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Hi,Thank you all for the work you are doing.I am actually on vacation and not able to work on the document.However, skimming through the updates I have no further details to add.CiaoL.On 16 Aug 2023, at 19:57, Matthew Finkel ***@***.***> wrote:\ufeff\r\n@ggx do you still want to add more details?\r\n\r\n\u2014Reply to this email directly, view it on GitHub, or unsubscribe.You are receiving this because you were mentioned.Message ID: ***@***.***>",
+          "createdAt": "2023-08-16T18:14:24Z",
+          "updatedAt": "2023-08-16T18:14:24Z"
+        },
+        {
+          "author": "ggx",
+          "authorAssociation": "COLLABORATOR",
+          "body": "P.s. By details I mean about the \u201cwhole document\u201d as for the temporary address section I will add it as soon as I am back (late august).CiaoL.On 16 Aug 2023, at 20:14, Luigi Iannone ***@***.***> wrote:\ufeffHi,Thank you all for the work you are doing.I am actually on vacation and not able to work on the document.However, skimming through the updates I have no further details to add.CiaoL.On 16 Aug 2023, at 19:57, Matthew Finkel ***@***.***> wrote:\ufeff\r\n@ggx do you still want to add more details?\r\n\r\n\u2014Reply to this email directly, view it on GitHub, or unsubscribe.You are receiving this because you were mentioned.Message ID: ***@***.***>",
+          "createdAt": "2023-08-16T18:18:01Z",
+          "updatedAt": "2023-08-16T18:18:01Z"
+        },
+        {
+          "author": "ggx",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Hi,\r\n\r\nI created a pull request for a small paragraph for the temporary addresses.",
+          "createdAt": "2023-09-12T13:27:57Z",
+          "updatedAt": "2023-09-12T13:27:57Z"
+        }
+      ]
     },
     {
       "number": 29,
       "id": "I_kwDOFm-2Oc5ChkCm",
       "title": "Potential new technologies",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/issues/29",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/issues/29",
       "state": "OPEN",
       "author": "ggx",
       "authorAssociation": "COLLABORATOR",
@@ -561,15 +685,23 @@
       "labels": [],
       "body": "Section to be done.\r\n\r\nhttps://github.com/ShivanKaul/draft-ip-address-privacy/blob/main/draft-ip-address-privacy-considerations.md?plain=1#L256",
       "createdAt": "2022-01-27T11:26:20Z",
-      "updatedAt": "2022-01-27T11:26:20Z",
+      "updatedAt": "2023-08-16T18:05:48Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "sysrqb",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This seems like it is linking to https://github.com/IRTF-PEARG/draft-ip-address-privacy/blob/8774b5f132b61d1c90e1e5d1be5bad0afca3a95d/draft-irtf-pearg-ip-address-privacy-considerations.md#replacement-signals-for-ip-addresses\r\n\r\nDo we know if any additional technologies we should add?",
+          "createdAt": "2023-08-16T18:05:47Z",
+          "updatedAt": "2023-08-16T18:05:47Z"
+        }
+      ]
     },
     {
       "number": 30,
       "id": "I_kwDOFm-2Oc5GkQP8",
       "title": "Augmenting replacement signals with reporting mechanisms",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/issues/30",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/issues/30",
       "state": "OPEN",
       "author": "philippp",
       "authorAssociation": "NONE",
@@ -577,8 +709,34 @@
       "labels": [],
       "body": "The current draft proposal lists signals that may compensate for some IP attributes (e.g. loss of longitudinal stability). In addition to providing signals from the proxy to internet-facing services, have we thought about patterns and mechanisms through which services could report abusive connections back to the proxy?\r\n\r\nIdeally, this would allow the proxy to curtail the access of specific users, as opposed to having multi-tenant IP addresses blocked by the service under attack. The OHAI proposal (https://datatracker.ietf.org/doc/html/draft-rdb-ohai-feedback-to-proxy) is one such attempt to provide a path for feedback, and may be extensible to two-hop proxies and off-line reporting of abuse. \r\n\r\nShould such mechanisms be considered in scope, in addition to signals emitted from the proxy?\r\n",
       "createdAt": "2022-03-28T19:48:42Z",
-      "updatedAt": "2022-03-28T19:48:42Z",
+      "updatedAt": "2023-08-16T18:09:04Z",
       "closedAt": null,
+      "comments": [
+        {
+          "author": "sysrqb",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This could be useful feature if it's designed well, but it certainly requires additional research and development. The OHAI proposal is an interesting example, but I don't believe it's currently being used.",
+          "createdAt": "2023-08-16T18:09:04Z",
+          "updatedAt": "2023-08-16T18:09:04Z"
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "id": "I_kwDOFm-2Oc5ufDpv",
+      "title": "Potential tweak to structure of document",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/issues/36",
+      "state": "CLOSED",
+      "author": "DavidSchinazi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "DavidSchinazi"
+      ],
+      "labels": [],
+      "body": "Right now the document does a good job of listing good and bad uses for IP, though it doesn't explicitly list them as such. Given that there might not be universal consensus on which is which, it's hard to draw a hard line - but it would still make the document easier to follow. I propose that we tweak the structure to say:\r\n* IP are used for two classes of features: tracking and anti-abuse\r\n* there are new systems being developed that are focusing on preventing tracking but are not aimed at providing anti-abuse\r\n* therefore we should discuss how IP is used for these and what replacement signals exist\r\n\r\nThat would give us the split discussed above by leveraging statements of facts about existing products instead of basing the split in opinion. I'll write a PR to show what this looks like.",
+      "createdAt": "2023-08-16T17:21:17Z",
+      "updatedAt": "2023-12-12T23:00:34Z",
+      "closedAt": "2023-12-12T23:00:34Z",
       "comments": []
     }
   ],
@@ -587,7 +745,7 @@
       "number": 1,
       "id": "MDExOlB1bGxSZXF1ZXN0Njc0NTkxMTYw",
       "title": "Propose slightly different structure for initial draft",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/pull/1",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/pull/1",
       "state": "MERGED",
       "author": "saradickinson",
       "authorAssociation": "COLLABORATOR",
@@ -596,10 +754,10 @@
       "body": "",
       "createdAt": "2021-06-21T14:12:20Z",
       "updatedAt": "2021-06-22T17:08:30Z",
-      "baseRepository": "ShivanKaul/draft-ip-address-privacy",
+      "baseRepository": "IRTF-PEARG/draft-ip-address-privacy",
       "baseRefName": "main",
       "baseRefOid": "5eb8184f0367960246c27ed8e5fddd2b816db483",
-      "headRepository": "ShivanKaul/draft-ip-address-privacy",
+      "headRepository": "IRTF-PEARG/draft-ip-address-privacy",
       "headRefName": "initial_draft",
       "headRefOid": "fa6a2eb158ff336da3f1e11dc5c55210d22615a0",
       "closedAt": "2021-06-22T17:08:30Z",
@@ -616,7 +774,7 @@
             "abbreviatedOid": "e41d80a"
           },
           "author": "ShivanKaul",
-          "authorAssociation": "OWNER",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "This makes sense to me - I think we should also change the draft name to be *less* general i.e. draft-ip-address-privacy-considerations",
           "createdAt": "2021-06-21T14:58:14Z",
@@ -629,7 +787,7 @@
             "abbreviatedOid": "a024e7e"
           },
           "author": "ShivanKaul",
-          "authorAssociation": "OWNER",
+          "authorAssociation": "COLLABORATOR",
           "state": "APPROVED",
           "body": "I made a couple of minor changes",
           "createdAt": "2021-06-22T17:08:24Z",
@@ -642,16 +800,16 @@
       "number": 2,
       "id": "MDExOlB1bGxSZXF1ZXN0NjgxNDEyMzc1",
       "title": "Edits",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/pull/2",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/pull/2",
       "state": "MERGED",
       "author": "sysrqb",
-      "authorAssociation": "NONE",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Some small edits and started filling in some of the empty sections. I'm happy to get feedback/suggestions on improvements.",
       "createdAt": "2021-07-01T03:32:12Z",
       "updatedAt": "2021-07-12T16:53:24Z",
-      "baseRepository": "ShivanKaul/draft-ip-address-privacy",
+      "baseRepository": "IRTF-PEARG/draft-ip-address-privacy",
       "baseRefName": "main",
       "baseRefOid": "514b47d2884a0991bc39bb529de7c987541463c3",
       "headRepository": "sysrqb/draft-ip-address-privacy",
@@ -670,16 +828,16 @@
       "number": 3,
       "id": "MDExOlB1bGxSZXF1ZXN0Njg4MDkxNTY2",
       "title": "Edits2",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/pull/3",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/pull/3",
       "state": "MERGED",
       "author": "sysrqb",
-      "authorAssociation": "NONE",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "5748b25 was tagged as `draft-ip-address-privacy-considerations-00`. 2576050 fills in some more sections and attempts making the existing text more understandable.",
       "createdAt": "2021-07-12T18:57:22Z",
       "updatedAt": "2021-07-23T16:44:24Z",
-      "baseRepository": "ShivanKaul/draft-ip-address-privacy",
+      "baseRepository": "IRTF-PEARG/draft-ip-address-privacy",
       "baseRefName": "main",
       "baseRefOid": "e97c49ab03c295eebb1dc4310e1e1d6db0318e6c",
       "headRepository": "sysrqb/draft-ip-address-privacy",
@@ -712,7 +870,7 @@
       "number": 4,
       "id": "MDExOlB1bGxSZXF1ZXN0Njk0MjE0OTgy",
       "title": "Luigi's contribution",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/pull/4",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/pull/4",
       "state": "MERGED",
       "author": "ggx",
       "authorAssociation": "COLLABORATOR",
@@ -721,7 +879,7 @@
       "body": "Hereafter a list of the main changes. IMHO with these changes the draft is in good shape to ask PEARG community if the document is going in the right direction. Hopefully it is and we can later add more text to the different sections. \r\n\r\n- Added several references\r\n- Added subsection 3.3 on law issues\r\n- Bootstrapped section 3.1\r\n- Added text section 3.2\r\n- Proposed content for 3.4\r\n- Added text and revised section 4.1",
       "createdAt": "2021-07-21T09:40:27Z",
       "updatedAt": "2021-07-26T09:38:15Z",
-      "baseRepository": "ShivanKaul/draft-ip-address-privacy",
+      "baseRepository": "IRTF-PEARG/draft-ip-address-privacy",
       "baseRefName": "main",
       "baseRefOid": "64a4b11ee98ef1a9e0774f962b12433b9bd94df2",
       "headRepository": "ggx/draft-ip-address-privacy",
@@ -843,7 +1001,7 @@
       "number": 11,
       "id": "MDExOlB1bGxSZXF1ZXN0NzE2MjUxMjA1",
       "title": "Specify (anti-)abuse",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/pull/11",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/pull/11",
       "state": "MERGED",
       "author": "sysrqb",
       "authorAssociation": "COLLABORATOR",
@@ -852,7 +1010,7 @@
       "body": "This is based on a work-in-progress patch I already had. #9 describes different categories:\r\n1. an attacker compromising/utilizing a large number of machines (botnet) to perform an attack (DDoS) against a service\r\n2. an attacker attempting to impersonate a victim (account takeover/credential theft)\r\n3. collaborative anti-abusive and threat intelligence sharing\r\n\r\nThis patch takes a slightly different approach and enumerates more specific classes of attack/malicious activity. I'm not tied to this, but I think being more specific now will help us in the future.",
       "createdAt": "2021-08-19T20:47:56Z",
       "updatedAt": "2021-09-17T19:00:19Z",
-      "baseRepository": "ShivanKaul/draft-ip-address-privacy",
+      "baseRepository": "IRTF-PEARG/draft-ip-address-privacy",
       "baseRefName": "main",
       "baseRefOid": "4a25c19ecdc86cb3f2d2b14b74ee0e7506c9d95b",
       "headRepository": "sysrqb/draft-ip-address-privacy",
@@ -1000,16 +1158,16 @@
       "number": 12,
       "id": "MDExOlB1bGxSZXF1ZXN0NzE2MjY4MjYw",
       "title": "Update draft-ip-address-privacy-considerations.md",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/pull/12",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/pull/12",
       "state": "MERGED",
       "author": "bslassey",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "adds text for uses of geo-ip, closes #10",
       "createdAt": "2021-08-19T21:16:52Z",
       "updatedAt": "2021-08-19T21:25:45Z",
-      "baseRepository": "ShivanKaul/draft-ip-address-privacy",
+      "baseRepository": "IRTF-PEARG/draft-ip-address-privacy",
       "baseRefName": "main",
       "baseRefOid": "4c3b93a4508ff8d953fa125879ad70a44c0c1d4f",
       "headRepository": "bslassey/draft-ip-address-privacy",
@@ -1036,7 +1194,7 @@
       "number": 13,
       "id": "MDExOlB1bGxSZXF1ZXN0NzIwNjk4NTc1",
       "title": "Improve definitions sections",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/pull/13",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/pull/13",
       "state": "MERGED",
       "author": "sysrqb",
       "authorAssociation": "COLLABORATOR",
@@ -1045,7 +1203,7 @@
       "body": "I'll merge this unless there are objections - I've had this sitting locally for a while.",
       "createdAt": "2021-08-26T17:07:17Z",
       "updatedAt": "2021-09-17T18:56:27Z",
-      "baseRepository": "ShivanKaul/draft-ip-address-privacy",
+      "baseRepository": "IRTF-PEARG/draft-ip-address-privacy",
       "baseRefName": "main",
       "baseRefOid": "4a25c19ecdc86cb3f2d2b14b74ee0e7506c9d95b",
       "headRepository": "sysrqb/draft-ip-address-privacy",
@@ -1078,7 +1236,7 @@
       "number": 14,
       "id": "MDExOlB1bGxSZXF1ZXN0NzIwNzE0OTYx",
       "title": "multi-platform threat models",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/pull/14",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/pull/14",
       "state": "MERGED",
       "author": "jbradleychen",
       "authorAssociation": "CONTRIBUTOR",
@@ -1087,7 +1245,7 @@
       "body": "",
       "createdAt": "2021-08-26T17:32:54Z",
       "updatedAt": "2021-09-17T18:58:01Z",
-      "baseRepository": "ShivanKaul/draft-ip-address-privacy",
+      "baseRepository": "IRTF-PEARG/draft-ip-address-privacy",
       "baseRefName": "main",
       "baseRefOid": "4a25c19ecdc86cb3f2d2b14b74ee0e7506c9d95b",
       "headRepository": "jbradleychen/draft-ip-address-privacy",
@@ -1106,7 +1264,7 @@
       "number": 16,
       "id": "PR_kwDOFm-2Oc4t83JN",
       "title": "Some clean up and adding Signals",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/pull/16",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/pull/16",
       "state": "MERGED",
       "author": "sysrqb",
       "authorAssociation": "COLLABORATOR",
@@ -1115,7 +1273,7 @@
       "body": "- Tried improved readability\r\n- Deleted Reputation Requirements section (hopefully only temporarily) - but I felt it was a distraction right now, we can re-add it later\r\n- Added a new section on replacement signals, and associated commentary.\r\n- Added a new reference to Private Access Tokens",
       "createdAt": "2021-11-01T22:21:54Z",
       "updatedAt": "2021-11-10T00:40:24Z",
-      "baseRepository": "ShivanKaul/draft-ip-address-privacy",
+      "baseRepository": "IRTF-PEARG/draft-ip-address-privacy",
       "baseRefName": "main",
       "baseRefOid": "46aaca2f715fb2f72a2cfd7e0676c5bce6a0316d",
       "headRepository": "sysrqb/draft-ip-address-privacy",
@@ -1143,7 +1301,7 @@
             "abbreviatedOid": "9fccc7e"
           },
           "author": "bslassey",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2021-11-02T13:15:22Z",
@@ -1163,7 +1321,7 @@
             "abbreviatedOid": "9fccc7e"
           },
           "author": "bslassey",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2021-11-02T13:25:42Z",
@@ -1183,7 +1341,7 @@
             "abbreviatedOid": "9fccc7e"
           },
           "author": "bslassey",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2021-11-02T13:28:23Z",
@@ -1203,7 +1361,7 @@
             "abbreviatedOid": "9fccc7e"
           },
           "author": "bslassey",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2021-11-02T13:33:19Z",
@@ -1415,7 +1573,7 @@
             "abbreviatedOid": "c8c50b7"
           },
           "author": "bslassey",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2021-11-04T21:34:18Z",
@@ -1455,7 +1613,7 @@
             "abbreviatedOid": "c8c50b7"
           },
           "author": "bslassey",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2021-11-05T13:16:48Z",
@@ -1475,7 +1633,7 @@
             "abbreviatedOid": "c8c50b7"
           },
           "author": "bslassey",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2021-11-05T13:18:18Z",
@@ -1535,16 +1693,16 @@
       "number": 18,
       "id": "PR_kwDOFm-2Oc4uD-fi",
       "title": "Update draft-ip-address-privacy-considerations.md",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/pull/18",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/pull/18",
       "state": "MERGED",
       "author": "bslassey",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Add myself to authors list",
       "createdAt": "2021-11-03T20:36:17Z",
       "updatedAt": "2021-11-03T23:08:05Z",
-      "baseRepository": "ShivanKaul/draft-ip-address-privacy",
+      "baseRepository": "IRTF-PEARG/draft-ip-address-privacy",
       "baseRefName": "main",
       "baseRefOid": "06ef91566f11c75e767dccda0d3349d47763bbfa",
       "headRepository": "bslassey/draft-ip-address-privacy",
@@ -1571,7 +1729,7 @@
       "number": 22,
       "id": "PR_kwDOFm-2Oc4uSlfu",
       "title": "Update draft-ip-address-privacy-considerations.md",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/pull/22",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/pull/22",
       "state": "MERGED",
       "author": "jbradleychen",
       "authorAssociation": "CONTRIBUTOR",
@@ -1580,7 +1738,7 @@
       "body": "Adding myself as author. I haven't fully understood/debugged the formatting of the author spec. I can try to figure this out if it needs debugging.",
       "createdAt": "2021-11-09T14:54:27Z",
       "updatedAt": "2021-11-10T00:33:00Z",
-      "baseRepository": "ShivanKaul/draft-ip-address-privacy",
+      "baseRepository": "IRTF-PEARG/draft-ip-address-privacy",
       "baseRefName": "main",
       "baseRefOid": "21374369a384e23748706c16fb46aa633be2d5ac",
       "headRepository": "jbradleychen/draft-ip-address-privacy",
@@ -1614,7 +1772,7 @@
       "number": 25,
       "id": "PR_kwDOFm-2Oc4vJDUz",
       "title": "Resolve some TODOs",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/pull/25",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/pull/25",
       "state": "MERGED",
       "author": "chris-wood",
       "authorAssociation": "COLLABORATOR",
@@ -1623,10 +1781,10 @@
       "body": "",
       "createdAt": "2021-11-29T17:26:09Z",
       "updatedAt": "2022-01-10T15:08:03Z",
-      "baseRepository": "ShivanKaul/draft-ip-address-privacy",
+      "baseRepository": "IRTF-PEARG/draft-ip-address-privacy",
       "baseRefName": "main",
       "baseRefOid": "9a4c6eec625cb52e79632f748616c79d74b42751",
-      "headRepository": "ShivanKaul/draft-ip-address-privacy",
+      "headRepository": "IRTF-PEARG/draft-ip-address-privacy",
       "headRefName": "chris-wood-patch-1",
       "headRefOid": "f7929870cfbaa1e9436f8d05d1bcdd545b903ec7",
       "closedAt": "2022-01-10T15:08:03Z",
@@ -1643,7 +1801,7 @@
             "abbreviatedOid": "f792987"
           },
           "author": "bslassey",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2022-01-06T20:32:49Z",
@@ -1656,22 +1814,22 @@
       "number": 26,
       "id": "PR_kwDOFm-2Oc4xRHsb",
       "title": "Privacy law",
-      "url": "https://github.com/ShivanKaul/draft-ip-address-privacy/pull/26",
-      "state": "OPEN",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/pull/26",
+      "state": "CLOSED",
       "author": "ggx",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "The privacy-law branch basically contains an update on section 3.3 IP Privacy Protection and Law.\r\nIt covers the following main examples:\r\n- Europe - GDPR (most extensive because used to derive regulations in other countries)\r\n- Brazil - LGPD\r\n- China - PIPL\r\n- Japan - APPI\r\n-  USA \r\n\r\nFixed as well few typos here and there in the rest of the document.\r\n",
       "createdAt": "2022-01-19T14:31:17Z",
-      "updatedAt": "2022-03-23T21:26:19Z",
-      "baseRepository": "ShivanKaul/draft-ip-address-privacy",
+      "updatedAt": "2022-06-29T15:04:54Z",
+      "baseRepository": "IRTF-PEARG/draft-ip-address-privacy",
       "baseRefName": "main",
       "baseRefOid": "eddd9a01dd2ab02e53e99cc21675e556779caf4a",
-      "headRepository": "ShivanKaul/draft-ip-address-privacy",
+      "headRepository": "IRTF-PEARG/draft-ip-address-privacy",
       "headRefName": "privacy-law",
       "headRefOid": "6077403612abd4a71600b0799dbdfa58f71b06f0",
-      "closedAt": null,
+      "closedAt": "2022-06-29T15:04:54Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -1692,14 +1850,14 @@
         },
         {
           "author": "arichiv",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "> On point 2: The table is great idea I'll put it at the end of the section as a summary, what do you think?\n\nI'm suggesting that the 'IP Privacy Law' section becomes the table and a paragraph explaining why the different points of comparison were picked. Focusing on paragraph summaries of specific laws will make this harder to review I think.\n\n> On point 1: not sure what you are asking to be done, can you detail?\n\nUnder 'Next-User Implications' and a couple other sections you made minor wording fixes. If those were split out into another PR instead of being bundled with this one they would be approved quickly.",
           "createdAt": "2022-03-07T16:30:29Z",
           "updatedAt": "2022-03-07T16:30:29Z"
         },
         {
           "author": "bslassey",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "> > On point 2: The table is great idea I'll put it at the end of the section as a summary, what do you think?\r\n> \r\n> I'm suggesting that the 'IP Privacy Law' section becomes the table and a paragraph explaining why the different points of comparison were picked. Focusing on paragraph summaries of specific laws will make this harder to review I think.\r\n> \r\n> > On point 1: not sure what you are asking to be done, can you detail?\r\n> \r\n> Under 'Next-User Implications' and a couple other sections you made minor wording fixes. If those were split out into another PR instead of being bundled with this one they would be approved quickly.\r\n\r\nBig +1 to both of these suggestions. ",
           "createdAt": "2022-03-23T21:26:19Z",
           "updatedAt": "2022-03-23T21:26:19Z"
@@ -1712,7 +1870,7 @@
             "abbreviatedOid": "b3a7b23"
           },
           "author": "bslassey",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2022-01-19T16:27:47Z",
@@ -2118,12 +2276,827 @@
             "abbreviatedOid": "6077403"
           },
           "author": "arichiv",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "CHANGES_REQUESTED",
           "body": "Sorry for the delay in review. I have a couple points of feedback:\n(1) Could you split out the misc grammer and spelling changes into a different CL? They should be easy to approve.\n(2) Could you reformat the IP Privacy Law section into more of a table? It'd be nice to note the key points of overlap and difference between the 6 locales discussed in a more focused way. The table format would also be easy to expand as future jurisdictions adopt relevant law.\n\nThanks for contributing this!",
           "createdAt": "2022-03-04T23:11:40Z",
           "updatedAt": "2022-03-04T23:11:40Z",
           "comments": []
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "id": "PR_kwDOFm-2Oc46Jk9G",
+      "title": "Use a more official / better Private Relay reference",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/pull/31",
+      "state": "MERGED",
+      "author": "tfpauly",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-06-22T18:16:08Z",
+      "updatedAt": "2022-07-23T22:34:30Z",
+      "baseRepository": "IRTF-PEARG/draft-ip-address-privacy",
+      "baseRefName": "main",
+      "baseRefOid": "5429281d72fd2a87550db0efee3c02b608b21f9e",
+      "headRepository": "tfpauly/draft-ip-address-privacy",
+      "headRefName": "patch-1",
+      "headRefOid": "982f6741fbab5f055022d5c24ab1b614185960d3",
+      "closedAt": "2022-07-23T22:34:30Z",
+      "mergedAt": "2022-07-23T22:34:30Z",
+      "mergedBy": "sysrqb",
+      "mergeCommit": {
+        "oid": "5e51f8f6bd39c9868a1ab8610baf21a485472217"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFm-2Oc48iide",
+          "commit": {
+            "abbreviatedOid": "982f674"
+          },
+          "author": "bslassey",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-06-22T18:20:22Z",
+          "updatedAt": "2022-06-22T18:20:22Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 32,
+      "id": "PR_kwDOFm-2Oc46ky8N",
+      "title": "Simplified privacy law section",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/pull/32",
+      "state": "CLOSED",
+      "author": "ggx",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "New proposal for the Privacy Law section \r\nThere is now only a table with major example of law and a paragraph emphasizing differences.\r\n\r\nAs suggested by Ari and Brad.\r\n\r\nGgX",
+      "createdAt": "2022-06-29T15:03:19Z",
+      "updatedAt": "2022-06-30T12:05:46Z",
+      "baseRepository": "IRTF-PEARG/draft-ip-address-privacy",
+      "baseRefName": "main",
+      "baseRefOid": "5429281d72fd2a87550db0efee3c02b608b21f9e",
+      "headRepository": "ggx/draft-ip-address-privacy",
+      "headRefName": "privacy-law-simplified",
+      "headRefOid": "dea6369c5b7beb343f9a4645b1d2f2ca0f8b0436",
+      "closedAt": "2022-06-30T11:54:34Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "bslassey",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Hi GgX, it looks like you deleted the file and added a new one. Could you create a PR that changes the file in place? Thanks",
+          "createdAt": "2022-06-29T16:55:28Z",
+          "updatedAt": "2022-06-29T16:55:28Z"
+        },
+        {
+          "author": "ggx",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Weird\u2026 but no problem, I\u2019ll fix it tomorrow.\n\nCiao\n\nLuigi\nOn 29 Jun 2022 at 18:55 +0200, Brad Lassey ***@***.***>, wrote:\n> Hi GgX, it looks like you deleted the file and added a new one. Could you create a PR that changes the file in place? Thanks\n> \u2014\n> Reply to this email directly, view it on GitHub, or unsubscribe.\n> You are receiving this because you authored the thread.Message ID: ***@***.***>\n",
+          "createdAt": "2022-06-29T18:17:06Z",
+          "updatedAt": "2022-06-29T18:17:06Z"
+        },
+        {
+          "author": "ggx",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing this PR because of wrong branch used",
+          "createdAt": "2022-06-30T11:54:34Z",
+          "updatedAt": "2022-06-30T11:54:34Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 33,
+      "id": "PR_kwDOFm-2Oc46owsy",
+      "title": "Update draft-irtf-pearg-ip-address-privacy-considerations.md",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/pull/33",
+      "state": "MERGED",
+      "author": "ggx",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Update PR for the privacy section.\r\nThe PR looks good now (not a whole file change)\r\n\r\nLuigi",
+      "createdAt": "2022-06-30T12:14:15Z",
+      "updatedAt": "2022-10-23T21:23:52Z",
+      "baseRepository": "IRTF-PEARG/draft-ip-address-privacy",
+      "baseRefName": "main",
+      "baseRefOid": "5429281d72fd2a87550db0efee3c02b608b21f9e",
+      "headRepository": "ggx/draft-ip-address-privacy",
+      "headRefName": "Privacy-section-simplified",
+      "headRefOid": "a76464f6a0debb008067256bad0aef41c9b762c7",
+      "closedAt": "2022-10-23T21:23:31Z",
+      "mergedAt": "2022-10-23T21:23:31Z",
+      "mergedBy": "sysrqb",
+      "mergeCommit": {
+        "oid": "de13c8e2436198728af46ff726acadb0de18a25e"
+      },
+      "comments": [
+        {
+          "author": "arichiv",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Thanks for this! Will review shortly",
+          "createdAt": "2022-06-30T15:43:22Z",
+          "updatedAt": "2022-06-30T15:43:22Z"
+        },
+        {
+          "author": "ggx",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks Brad,\n\nI\u2019ve push a new commit integrating your suggestions.\n\nCiao\n\nL.\n\n\n> On 1 Jul 2022, at 15:53, Brad Lassey ***@***.***> wrote:\n> \n> \n> @bslassey commented on this pull request.\n> \n> In draft-irtf-pearg-ip-address-privacy-considerations.md <https://github.com/ShivanKaul/draft-ip-address-privacy/pull/33#discussion_r911981937>:\n> \n> > @@ -180,14 +199,24 @@ As such, any observer along the path can pick it up and use it for various track\n>  \n>  ## IP Privacy Protection and Law\n>  \n> -This section aim at providing some basic information about main example of laws adopted worldwide and related to IP address privacy (usually these laws area by product of the broader user privacy protection).\n> +Various countries, in the last decade, have adopted, or updated, laws that aim at protecting citizens privacy, which includes IP addresses.  \n> +Very often, these laws are actually part of bigger regulations aiming\n> +at protecting users' Personal Identifiable Information (PII) in a\n> +broad sense.\n> +{{table:laws}} provides a snapshot of relevant existing regulations.\n> +\n> +|Country|Law|IP Address is PII|Consent|\n> +|-------|---|----------|-------|\n> +|Brazil |{{LGPD}} - Lei General de Protecao de Dados Pessoals |Yes (not explicitly stated)|Explicit|\n> +|Canada |{{PIPEDA}} - Personal Information Protection and Electronic Documents Act|Yes |Implicit|\n> +|China |{{PIPL}} - Personal Information Protection Law |Yes      |Explicit|\n> +|European Union |{{GDPR}} - General Data Protection Regulation |Yes      |Explicit|\n> +|Japan |{{APPI}} - Act of Protection of Personal Information |Yes (including anonymized data)|Explicit|\n> +|USA |  |No      | |\n> Since this table is summarizing laws, it seems odd to list a jurisdiction (USA) with no relevant law. I'd suggest dropping this row. It might be worth keeping the USA section of the deleted text as a footnote to note that the US has sector-specific laws pertaining to privacy that would be too difficult to summarize in this table.\n> \n> In draft-irtf-pearg-ip-address-privacy-considerations.md <https://github.com/ShivanKaul/draft-ip-address-privacy/pull/33#discussion_r911982233>:\n> \n> >  \n> -Possible content (to focus only on technical IP address related aspects):\n> +Basically all of the major laws recognizes IP addresses as personal identification information. Brazil does not mention IP addresses explicitly but includes them de facto. Japan does protect even anonymized data. All require an explicit action from the user to grant permission to use PII, except for Canada that allows implicit consent. USA does not have a general federal law, and IP addresses are not considered personally identifiable information {{IP2009}}.\n> wording nit: Change \"Basically\" to \"In summary\"\n> \n> \u2014\n> Reply to this email directly, view it on GitHub <https://github.com/ShivanKaul/draft-ip-address-privacy/pull/33#pullrequestreview-1026248583>, or unsubscribe <https://github.com/notifications/unsubscribe-auth/AB5HQCULEAYCNASEM22JE3DVR3Z5NANCNFSM52JENA2A>.\n> You are receiving this because you authored the thread.\n> \n\n",
+          "createdAt": "2022-07-01T14:57:44Z",
+          "updatedAt": "2022-07-01T14:57:44Z"
+        },
+        {
+          "author": "ggx",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Hi Ari,\n\nExcellent suggestions.\n\nPlease see inline my comments (marked [LUIGI])\n\n> On 6 Jul 2022, at 13:04, Ari Chivukula ***@***.***> wrote:\n> \n> \n> @arichiv requested changes on this pull request.\n> \n> Thanks for this new version! I think it's really close\n> \n> In draft-irtf-pearg-ip-address-privacy-considerations.md <https://github.com/ShivanKaul/draft-ip-address-privacy/pull/33#discussion_r914707929>:\n> \n> > @@ -66,6 +66,25 @@ informative:\n>    WEBAUTHN:\n>      title: \"Web Authentication: An API for accessing Public Key Credentials Level 2\"\n>      target: https://www.w3.org/TR/webauthn-2/\n> +  GDPR:\n> +    title: General Data Protection Regulation\n> +    target: https://en.wikipedia.org/wiki/General_Data_Protection_Regulation   \n> I think it would be better to cite https://gdpr.eu/tag/gdpr/ <https://gdpr.eu/tag/gdpr/> or another official source and/or a source with the full text\n> \n> \n\n[LUIGI] Updated.\n\n\n> \n> In draft-irtf-pearg-ip-address-privacy-considerations.md <https://github.com/ShivanKaul/draft-ip-address-privacy/pull/33#discussion_r914708154>:\n> \n> > @@ -66,6 +66,25 @@ informative:\n>    WEBAUTHN:\n>      title: \"Web Authentication: An API for accessing Public Key Credentials Level 2\"\n>      target: https://www.w3.org/TR/webauthn-2/\n> +  GDPR:\n> +    title: General Data Protection Regulation\n> +    target: https://en.wikipedia.org/wiki/General_Data_Protection_Regulation   \n> +  APPI:\n> +    title: Japan - Data Protection Overview\n> +    target: https://www.dataguidance.com/notes/japan-data-protection-overview  \n> +  LGPD:\n> +    title: General Personal Data Protection Law (Brazil)\n> +    target: https://en.wikipedia.org/wiki/General_Personal_Data_Protection_Law    \n> I think it would be better to cite https://iapp.org/media/pdf/resource_center/Brazilian_General_Data_Protection_Law.pdf <https://iapp.org/media/pdf/resource_center/Brazilian_General_Data_Protection_Law.pdf> or another official source and/or a source with the full text\n> \n> \n\n[LUIGI] Updated\n\n> \n> In draft-irtf-pearg-ip-address-privacy-considerations.md <https://github.com/ShivanKaul/draft-ip-address-privacy/pull/33#discussion_r914708416>:\n> \n> > @@ -66,6 +66,25 @@ informative:\n>    WEBAUTHN:\n>      title: \"Web Authentication: An API for accessing Public Key Credentials Level 2\"\n>      target: https://www.w3.org/TR/webauthn-2/\n> +  GDPR:\n> +    title: General Data Protection Regulation\n> +    target: https://en.wikipedia.org/wiki/General_Data_Protection_Regulation   \n> +  APPI:\n> +    title: Japan - Data Protection Overview\n> +    target: https://www.dataguidance.com/notes/japan-data-protection-overview  \n> +  LGPD:\n> +    title: General Personal Data Protection Law (Brazil)\n> +    target: https://en.wikipedia.org/wiki/General_Personal_Data_Protection_Law    \n> +  PIPL:\n> +    title: Personal Information Protection Law of the People's Republic of China\n> +    target: https://en.wikipedia.org/wiki/Personal_Information_Protection_Law_of_the_People%27s_Republic_of_China\n> I think it would be better to cite https://digichina.stanford.edu/work/translation-personal-information-protection-law-of-the-peoples-republic-of-china-effective-nov-1-2021/ <https://digichina.stanford.edu/work/translation-personal-information-protection-law-of-the-peoples-republic-of-china-effective-nov-1-2021/> or another official source and/or a source with the full text\n> \n> \n\n[LUIGI] Actually added your link and official Chinese link.\n\n> \n> In draft-irtf-pearg-ip-address-privacy-considerations.md <https://github.com/ShivanKaul/draft-ip-address-privacy/pull/33#discussion_r914708864>:\n> \n> > @@ -180,14 +199,23 @@ As such, any observer along the path can pick it up and use it for various track\n>  \n>  ## IP Privacy Protection and Law\n>  \n> -This section aim at providing some basic information about main example of laws adopted worldwide and related to IP address privacy (usually these laws area by product of the broader user privacy protection).\n> +Various countries, in the last decade, have adopted, or updated, laws that aim at protecting citizens privacy, which includes IP addresses.  \n> +Very often, these laws are actually part of bigger regulations aiming\n> +at protecting users' Personal Identifiable Information (PII) in a\n> +broad sense.\n> +{{table:laws}} provides a snapshot of relevant existing regulations.\n> +\n> +|Country|Law|IP Address is PII|Consent|\n> The Consent column should likely be omitted as all locals seem to provide for some explicit requirement while also providing allowances for implicit consent in emergencies or other situations. This area of the law seems to difficult to summarize in a single column and I think it could be followup work\n> \n> \n\n[LUIGI] I can agree that the column does not add that much information. The point is just to bring to attention that as a general approach some laws demand explicit consent others are happy with an implicit consent. There is no harm in keeping the column and there is no need to go any further here with the details of exceptions & Co. (we can discuss the follow up work).\n\n> \n> In draft-irtf-pearg-ip-address-privacy-considerations.md <https://github.com/ShivanKaul/draft-ip-address-privacy/pull/33#discussion_r914709458>:\n> \n> >  \n> -Possible content (to focus only on technical IP address related aspects):\n> +In summary, all of the major laws recognizes IP addresses as personal identification information. Brazil does not mention IP addresses explicitly but includes them de facto. Japan does protect even anonymized data. All require an explicit action from the user to grant permission to use PII, except for Canada that allows implicit consent. USA does not have a general federal law, but sector-specific laws pertaining to privacy that would be too difficult to summarize. USA does not consider IP addresses as personally identifiable information {{IP2009}}.\n> It would be better to cite the CCPA <https://oag.ca.gov/privacy/ccpa> rather than the decision in W.D. Wash <https://www.huntonprivacyblog.com/2009/07/10/washington-court-rules-that-ip-addresses-are-not-personally-identifiable-information/>. That indicates to the reader they need to examine the rules state-by-state rather than expecting a consistent governing rule.\n> \n> \n[LUIGI] Added a CCPA reference. Still consider the Wash case relevant as is very specific to IP addresses.\n\nLet know what you think.\n\nCiao\n\nLuigi\n> \u2014\n> Reply to this email directly, view it on GitHub <https://github.com/ShivanKaul/draft-ip-address-privacy/pull/33#pullrequestreview-1029904816>, or unsubscribe <https://github.com/notifications/unsubscribe-auth/AB5HQCULXT47DFRMZDCVFYLVSVR5LANCNFSM52JENA2A>.\n> You are receiving this because you authored the thread.\n> \n\n",
+          "createdAt": "2022-07-07T13:56:07Z",
+          "updatedAt": "2022-07-07T13:56:07Z"
+        },
+        {
+          "author": "arichiv",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Thanks for the quick response! I still have concerns on a couple points:\r\n(1) I worry that the consent column isn't accurate and implies a more firm stance than the laws take. Maybe the column could be replaced with a sentence in the final paragraph about how explicit/implicit consent varies by locale and exception types?\r\n(2) The W.D. Wash decision is used to imply a firm stance by the US generally, but district court decisions do not set binding precedent across the federal judiciary. I worry the language here implies this decision somehow set national policy.",
+          "createdAt": "2022-07-07T14:17:14Z",
+          "updatedAt": "2022-07-07T14:18:35Z"
+        },
+        {
+          "author": "ggx",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Hi Ari,\n\n\n> On 7 Jul 2022, at 16:17, Ari Chivukula ***@***.***> wrote:\n> \n> \n> Thanks for the quick response! I still have concerns on a couple points:\n> (1) I worry that the consent column isn't accurate and implies a more firm stance than the laws take. Maybe the column could be replaced with a sentence in the final paragraph about how explicit/implicit consent varies by locale and exception types?\n> \nI added a sentence that explain that there may be exceptions that are too hard to summarize.\n\n\n> (2) The W.D. Wash decision is used to imply a firm stance by the US generally, but district court decisions do not set binding precedent in the federal judiciary. I worry the language here implies this decision somehow set national policy.\n> \n> \n\nThat sentence can be used at federal level, right? Anyway I am not a lawyer. I think it is important to mention it but you are right that the current sentence gives the wrong idea. I modified the sentence so that is clear that it is really state-dependent.\n\nCiao\n\nL.\n\n\n> \u2014\n> Reply to this email directly, view it on GitHub <https://github.com/ShivanKaul/draft-ip-address-privacy/pull/33#issuecomment-1177687896>, or unsubscribe <https://github.com/notifications/unsubscribe-auth/AB5HQCTX37CTWW6WUWV3XDLVS3RHLANCNFSM52JENA2A>.\n> You are receiving this because you authored the thread.\n> \n\n",
+          "createdAt": "2022-07-08T14:13:45Z",
+          "updatedAt": "2022-07-08T14:13:45Z"
+        },
+        {
+          "author": "ggx",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Hi All,\n\nWhat about merging the two open PL and submit a new revision of the document? \n(It is expiring in 3 days)\n\nCiao\n\nL.\n\n\n> On 8 Jul 2022, at 16:13, Luigi Iannone ***@***.***> wrote:\n> \n> Hi Ari,\n> \n> \n>> On 7 Jul 2022, at 16:17, Ari Chivukula ***@***.*** ***@***.***>> wrote:\n>> \n>> \n>> Thanks for the quick response! I still have concerns on a couple points:\n>> (1) I worry that the consent column isn't accurate and implies a more firm stance than the laws take. Maybe the column could be replaced with a sentence in the final paragraph about how explicit/implicit consent varies by locale and exception types?\n>> \n> I added a sentence that explain that there may be exceptions that are too hard to summarize.\n> \n> \n>> (2) The W.D. Wash decision is used to imply a firm stance by the US generally, but district court decisions do not set binding precedent in the federal judiciary. I worry the language here implies this decision somehow set national policy.\n>> \n>> \n> \n> That sentence can be used at federal level, right? Anyway I am not a lawyer. I think it is important to mention it but you are right that the current sentence gives the wrong idea. I modified the sentence so that is clear that it is really state-dependent.\n> \n> Ciao\n> \n> L.\n> \n> \n>> \u2014\n>> Reply to this email directly, view it on GitHub <https://github.com/ShivanKaul/draft-ip-address-privacy/pull/33#issuecomment-1177687896>, or unsubscribe <https://github.com/notifications/unsubscribe-auth/AB5HQCTX37CTWW6WUWV3XDLVS3RHLANCNFSM52JENA2A>.\n>> You are receiving this because you authored the thread.\n>> \n> \n\n",
+          "createdAt": "2022-07-11T07:45:34Z",
+          "updatedAt": "2022-07-11T07:45:34Z"
+        },
+        {
+          "author": "bslassey",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> [LUIGI] I can agree that the column does not add that much information. The point is just to bring to attention that as a general approach some laws demand explicit consent others are happy with an implicit consent. There is no harm in keeping the column and there is no need to go any further here with the details of exceptions & Co. (we can discuss the follow up work).\r\n\r\nI think that with all the exceptions these laws define, the implicit/explicit distinction is a bit too complicated to describe in this table and I worry that it actually confuses the point. May I suggest dropping this column and instead adding some prose to the effect of \"Most of these laws require explicit consent when they do require consent for use of IP Addresses, however Canada's regulation makes allowances for implicit consent\". It might be better to open another PR to discuss ways to summarize that clearly in table form, but I suspect that debate will derail getting this PR in.",
+          "createdAt": "2022-07-13T16:00:43Z",
+          "updatedAt": "2022-07-13T16:00:43Z"
+        },
+        {
+          "author": "ggx",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Hello,\r\n\r\nshould we merge this pull request and and resurrect this document?\r\n\r\nCiao\r\n\r\nLuigi",
+          "createdAt": "2022-10-20T14:55:17Z",
+          "updatedAt": "2022-10-20T14:55:17Z"
+        },
+        {
+          "author": "bslassey",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Hello,\r\n> \r\n> should we merge this pull request and and resurrect this document?\r\n> \r\n> Ciao\r\n> \r\n> Luigi\r\n\r\nI think we're close, and again apologies for being inattentive here. If we can incorporate @sysrqb's feedback and make sure the pre-commit checks pass we should be able to merge this in. ",
+          "createdAt": "2022-10-20T15:10:14Z",
+          "updatedAt": "2022-10-20T15:10:14Z"
+        },
+        {
+          "author": "sysrqb",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I briefly discussed this PR with the chairs at the last meeting, and we may move some of this information into an appendix in the future, but we can merge it (with the above requested change) and continue iterating on it in the future.",
+          "createdAt": "2022-10-20T15:16:13Z",
+          "updatedAt": "2022-10-20T15:16:13Z"
+        },
+        {
+          "author": "ggx",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Hi,\r\nI've just pushed an new commit with the sentence suggested by @bslassey.\r\n\r\nCiao\r\n\r\nL.\r\n ",
+          "createdAt": "2022-10-23T08:20:43Z",
+          "updatedAt": "2022-10-23T08:20:43Z"
+        },
+        {
+          "author": "sysrqb",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks!",
+          "createdAt": "2022-10-23T21:23:52Z",
+          "updatedAt": "2022-10-23T21:23:52Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFm-2Oc49K0-H",
+          "commit": {
+            "abbreviatedOid": "fc467cc"
+          },
+          "author": "bslassey",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-07-01T13:50:14Z",
+          "updatedAt": "2022-07-01T13:53:14Z",
+          "comments": [
+            {
+              "originalPosition": 44,
+              "body": "Since this table is summarizing laws, it seems odd to list a jurisdiction (USA) with no relevant law. I'd suggest dropping this row. It might be worth keeping the USA section of the deleted text as a footnote to note that the US has sector-specific laws pertaining to privacy that would be too difficult to summarize in this table.",
+              "createdAt": "2022-07-01T13:50:15Z",
+              "updatedAt": "2022-07-01T13:53:15Z"
+            },
+            {
+              "originalPosition": 48,
+              "body": "wording nit: Change \"Basically\" to \"In summary\"",
+              "createdAt": "2022-07-01T13:50:36Z",
+              "updatedAt": "2022-07-01T13:53:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFm-2Oc49Yxmw",
+          "commit": {
+            "abbreviatedOid": "0704afe"
+          },
+          "author": "arichiv",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "Thanks for this new version! I think it's really close",
+          "createdAt": "2022-07-06T11:01:41Z",
+          "updatedAt": "2022-07-06T11:04:41Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "I think it would be better to cite https://gdpr.eu/tag/gdpr/ or another official source and/or a source with the full text",
+              "createdAt": "2022-07-06T11:01:41Z",
+              "updatedAt": "2022-07-06T11:04:41Z"
+            },
+            {
+              "originalPosition": 21,
+              "body": "I think it would be better to cite https://iapp.org/media/pdf/resource_center/Brazilian_General_Data_Protection_Law.pdf  or another official source and/or a source with the full text",
+              "createdAt": "2022-07-06T11:02:03Z",
+              "updatedAt": "2022-07-06T11:04:41Z"
+            },
+            {
+              "originalPosition": 24,
+              "body": "I think it would be better to cite https://digichina.stanford.edu/work/translation-personal-information-protection-law-of-the-peoples-republic-of-china-effective-nov-1-2021/ or another official source and/or a source with the full text",
+              "createdAt": "2022-07-06T11:02:24Z",
+              "updatedAt": "2022-07-06T11:04:41Z"
+            },
+            {
+              "originalPosition": 46,
+              "body": "The Consent column should likely be omitted as all locals seem to provide for some explicit requirement while also providing allowances for implicit consent in emergencies or other situations. This area of the law seems to difficult to summarize in a single column and I think it could be followup work",
+              "createdAt": "2022-07-06T11:02:57Z",
+              "updatedAt": "2022-07-06T11:04:41Z"
+            },
+            {
+              "originalPosition": 56,
+              "body": "It would be better to cite the [CCPA](https://oag.ca.gov/privacy/ccpa) rather than the [decision in W.D. Wash](https://www.huntonprivacyblog.com/2009/07/10/washington-court-rules-that-ip-addresses-are-not-personally-identifiable-information/). That indicates to the reader they need to examine the rules state-by-state rather than expecting a consistent governing rule.",
+              "createdAt": "2022-07-06T11:03:43Z",
+              "updatedAt": "2022-07-06T11:04:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFm-2Oc4-TaZI",
+          "commit": {
+            "abbreviatedOid": "626eebe"
+          },
+          "author": "arichiv",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2022-07-20T15:43:21Z",
+          "updatedAt": "2022-07-20T15:50:11Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2022-07-20T15:43:21Z",
+              "updatedAt": "2022-07-20T15:50:11Z"
+            },
+            {
+              "originalPosition": 59,
+              "body": "```suggestion\r\n|Country|Law|IP Address is PII|\r\n|-|-|-|\r\n|Brazil |{{LGPD}} - Lei General de Protecao de Dados Pessoals |Yes (not explicitly stated)|\r\n|Canada |{{PIPEDA}} - Personal Information Protection and Electronic Documents Act|Yes |\r\n|China |{{PIPL-C}}{{PIPL}} - Personal Information Protection Law |Yes|\r\n|European Union |{{GDPR}} - General Data Protection Regulation |Yes|\r\n|Japan |{{APPI}} - Act of Protection of Personal Information |Yes (including anonymized data)|\r\n{: #table:laws title=\"Relevant privacy laws and regulations\"}\r\n```",
+              "createdAt": "2022-07-20T15:45:09Z",
+              "updatedAt": "2022-07-20T15:50:11Z"
+            },
+            {
+              "originalPosition": 62,
+              "body": "```suggestion\r\nAll of the major laws recognizes IP addresses as personal identification information. Most of these laws require explicit consent when they do require consent for use of IP Addresses, however Canada's regulation makes allowances for implicit consent.\r\n\r\nThe USA does not have a general federal law, but does have locale specific laws (see {{CCPA}} as an example). Depending on the locale, IP addresses may not be considered as personally identifiable information {{IP2009}}.\r\n```",
+              "createdAt": "2022-07-20T15:48:07Z",
+              "updatedAt": "2022-07-20T15:50:11Z"
+            },
+            {
+              "originalPosition": 50,
+              "body": "```suggestion\r\nVery often, these laws are actually part of larger regulatory frameworks aimed at protecting users' Personal Identifiable Information (PII) in a broad sense. {{table:laws}} provides a snapshot of relevant existing regulations.\r\n```",
+              "createdAt": "2022-07-20T15:49:35Z",
+              "updatedAt": "2022-07-20T15:50:12Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFm-2Oc4-YFz9",
+          "commit": {
+            "abbreviatedOid": "626eebe"
+          },
+          "author": "ggx",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-07-21T13:09:56Z",
+          "updatedAt": "2022-07-21T13:09:56Z",
+          "comments": [
+            {
+              "originalPosition": 62,
+              "body": "My understanding is that you want to provide as few details as possible, I guess to avoid misinterpretations. Is that right? Hence the reason dropping the specific per-country comments and just keeping:\r\n\r\nAll of the major laws recognizes IP addresses as personal identification information. Most of these laws require explicit consent when they do require consent for use of IP Addresses, however Canada's regulation makes allowances for implicit consent.\r\nThe USA does not have a general federal law, but does have locale specific laws (see {{CCPA}} as an example). Depending on the locale, IP addresses may not be considered as personally identifiable information {{IP2009}}.\r\n\r\nIf my understanding is correct I am fine with the changes.\r\n",
+              "createdAt": "2022-07-21T13:09:56Z",
+              "updatedAt": "2022-07-21T13:09:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFm-2Oc4-f_gP",
+          "commit": {
+            "abbreviatedOid": "af88694"
+          },
+          "author": "sysrqb",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-07-23T22:33:22Z",
+          "updatedAt": "2022-07-23T22:34:06Z",
+          "comments": [
+            {
+              "originalPosition": 62,
+              "body": "I agree with this suggested change. This entire topic is complicated by the fact that, based on my understanding, IP addresses are *not* inherently PII - they become PII within certain contexts (e.g., when there exists a sufficiently strong association between an address and a person). You mention this in relation to {{IP2009}}, but I believe this is true more generally, including under GDPR, as well. In any case, we should not make this document a legal analysis of laws around the world, a simple summary is sufficient. Thanks for creating it.",
+              "createdAt": "2022-07-23T22:33:22Z",
+              "updatedAt": "2022-07-23T22:34:06Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFm-2Oc4_FkQN",
+          "commit": {
+            "abbreviatedOid": "626eebe"
+          },
+          "author": "ggx",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-08-02T09:29:54Z",
+          "updatedAt": "2022-08-02T09:29:55Z",
+          "comments": [
+            {
+              "originalPosition": 62,
+              "body": "Hi,\r\nNot sure how to interpret your last comment. Do you agree with the last proposed text?\r\n(copied again hereafter)\r\n\r\nAll of the major laws recognizes IP addresses as personal identification information. Most of these laws require explicit consent when they do require consent for use of IP Addresses, however Canada's regulation makes allowances for implicit consent.\r\nThe USA does not have a general federal law, but does have locale specific laws (see {{CCPA}} as an example). Depending on the locale, IP addresses may not be considered as personally identifiable information {{IP2009}}.\r\n\r\n\r\nCiao\r\n\r\nL.\r\n",
+              "createdAt": "2022-08-02T09:29:55Z",
+              "updatedAt": "2022-08-02T09:29:55Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFm-2Oc5Egy_R",
+          "commit": {
+            "abbreviatedOid": "626eebe"
+          },
+          "author": "bslassey",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-20T15:07:06Z",
+          "updatedAt": "2022-10-20T15:07:08Z",
+          "comments": [
+            {
+              "originalPosition": 62,
+              "body": "Apologies for the delay in replying. I think  a slight edit to the text you copied here would resolve the issue @sysrqb raised, could you edit \"All of the major laws recognizes IP addresses as personal identification information\" to be \"All of the major laws recognizes IP addresses as personal identification information when there is sufficiently strong correlation between an address and a person or when combined with other information to create that correlation\"",
+              "createdAt": "2022-10-20T15:07:07Z",
+              "updatedAt": "2022-10-20T15:07:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFm-2Oc5Eg2Rs",
+          "commit": {
+            "abbreviatedOid": "626eebe"
+          },
+          "author": "sysrqb",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-20T15:13:27Z",
+          "updatedAt": "2022-10-20T15:13:28Z",
+          "comments": [
+            {
+              "originalPosition": 62,
+              "body": "Yes, I apologize for missing your last comment @ggx. If you can make the change as @bslassey suggests, then we can merge this PR and I'll rev a new version of the draft.",
+              "createdAt": "2022-10-20T15:13:27Z",
+              "updatedAt": "2022-10-20T15:13:28Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 34,
+      "id": "PR_kwDOFm-2Oc5BXkkj",
+      "title": "Update affiliation and fix some minor typos",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/pull/34",
+      "state": "MERGED",
+      "author": "sysrqb",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-10-23T21:37:46Z",
+      "updatedAt": "2022-10-23T22:23:50Z",
+      "baseRepository": "IRTF-PEARG/draft-ip-address-privacy",
+      "baseRefName": "main",
+      "baseRefOid": "de13c8e2436198728af46ff726acadb0de18a25e",
+      "headRepository": "sysrqb/draft-ip-address-privacy",
+      "headRefName": "affiliation_and_cleanup",
+      "headRefOid": "ce5458a025f5e3fa8f6ba04a55b766e474be8a0d",
+      "closedAt": "2022-10-23T22:23:50Z",
+      "mergedAt": "2022-10-23T22:23:50Z",
+      "mergedBy": "sysrqb",
+      "mergeCommit": {
+        "oid": "08f34a57ab82ba7f02c1a4126bd4bc92bccc6788"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 35,
+      "id": "PR_kwDOFm-2Oc5WrtaD",
+      "title": "Add a section about cross-site vs same site linkage risks",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/pull/35",
+      "state": "MERGED",
+      "author": "bslassey",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "closes #8",
+      "createdAt": "2023-07-28T18:59:23Z",
+      "updatedAt": "2023-08-16T17:31:50Z",
+      "baseRepository": "IRTF-PEARG/draft-ip-address-privacy",
+      "baseRefName": "main",
+      "baseRefOid": "08f34a57ab82ba7f02c1a4126bd4bc92bccc6788",
+      "headRepository": "bslassey/draft-ip-address-privacy",
+      "headRefName": "patch-5",
+      "headRefOid": "03e1c422cf2ddb780ee881c04ff576f4aa5db990",
+      "closedAt": "2023-08-16T17:31:50Z",
+      "mergedAt": "2023-08-16T17:31:50Z",
+      "mergedBy": "sysrqb",
+      "mergeCommit": {
+        "oid": "8774b5f132b61d1c90e1e5d1be5bad0afca3a95d"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFm-2Oc5eJvUR",
+          "commit": {
+            "abbreviatedOid": "2f4296f"
+          },
+          "author": "sysrqb",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Thanks!",
+          "createdAt": "2023-08-15T23:49:44Z",
+          "updatedAt": "2023-08-16T00:12:52Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "`recognize them withing a browsing session`",
+              "createdAt": "2023-08-15T23:49:45Z",
+              "updatedAt": "2023-08-16T00:12:53Z"
+            },
+            {
+              "originalPosition": 15,
+              "body": "I wonder if this is a reasonable citation given that page will change over time. Maybe just referencing https://webkit.org/tracking-prevention/#the-default-cookie-policy and https://blog.chromium.org/2020/01/building-more-private-web-path-towards.html would be better.",
+              "createdAt": "2023-08-16T00:11:14Z",
+              "updatedAt": "2023-08-16T00:12:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFm-2Oc5ePdMq",
+          "commit": {
+            "abbreviatedOid": "13e686f"
+          },
+          "author": "DavidSchinazi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-08-16T17:28:03Z",
+          "updatedAt": "2023-08-16T17:29:02Z",
+          "comments": [
+            {
+              "originalPosition": 29,
+              "body": "```suggestion\r\nIn a web context, IP Addresses can be used to link a user's activity both within a single site and across multiple sites. Users may want to have a single site recognize them within a browsing session or across browsing sessions and in fact cookies are a mechanism to do exactly that. If IP Addresses are only stable within the context a first-party cookie, they don't represent any additional privacy threat. However, since clients are currently in control of their first-party cookies, abusive clients can delete their cookies in an effort to evade detection. IP Addresses currently allow counter-abuse detection to track many such abusive clients across cookie deletions.\r\n```",
+              "createdAt": "2023-08-16T17:28:03Z",
+              "updatedAt": "2023-08-16T17:29:02Z"
+            },
+            {
+              "originalPosition": 30,
+              "body": "```suggestion\r\nHowever, IP Addresses, along with other fingerprinting techniques, also allow the linking of client identity across sites in the web context. Third-party cookies can also allow such a capability, but in a more limited manner as practically speaking no one third-party cookie is present across all websites. Also, browsers are increasingly putting limits on the ability to use third-party cookies in order to combat these threats {{3P_COOKIES_CHROME}} and {{3P_COOKIES_WEBKIT}}. Other network related information can also be used to link client identity across sites, but that is increasingly being seen as a bug to be addressed by browsers through network state partitioning (e.g. {{MOZ_NET_PART}}, {{BRAVE_NET_PART}}, {{CHROME_NET_PART}}).\r\n```",
+              "createdAt": "2023-08-16T17:28:49Z",
+              "updatedAt": "2023-08-16T17:29:02Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 37,
+      "id": "PR_kwDOFm-2Oc5aIUj-",
+      "title": "Temporary Addresses",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/pull/37",
+      "state": "MERGED",
+      "author": "ggx",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Paragraph about the use of temporary addresses to reduce IP tracking.\r\n\r\nresolves #28 \r\n\r\nGgX",
+      "createdAt": "2023-09-12T13:23:55Z",
+      "updatedAt": "2023-10-06T20:17:35Z",
+      "baseRepository": "IRTF-PEARG/draft-ip-address-privacy",
+      "baseRefName": "main",
+      "baseRefOid": "ea6aa59f7555ed112776f6d2cc33beb38d5b141c",
+      "headRepository": "IRTF-PEARG/draft-ip-address-privacy",
+      "headRefName": "temp-addr",
+      "headRefOid": "34ac2bd2b43686e5e29242392e87ac9d42951fed",
+      "closedAt": "2023-10-06T20:17:35Z",
+      "mergedAt": "2023-10-06T20:17:35Z",
+      "mergedBy": "DavidSchinazi",
+      "mergeCommit": {
+        "oid": "1648a00fc6b6b27e5b67cc52ccbf9c1d22ce4af8"
+      },
+      "comments": [
+        {
+          "author": "DavidSchinazi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I'm taking the liberty to merge this to avoid merge conflicts on the refactor I'm starting for #36 ",
+          "createdAt": "2023-10-06T20:17:31Z",
+          "updatedAt": "2023-10-06T20:17:31Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFm-2Oc5gwzbi",
+          "commit": {
+            "abbreviatedOid": "8a5f0e5"
+          },
+          "author": "DavidSchinazi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-09-12T23:43:25Z",
+          "updatedAt": "2023-09-12T23:43:25Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "I would also add a note such as:\r\n> Note however that while IPv6 temporary addresses prevent identification across networks, they do not change the network prefix, and therefore in many cases do not prevent identifying a cellular user or a household.",
+              "createdAt": "2023-09-12T23:43:25Z",
+              "updatedAt": "2023-09-12T23:43:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFm-2Oc5g0DHJ",
+          "commit": {
+            "abbreviatedOid": "8a5f0e5"
+          },
+          "author": "ggx",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-09-13T10:51:26Z",
+          "updatedAt": "2023-09-13T10:51:27Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "Actually temporary addresses do not \"prevent\" they only limit identification across networks, but it is also true that they do not prevent identifying user's ISP. What about putting the following as second sentence in the paragraph:\r\n\r\n> However, since the network prefix remains the same, it is still relatively easy to identify users' access network (e.g. cellular vs household).\r\n\r\nWould this deliver the same point you were making?\r\n ",
+              "createdAt": "2023-09-13T10:51:26Z",
+              "updatedAt": "2023-09-13T10:51:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFm-2Oc5g3Kqk",
+          "commit": {
+            "abbreviatedOid": "8a5f0e5"
+          },
+          "author": "DavidSchinazi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-09-13T17:24:30Z",
+          "updatedAt": "2023-09-13T17:24:31Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "Not quite. The network prefix allows identifying an individual house or cell phone, it's much more precise than just the ISP",
+              "createdAt": "2023-09-13T17:24:31Z",
+              "updatedAt": "2023-09-13T17:24:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFm-2Oc5g-olI",
+          "commit": {
+            "abbreviatedOid": "8a5f0e5"
+          },
+          "author": "ggx",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-09-14T14:27:47Z",
+          "updatedAt": "2023-09-14T14:27:47Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "You are right, what about:\r\n\r\n> However, since the network prefix remains the same, in many cases it remains possible to identify a cellular user or a household.\r\n",
+              "createdAt": "2023-09-14T14:27:47Z",
+              "updatedAt": "2023-09-14T14:27:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFm-2Oc5g_7bF",
+          "commit": {
+            "abbreviatedOid": "8a5f0e5"
+          },
+          "author": "DavidSchinazi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-09-14T16:55:13Z",
+          "updatedAt": "2023-09-14T16:55:14Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "\ud83d\udc4d ",
+              "createdAt": "2023-09-14T16:55:13Z",
+              "updatedAt": "2023-09-14T16:55:14Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFm-2Oc5hHIzX",
+          "commit": {
+            "abbreviatedOid": "3822c4a"
+          },
+          "author": "DavidSchinazi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-09-15T15:44:16Z",
+          "updatedAt": "2023-09-15T15:44:17Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "The network prefix clause applies to 8981, so I'd reorder the two sentences:\r\n\r\n```suggestion\r\n- The use of temporary addresses is another way to limit IP address-based tracking. Changing addresses over time reduces the window of time during which it is possible to easily correlate network activity when the same address is employed for multiple transactions by the same host. Temporary addresses have been introduced only for IPv6, as an extension of its Stateless Address Configuration mechanism ({{?RFC8981}}). However, since the network prefix remains the same, in many cases it remains possible to identify a cellular user or a household.\r\n```",
+              "createdAt": "2023-09-15T15:44:16Z",
+              "updatedAt": "2023-09-15T15:44:17Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFm-2Oc5hVZQT",
+          "commit": {
+            "abbreviatedOid": "8a5f0e5"
+          },
+          "author": "ggx",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-09-19T11:09:46Z",
+          "updatedAt": "2023-09-19T11:09:47Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "Committed last suggestion by David.",
+              "createdAt": "2023-09-19T11:09:46Z",
+              "updatedAt": "2023-09-19T11:09:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFm-2Oc5hYuCr",
+          "commit": {
+            "abbreviatedOid": "34ac2bd"
+          },
+          "author": "DavidSchinazi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-09-19T17:40:38Z",
+          "updatedAt": "2023-09-19T17:40:38Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 38,
+      "id": "PR_kwDOFm-2Oc5cJyWI",
+      "title": "Refactor to separate uses of IP",
+      "url": "https://github.com/IRTF-PEARG/draft-ip-address-privacy/pull/38",
+      "state": "MERGED",
+      "author": "DavidSchinazi",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "As proposed in #36, this PR attempts to differentiate uses of IP into two broad categories: personalization and anti-abuse. It then refactors some sections to leverage that separation. Some further tweaks will be needed after but I think this improves how the document reads.\r\n\r\n[Here is a rendered view of this PR](https://pearg.org/draft-ip-address-privacy/refactor36/draft-irtf-pearg-ip-address-privacy-considerations.html).\r\n\r\nFixes #36 ",
+      "createdAt": "2023-10-06T22:20:08Z",
+      "updatedAt": "2023-12-12T23:00:43Z",
+      "baseRepository": "IRTF-PEARG/draft-ip-address-privacy",
+      "baseRefName": "main",
+      "baseRefOid": "ea8e11b5901f5835fa0e8c7a3a0560d70bfc572f",
+      "headRepository": "IRTF-PEARG/draft-ip-address-privacy",
+      "headRefName": "refactor36",
+      "headRefOid": "ff5f604adf0a473dd189c1249cedce7894c173a1",
+      "closedAt": "2023-12-12T23:00:33Z",
+      "mergedAt": "2023-12-12T23:00:33Z",
+      "mergedBy": "DavidSchinazi",
+      "mergeCommit": {
+        "oid": "c88801d90b15e7139e5e8cfda3a27cecd8e94281"
+      },
+      "comments": [
+        {
+          "author": "bakkot",
+          "authorAssociation": "NONE",
+          "body": "I don't think the geolocation use case really makes sense as either tracking or anti-abuse.",
+          "createdAt": "2023-10-06T23:12:57Z",
+          "updatedAt": "2023-10-06T23:12:57Z"
+        },
+        {
+          "author": "DavidSchinazi",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Good point, I've replaced profiling with personalization. Let me know what you think",
+          "createdAt": "2023-10-28T00:18:50Z",
+          "updatedAt": "2023-10-28T00:18:50Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOFm-2Oc5koXl8",
+          "commit": {
+            "abbreviatedOid": "711cd48"
+          },
+          "author": "bslassey",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-10-19T17:31:33Z",
+          "updatedAt": "2023-10-19T17:31:34Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "If we define profiling just in terms of advertising then I tend to agree with @bakkot that geolocation doesn't fit well in either bucket. May I suggest that the category be personalization, of which profiling for ads is one example of personalization. Other examples would be tailoring content to your location (such as local news, or local stores).",
+              "createdAt": "2023-10-19T17:31:34Z",
+              "updatedAt": "2023-10-19T17:31:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFm-2Oc5ppwjE",
+          "commit": {
+            "abbreviatedOid": "ff5f604"
+          },
+          "author": "bslassey",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-12-08T14:50:44Z",
+          "updatedAt": "2023-12-08T14:51:34Z",
+          "comments": [
+            {
+              "originalPosition": 88,
+              "body": "Should probably expand on this to explain why they're not a general purpose solution. This can be a follow up bug though.",
+              "createdAt": "2023-12-08T14:50:44Z",
+              "updatedAt": "2023-12-08T14:51:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOFm-2Oc5qAuHP",
+          "commit": {
+            "abbreviatedOid": "ff5f604"
+          },
+          "author": "DavidSchinazi",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-12-12T23:00:27Z",
+          "updatedAt": "2023-12-12T23:00:27Z",
+          "comments": [
+            {
+              "originalPosition": 88,
+              "body": "Yeah that text predates this refactor so let's address that separately.",
+              "createdAt": "2023-12-12T23:00:27Z",
+              "updatedAt": "2023-12-12T23:00:28Z"
+            }
+          ]
         }
       ]
     }
