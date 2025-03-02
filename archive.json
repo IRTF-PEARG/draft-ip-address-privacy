@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-27T01:18:51.615737+00:00",
+  "timestamp": "2025-03-02T01:23:21.134948+00:00",
   "repo": "IRTF-PEARG/draft-ip-address-privacy",
   "labels": [
     {
@@ -2227,46 +2227,6 @@
               "body": "Good point. it is indeed true. I updated the text so to clarify when an IP address is considered personal data. Let know if it is what you had in mind.",
               "createdAt": "2022-01-27T14:37:47Z",
               "updatedAt": "2022-01-27T14:37:48Z"
-            }
-          ]
-        },
-        {
-          "id": "PRR_kwDOFm-2Oc4zoId1",
-          "commit": {
-            "abbreviatedOid": "6077403"
-          },
-          "author": "Nimesh199398",
-          "authorAssociation": "NONE",
-          "state": "COMMENTED",
-          "body": "",
-          "createdAt": "2022-01-28T13:46:13Z",
-          "updatedAt": "2022-01-28T13:46:13Z",
-          "comments": [
-            {
-              "originalPosition": 49,
-              "body": "Express highway pe to nai ne and the OFX of punctuation and I will Grammarly has a lot to nai ne and we are going on your own to make a chance of punctuation for the next year and a good place to get some more info about it will be a great opportunity for you and I will Grammarly you as ",
-              "createdAt": "2022-01-28T13:46:13Z",
-              "updatedAt": "2022-01-28T13:46:13Z"
-            }
-          ]
-        },
-        {
-          "id": "PRR_kwDOFm-2Oc4zoIo8",
-          "commit": {
-            "abbreviatedOid": "6077403"
-          },
-          "author": "Nimesh199398",
-          "authorAssociation": "NONE",
-          "state": "COMMENTED",
-          "body": "",
-          "createdAt": "2022-01-28T13:46:52Z",
-          "updatedAt": "2022-01-28T13:46:52Z",
-          "comments": [
-            {
-              "originalPosition": 49,
-              "body": "> Dropped in the upcoming commit.\n\n>>>>>7787>>{{{{{{{>{{{",
-              "createdAt": "2022-01-28T13:46:52Z",
-              "updatedAt": "2022-01-28T13:46:52Z"
             }
           ]
         },
